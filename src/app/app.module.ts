@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+
 
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -12,6 +14,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { StandardNotificationComponent } from './shared/notifications/standard-notification/standard-notification.component';
+import { DateDirective } from './shared/authentication/date.directive';
 
 @NgModule({
   declarations: [
@@ -24,11 +28,14 @@ import { AppRoutingModule } from './/app-routing.module';
     PasswordDirective,
     NavbarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    StandardNotificationComponent,
+    DateDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
