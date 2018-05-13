@@ -16,6 +16,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { StandardNotificationComponent } from './shared/notifications/standard-notification/standard-notification.component';
 import { DateDirective } from './shared/authentication/date.directive';
+import { DatepickerComponent } from './shared/datepicker/datepicker.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { DateDirective } from './shared/authentication/date.directive';
     FooterComponent,
     HomeComponent,
     StandardNotificationComponent,
-    DateDirective
+    DateDirective,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
