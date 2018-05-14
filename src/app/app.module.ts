@@ -17,6 +17,10 @@ import { AppRoutingModule } from './/app-routing.module';
 import { StandardNotificationComponent } from './shared/notifications/standard-notification/standard-notification.component';
 import { DateDirective } from './shared/authentication/date.directive';
 import { DatepickerComponent } from './shared/datepicker/datepicker.component';
+import { DataPrivacyComponent } from './components/data-privacy/data-privacy.component';
+import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -34,9 +38,13 @@ import { DatepickerComponent } from './shared/datepicker/datepicker.component';
     HomeComponent,
     StandardNotificationComponent,
     DateDirective,
-    DatepickerComponent
+    DatepickerComponent,
+    DataPrivacyComponent,
+    LegalNoticeComponent,
+    ContactComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule

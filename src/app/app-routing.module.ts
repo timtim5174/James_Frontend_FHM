@@ -5,6 +5,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignOutComponent } from './components/sign-out/sign-out.component';
+import { DataPrivacyComponent } from './components/data-privacy/data-privacy.component';
+import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 const routes: Routes = [
@@ -12,7 +15,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'users/sign-up', component: SignUpComponent},
   { path: 'users/sign-in', component: SignInComponent},
-  { path: 'users/sign-out', component: SignOutComponent}
+  { path: 'users/sign-out', component: SignOutComponent},
+  { path: 'privacy', component: DataPrivacyComponent},
+  { path: 'legalnotice', component: LegalNoticeComponent},
+  { path: 'contact', component: ContactComponent}
 ];
 @NgModule({
   imports: [
