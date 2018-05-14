@@ -1,0 +1,29 @@
+div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+img {
+    height: 250px;
+    width: 250px;
+}
+
+figure {
+    margin: 10px;
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    position: relative;
+}
+
+figcaption {
+    position: absolute;
+    width: 100%;
+    color: lightgray;
+    background-color: rgba(0, 0, 0, 0.15);
+    bottom: 0%;
+    text-align: center;
+    padding: 5px;
+}
+
