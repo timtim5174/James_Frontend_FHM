@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/user/user';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,10 +17,11 @@ export class SignUpComponent implements OnInit {
     birth: ''
   };
 
+
   firstnameRequired = 'Enter your firstname';
   lastnameRequired = 'Enter your lastname';
   birthdayRequired = 'Enter your birthday';
-  invalidBirthFormat = 'Enter your date of birth in format mm.dd.yyyy';
+  invalidBirthFormat = 'Enter your date of birth in format yyyy-mm-dd';
   noValidEmail = 'Enter a valid email address';
   emailRequired = 'Enter your email';
   passwordRequired = 'Enter your password';
@@ -34,4 +36,9 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
   }
+
+  onSave(event: NgbDateStruct) {
+    this.user.birth = `${event.year}-${event.month}-${event.day}`;
+  }
+
 }
