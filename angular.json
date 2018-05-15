@@ -29,10 +29,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "../web-application/node_modules/jquery/dist/jquery.js",
-              "../web-application/node_modules/bootstrap/dist/js/bootstrap.bundle.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

@@ -22,8 +22,6 @@ import { LegalNoticeComponent } from './components/legal-notice/legal-notice.com
 import { ContactComponent } from './components/contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
