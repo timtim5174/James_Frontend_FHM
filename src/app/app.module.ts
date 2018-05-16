@@ -39,7 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DatepickerComponent,
     DataPrivacyComponent,
     LegalNoticeComponent,
-    ContactComponent
+    ContactComponent,
   ],
   imports: [
     NgbModule.forRoot(),
