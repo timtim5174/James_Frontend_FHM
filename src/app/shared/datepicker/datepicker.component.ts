@@ -10,6 +10,8 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DatepickerComponent implements OnInit {
   model: NgbDateStruct;
+  minDate: NgbDateStruct = { year: 1900, month: 1, day: 1 };
+  datePicked = false;
   @Input() title: string;
   @Output() save = new EventEmitter<NgbDateStruct>();
 
@@ -20,6 +22,11 @@ export class DatepickerComponent implements OnInit {
   }
 
   myFunc() {
+    this.datePicked = true;
     this.save.emit(this.model);
+  }
+
+  openOrDone() {
+    return this.datePicked ? 'done form-control' : 'open form-control';
   }
 }
