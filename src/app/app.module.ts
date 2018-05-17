@@ -43,6 +43,7 @@ import { DropdownComponent } from './shared/dropdown/dropdown.component';
     LegalNoticeComponent,
     ContactComponent,
     DropdownComponent
+
   ],
   imports: [
     NgbModule.forRoot(),
