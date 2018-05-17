@@ -9,7 +9,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/users/sign-up" routerLinkActive="active">
-            <i class="fa fa-user icons"></i>
+            <i class="fa fa-user-plus icons"></i>
             <span class="spanSpace">Sign Up</span>
           </a>
         </li>
@@ -18,16 +18,22 @@
             <app-dropdown>
               <div>
                 <i class="fa fa-sign-in icons"></i>
-                <span class="spanSpace">Sign Up</span>
+                <span class="spanSpace">Login</span>
               </div>
               <app-sign-in></app-sign-in>
             </app-dropdown>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="true">
           <a class="nav-link" routerLink="/users/sign-out" routerLinkActive="active">
             <i class="fa fa-sign-out icons"></i>
             <span class="spanSpace">Sign out</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="true">
+          <a class="nav-link" routerLink="/users/myAccount" routerLinkActive="active">
+            <i class="fa fa-user-circle icons"></i>
+            <span class="spanSpace">MyAccount</span>
           </a>
         </li>
       </ul>
