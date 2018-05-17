@@ -1,28 +1,46 @@
 <div class="container">
-  <form (ngSubmit)="onSubmit()" #signOutForm="ngForm">
-    <div class="form-group">
-      <label for="email" class="control-label">E-Mail</label>
-      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel">
-      <div *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email?.errors?.required">
-          <app-standard-notification [info]="emailRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-        </div>
-        <div *ngIf="email?.errors?.appEmail">
-          <app-standard-notification [info]="noValidEmail" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-        </div>
-      </div>
+  <span class="anchor" id="formRegister"></span>
+  <br class="mb-5">
+  <div class="card card-outline-secondary">
+    <div class="card-header">
+      <h3 class="mb-0">Login</h3>
     </div>
-    <div class="form-group">
-      <label for="password" class="control-label">Password</label>
-      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required
-        #passwordA="ngModel">
-      <div *ngIf="passwordA?.errors?.required && (passwordA.touched || passwordA.dirty)">
-        <app-standard-notification [info]="passwordRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-      </div>
-      <div *ngIf="passwordA?.errors?.appPassword">
-        <app-standard-notification [info]="passwordA?.errors?.appPassword?.value" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-      </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #signOutForm="ngForm">
+        <div class="form-group">
+          <label for="email" class="control-label">E-Mail</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel">
+          <div *ngIf="email.invalid && (email.dirty || email.touched); else space">
+            <div *ngIf="email?.errors?.required">
+              <app-standard-notification [info]="emailRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
+            </div>
+            <div *ngIf="email?.errors?.appEmail">
+              <app-standard-notification [info]="noValidEmail" [cssClasses]="'badge badge-danger'"></app-standard-notification>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="control-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required
+            #passwordA="ngModel">
+          <div *ngIf="passwordA.touched || passwordA.dirty; else space">
+            <div *ngIf="passwordA?.errors?.required">
+              <app-standard-notification [info]="passwordRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
+            </div>
+            <div *ngIf="passwordA?.errors?.appPassword">
+              <app-standard-notification [info]="passwordA?.errors?.appPassword?.value" [cssClasses]="'badge badge-danger'"></app-standard-notification>
+            </div>
+            <div *ngIf="passwordA?.errors?.appPassword || passwordA?.errors?.required; else space"></div>
+          </div>
+        </div>
+        <button [disabled]="!signOutForm.valid" type="submit" class="btn btn-primary">Login</button>
+      </form>
     </div>
-    <button [disabled]="!signOutForm.valid" type="submit" class="btn btn-primary">Login</button>
-  </form>
+  </div>
 </div>
+<br class="mb-5">
+
+
+<ng-template #space>
+  <span class="m-1"></span>
+</ng-template>

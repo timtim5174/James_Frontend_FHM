@@ -23,6 +23,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 
 @NgModule({
@@ -44,8 +45,8 @@ import { MyAccountComponent } from './components/my-account/my-account.component
     LegalNoticeComponent,
     ContactComponent,
     DropdownComponent,
-    MyAccountComponent
-
+    MyAccountComponent,
+    ModalComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignInComponent } from '../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-sign-out',
@@ -6,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-out.component.scss']
 })
 export class SignOutComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {

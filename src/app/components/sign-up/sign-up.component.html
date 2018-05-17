@@ -9,7 +9,7 @@
       <form #signOutForm="ngForm">
         <div class="form-group">
           <label for="firstname" class="control-label">Firstname</label>
-          <input type="text" class="form-control" id="firstname" name="firstname" autofocus="autofocus" [(ngModel)]="user.firstname"
+          <input type="text" autofocus="autofocus" class="form-control" id="firstname" name="firstname"  [(ngModel)]="user.firstname"
             required #firstname="ngModel" placeholder="Firstname">
           <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)">
             <app-standard-notification [info]="firstnameRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
