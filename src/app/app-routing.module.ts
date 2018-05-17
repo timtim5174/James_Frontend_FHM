@@ -8,6 +8,7 @@ import { SignOutComponent } from './components/sign-out/sign-out.component';
 import { DataPrivacyComponent } from './components/data-privacy/data-privacy.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'users/sign-out', component: SignOutComponent},
   { path: 'privacy', component: DataPrivacyComponent},
   { path: 'legalnotice', component: LegalNoticeComponent},
-  { path: 'contact', component: ContactComponent}
+  { path: 'contact', component: ContactComponent},
+  { path: 'users/myAccount', component: MyAccountComponent}
 ];
 @NgModule({
   imports: [
