@@ -21,6 +21,8 @@ import { DataPrivacyComponent } from './components/data-privacy/data-privacy.com
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DropdownComponent } from './shared/dropdown/dropdown.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DatepickerComponent,
     DataPrivacyComponent,
     LegalNoticeComponent,
-    ContactComponent
+    ContactComponent,
+    DropdownComponent
   ],
   imports: [
     NgbModule.forRoot(),
