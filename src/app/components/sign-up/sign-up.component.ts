@@ -26,7 +26,6 @@ export class SignUpComponent implements OnInit {
   emailRequired = 'Enter your email';
   passwordRequired = 'Enter your password';
   passwordCheckInvalid = 'Passwords must match';
-  passwordInvalid = 'Your password must have 8 characters';
 
 
   constructor() { }

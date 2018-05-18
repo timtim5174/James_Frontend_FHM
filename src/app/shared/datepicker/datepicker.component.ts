@@ -1,21 +1,26 @@
 import { Component, OnInit, Output, EventEmitter, SimpleChanges, Input } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss']
+  styleUrls: ['./datepicker.component.scss'],
+  providers: [NgbDatepickerConfig]
 })
 export class DatepickerComponent implements OnInit {
   model: NgbDateStruct;
-  minDate: NgbDateStruct = { year: 1900, month: 1, day: 1 };
   datePicked = false;
   @Input() title: string;
   @Output() save = new EventEmitter<NgbDateStruct>();
 
-  constructor() { }
+
+  constructor(config: NgbDatepickerConfig) {
+    const now = new Date();
+    config.minDate = { year: 1920, month: 1, day: 1 };
+    config.maxDate = { year: now.getFullYear(), month: (now.getMonth() + 1), day: now.getDate() };
+  }
 
 
   ngOnInit() {
@@ -29,4 +34,5 @@ export class DatepickerComponent implements OnInit {
   openOrDone() {
     return this.datePicked ? 'done form-control' : 'open form-control';
   }
+
 }

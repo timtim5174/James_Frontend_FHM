@@ -10,28 +10,17 @@
         <div class="form-group">
           <label for="email" class="control-label">E-Mail</label>
           <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel">
-          <div *ngIf="email.invalid && (email.dirty || email.touched); else space">
-            <div *ngIf="email?.errors?.required">
-              <app-standard-notification [info]="emailRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-            </div>
-            <div *ngIf="email?.errors?.appEmail">
-              <app-standard-notification [info]="noValidEmail" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-            </div>
-          </div>
+          <div *ngIf="(email.dirty || email.touched) && !email.valid; else space"></div>
+          <app-error-message [control]='email' [error]="'required'" [message]="emailRequired"></app-error-message>
+          <app-error-message [control]='email' [error]="'appEmail'" [message]="noValidEmail"></app-error-message>
         </div>
         <div class="form-group">
           <label for="password" class="control-label">Password</label>
           <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required
-            #passwordA="ngModel">
-          <div *ngIf="passwordA.touched || passwordA.dirty; else space">
-            <div *ngIf="passwordA?.errors?.required">
-              <app-standard-notification [info]="passwordRequired" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-            </div>
-            <div *ngIf="passwordA?.errors?.appPassword">
-              <app-standard-notification [info]="passwordA?.errors?.appPassword?.value" [cssClasses]="'badge badge-danger'"></app-standard-notification>
-            </div>
-            <div *ngIf="passwordA?.errors?.appPassword || passwordA?.errors?.required; else space"></div>
-          </div>
+            #password="ngModel">
+          <div *ngIf="(password.dirty || password.touched) && !password.valid; else space"></div>
+          <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
+          <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
         </div>
         <button [disabled]="!signOutForm.valid" type="submit" class="btn btn-primary">Login</button>
       </form>
@@ -41,6 +30,9 @@
 <br class="mb-5">
 
 
+
+<!--  A little space, used when no app-error-message is shown - otherwise
+      the sign-in container would shrink and grow when messages appear -->
 <ng-template #space>
   <span class="m-1"></span>
 </ng-template>

@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { ErrorMessageComponent } from './shared/notifications/error-message/error-message.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     ContactComponent,
     DropdownComponent,
     MyAccountComponent,
-    ModalComponent
+    ModalComponent,
+    ErrorMessageComponent
   ],
   imports: [
     NgbModule.forRoot(),
