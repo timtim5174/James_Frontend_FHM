@@ -1,3 +1,90 @@
-<p>
-  my-account works!
-</p>
+<div class="col-md-6 offset-md-3">
+  <span class="anchor" id="formRegister"></span>
+  <br class="mb-5">
+  <div class="card card-outline-secondary">
+    <div class="card-header">
+      <h3 class="mb-0">User Profile</h3>
+    </div>
+    <div class="card-body">
+        <div class="container">
+          <div class="form-group">
+            <div class="row justify-content-start">
+              <div class="col-md-4">
+                  <img src="./assets/nobody_m.original.jpg">
+              </div>
+            </div> 
+          </div>   
+        </div>
+        <br class="mb-2">
+        <div class="container">
+        <form #myAccountForm="ngForm">
+          <div class="container">
+            <div class="form-group">
+              <div class="row justify-content-start">
+                  <div class="col-md-4">
+                      <label for="firstname" class="control-label">Firstname</label>
+                  </div>
+                  <div class="col-md-6">
+                      <input type="text" autofocus="autofocus" class="form-control" id="firstname" name="firstname"  [(ngModel)]="user.firstname" required #firstname="ngModel" placeholder="Firstname">
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row justify-content-start">
+                  <div class="col-md-4">
+                      <label for="lastname" class="control-label">Lastname</label>
+                  </div>
+                  <div class="col-md-6">
+                      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname" required #lastname="ngModel" placeholder="Lastname">
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="row justify-content-start">
+                    <div class="col-md-4">
+                        <label for="birth" class="control-label">Birth</label>
+                    </div>
+                    <div class="col-md-6">
+                        <app-datepicker (save)="onSaveDate($event)" id="birth" ></app-datepicker>
+                    </div>
+                </div>
+              </div>
+            <div class="form-group">
+                  <div class="row justify-content-start">
+                      <div class="col-md-4">
+                          <label for="email" class="control-label">Email</label>
+                      </div>
+                      <div class="col-md-6">
+                          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel" placeholder="Email">
+                      </div>
+                  </div>
+            </div>
+            <div class="form-group">
+              <div class="row justify-content-start">
+                  <div class="col-md-4">
+                    <label for="password" class="control-label">Password</label>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required #passwordA="ngModel" placeholder="Password">
+                          <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button">
+                                  <i class="fa fa-edit"></i>
+                              </button>
+                          </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row justify-content-start">
+                <div class="col-md-1 offset-md-4">
+                    <button [disabled]="!myAccountForm.valid || !user.birth" type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  </div>
+  <br class="mb-5">
+</div>
