@@ -11,6 +11,7 @@ import { User } from './user';
 export class UserService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   isAuthenticated: boolean;
+  userData: User;
   private options = {withCredentials: true};
 
   constructor(private http: HttpClient) { }
@@ -25,7 +26,7 @@ export class UserService {
 
   signIn(authData: Partial<User>) {
     this.isAuthenticated = false;
-    return this.http.post(this.baseURL + '/users/sign-in', authData, this.options).pipe(
+    return this.http.post(this.baseURL + '/login', authData, this.options).pipe(
       map(data => this.isAuthenticated = true),
       catchError(this.handleError)
     );
@@ -33,6 +34,17 @@ export class UserService {
 
   signOut() {
     this.isAuthenticated = false;
+  }
+
+  getUserData() {
+    return this.http.get(this.baseURL + '/userData', this.options).pipe(
+      map(data => this.userData = data as User),
+      catchError(this.handleError)
+    );
+  }
+
+  updateUser(user: User) {
+
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
