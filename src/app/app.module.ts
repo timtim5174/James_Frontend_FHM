@@ -25,6 +25,10 @@ import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { ErrorMessageComponent } from './shared/notifications/error-message/error-message.component';
+import { UserService } from './shared/user/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AlertCloseableComponent } from './shared/notifications/alert-closeable/alert-closeable.component';
+
 
 
 @NgModule({
@@ -48,15 +52,17 @@ import { ErrorMessageComponent } from './shared/notifications/error-message/erro
     DropdownComponent,
     MyAccountComponent,
     ModalComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    AlertCloseableComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

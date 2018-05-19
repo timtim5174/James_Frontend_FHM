@@ -1,0 +1,3 @@
+<div *ngIf="message">
+  <ngb-alert *ngIf="!isClosed" [type]="style" (close)="closeAlert()">{{message}}</ngb-alert>
+</div>

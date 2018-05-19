@@ -1,4 +1,5 @@
 <div class="col-md-6 offset-md-3">
+  <app-alert-closeable #closeableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
   <span class="anchor" id="formRegister"></span>
   <br class="mb-5">
   <div class="card card-outline-secondary">
@@ -6,7 +7,7 @@
       <h3 class="mb-0">Sign Up</h3>
     </div>
     <div class="card-body">
-      <form #signOutForm="ngForm">
+      <form #signOutForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="firstname" class="control-label">Firstname</label>
           <input type="text" autofocus="autofocus" class="form-control" id="firstname" name="firstname" [(ngModel)]="user.firstname"

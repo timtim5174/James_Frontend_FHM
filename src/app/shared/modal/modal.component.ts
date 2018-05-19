@@ -10,7 +10,6 @@ import { SignInComponent } from '../../components/sign-in/sign-in.component';
 })
 export class ModalComponent implements OnInit {
   @Input() component: Component;
-
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -20,4 +19,6 @@ export class ModalComponent implements OnInit {
   open() {
     this.modalService.open(this.component, { centered: true });
   }
+
+
 }

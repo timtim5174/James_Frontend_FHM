@@ -22,6 +22,7 @@
           <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
           <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
         </div>
+        <app-standard-notification [error]="errorMessage"></app-standard-notification>
         <button [disabled]="!signOutForm.valid" type="submit" class="btn btn-primary">Login</button>
       </form>
     </div>

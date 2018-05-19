@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../shared/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { UserService } from '../../shared/user/user.service';
+import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,14 +12,17 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SignUpComponent implements OnInit {
   user: User = {
+    email: '',
     firstname: '',
     lastname: '',
-    email: '',
     password: '',
     passwordCheck: '',
     birth: ''
   };
+  errorMessage = '';
 
+  @ViewChild('closeableAlert')
+  private closeableAlert: AlertCloseableComponent;
 
   firstnameRequired = 'Enter your firstname';
   lastnameRequired = 'Enter your lastname';
@@ -28,12 +34,21 @@ export class SignUpComponent implements OnInit {
   passwordCheckInvalid = 'Passwords must match';
 
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
+    const userTO: User = { ...this.user };
+    delete userTO.passwordCheck;
+    this.userService.signUp(userTO).subscribe(
+      success => this.router.navigate(['/home']),
+      error => {
+        this.closeableAlert.reOpenAlert();
+        this.errorMessage = error;
+      }
+    );
   }
 
   onSave(event: NgbDateStruct) {
