@@ -68,7 +68,7 @@
                     <div class="input-group">
                         <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required #passwordA="ngModel" placeholder="Password">
                           <div class="input-group-append">
-                              <button class="btn btn-outline-secondary" type="button">
+                              <button class="btn btn-outline-secondary" type="button" (click)="passwordChange()">
                                   <i class="fa fa-edit"></i>
                               </button>
                           </div>
@@ -76,6 +76,26 @@
                   </div>
               </div>
             </div>
+            <div class="form-group" *ngIf="isPasswordChanged">
+                <div class="row justify-content-start">
+                    <div class="col-md-4">
+                      <label for="newPassword" class="control-label">New Password</label>
+                    </div>
+                    <div class="col-md-6">
+                          <input type="password" class="form-control" id="newPassword" name="newPassword" [(ngModel)]="newPassword"  required placeholder="Password">
+                    </div>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="isPasswordChanged">
+                <div class="row justify-content-start">
+                    <div class="col-md-4">
+                      <label for="verifyPassword" class="control-label">Verify Password</label>
+                    </div>
+                    <div class="col-md-6">
+                          <input type="password" class="form-control" id="verifyPassword" name="verifyPassword" [(ngModel)]="verifyPassword"  required placeholder="Password">
+                    </div>
+                </div>
+              </div>
             <div class="row justify-content-start">
                 <div class="col-md-1 offset-md-4">
                     <button [disabled]="!myAccountForm.valid || !user.birth" type="submit" class="btn btn-primary">Save</button>

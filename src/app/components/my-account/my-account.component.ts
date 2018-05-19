@@ -9,6 +9,9 @@ import { UserService } from '../../shared/user/user.service';
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements OnInit {
+  isPasswordChanged = false;
+  newPassword = '';
+  verifyPassword = '';
   user = {
     email: '',
     firstname: '',
@@ -39,7 +42,11 @@ export class MyAccountComponent implements OnInit {
     this.user.birth = `${event.year}-${event.month}-${event.day}`;
   }
 
-  onSave() {
+  onSave() {}
 
+  passwordChange() {
+    this.isPasswordChanged = !this.isPasswordChanged;
+    this.newPassword = '';
+    this.verifyPassword = '';
   }
 }
