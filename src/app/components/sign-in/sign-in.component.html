@@ -1,3 +1,6 @@
+<button type="button" class="close pr-1" aria-label="Close" (click)="activeModal.dismiss()">
+  <span aria-hidden="true">&times;</span>
+</button>
 <div class="container">
   <span class="anchor" id="formRegister"></span>
   <br class="mb-5">
@@ -22,7 +25,7 @@
           <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
           <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
         </div>
-        <app-standard-notification [error]="errorMessage"></app-standard-notification>
+        <app-alert-closeable #SignInCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
         <button [disabled]="!signOutForm.valid" type="submit" class="btn btn-primary">Login</button>
       </form>
     </div>
