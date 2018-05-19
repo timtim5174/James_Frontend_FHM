@@ -25,7 +25,7 @@ export class UserService {
 
   signIn(authData: Partial<User>) {
     this.isAuthenticated = false;
-    return this.http.post(this.baseURL + '/users/sign-in', authData, this.options).pipe(
+    return this.http.post(this.baseURL + '/login', authData, this.options).pipe(
       map(data => this.isAuthenticated = true),
       catchError(this.handleError)
     );

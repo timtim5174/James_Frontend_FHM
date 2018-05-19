@@ -3,6 +3,8 @@ import { User } from '../../shared/user/user';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/user/user.service';
 import { ModalComponent } from '../../shared/modal/modal.component';
+import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,11 +18,14 @@ export class SignInComponent implements OnInit {
   };
   errorMessage = '';
 
+  @ViewChild('SignInCloseableAlert')
+  private closeableAlert: AlertCloseableComponent;
+
   noValidEmail = 'Enter a valid email address';
   emailRequired = 'Enter your email';
   passwordRequired = 'Enter your password';
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
@@ -28,9 +33,11 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.userService.signIn(this.user).subscribe(
       success => {
+        this.activeModal.dismiss();
         this.router.navigate(['/home']);
       },
       error => {
+        this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
       }
     );

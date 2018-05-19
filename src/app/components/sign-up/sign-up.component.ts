@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
   };
   errorMessage = '';
 
-  @ViewChild('closeableAlert')
+  @ViewChild('SignUpCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
 
   firstnameRequired = 'Enter your firstname';
