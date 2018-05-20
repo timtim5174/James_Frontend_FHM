@@ -3,6 +3,7 @@ import { User } from './../../shared/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../shared/user/user.service';
 import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
+import { DatepickerComponent } from '../../shared/datepicker/datepicker.component';
 
 @Component({
   selector: 'app-my-account',
@@ -15,8 +16,13 @@ export class MyAccountComponent implements OnInit {
   verifyPassword = '';
   alertMessage = '';
   alertStyle = '';
+  datepickerDate: NgbDateStruct;
+
   @ViewChild('MyAccountClosableAlert')
   private closeableAlert: AlertCloseableComponent;
+
+  @ViewChild('MyDatepicker')
+  private datepicker: DatepickerComponent;
 
   user: User = {
     email: '',
@@ -24,12 +30,6 @@ export class MyAccountComponent implements OnInit {
     lastname: '',
     password: '',
     birth: ''
-  };
-
-  datepickerDate: NgbDateStruct = {
-    year: Number(this.user.birth.substring(0, 4)),
-    month: Number(this.user.birth.substring(5, 7)),
-    day: Number(this.user.birth.substring(8, 9))
   };
 
   firstnameRequired = 'Enter your firstname';
@@ -45,6 +45,12 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserData().subscribe(data => {
       this.user = data;
+      this.datepickerDate = {
+        year: Number(this.user.birth.substring(0, 4)),
+        month: Number(this.user.birth.substring(5, 7)),
+        day: Number(this.user.birth.substring(8, 10))
+      };
+      this.datepicker.initDate(this.datepickerDate);
     }, error => {
       this.errorMessage = error;
     });
@@ -58,7 +64,7 @@ export class MyAccountComponent implements OnInit {
     if (this.isPasswordChanged) {
       this.user.password = this.newPassword;
     }
-    // update user information
+
     this.userService.updateUser(this.user).subscribe(response => {
       this.closeableAlert.reOpenAlert();
       this.alertMessage = response.message;

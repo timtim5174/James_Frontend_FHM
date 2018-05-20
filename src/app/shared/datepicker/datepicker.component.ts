@@ -26,6 +26,11 @@ export class DatepickerComponent implements OnInit {
   ngOnInit() {
   }
 
+  initDate(value: NgbDateStruct) {
+    this.model = value;
+    this.datePicked = true;
+  }
+
   myFunc() {
     this.datePicked = true;
     this.save.emit(this.model);
