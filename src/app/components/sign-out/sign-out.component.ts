@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { SignInComponent } from '../sign-in/sign-in.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../../shared/user/user.service';
+
 
 @Component({
   selector: 'app-sign-out',
@@ -7,9 +9,13 @@ import { SignInComponent } from '../sign-in/sign-in.component';
   styleUrls: ['./sign-out.component.scss']
 })
 export class SignOutComponent implements OnInit {
-  constructor() { }
 
-  ngOnInit() {
+
+  constructor(private userService: UserService, private router: Router) {
+    document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
+  ngOnInit() {
+    this.router.navigate(['/home']);
+  }
 }

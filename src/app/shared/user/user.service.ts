@@ -11,9 +11,10 @@ import { User } from './user';
 export class UserService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   isAuthenticated: boolean;
+
+  private options = { withCredentials: true };
   userData: User;
   response: object;
-  private options = {withCredentials: true};
 
   constructor(private http: HttpClient) { }
 
@@ -33,9 +34,6 @@ export class UserService {
     );
   }
 
-  signOut() {
-    this.isAuthenticated = false;
-  }
 
   getUserData() {
     return this.http.get(this.baseURL + '/userData', this.options).pipe(
