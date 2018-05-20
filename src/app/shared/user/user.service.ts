@@ -14,8 +14,7 @@ export class UserService {
 
   private options = { withCredentials: true };
   userData: User;
-  response: string;
-
+  response: object;
 
   constructor(private http: HttpClient) { }
 
@@ -49,8 +48,9 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    return this.http.patch(this.baseURL, '/updateUser', this.options).pipe(
-      map(data => this.response),
+    delete user.passwordCheck;
+    return this.http.patch(this.baseURL + '/updateUser', user, this.options).pipe(
+      map(data => this.response = data),
       catchError(this.handleError)
     );
   }

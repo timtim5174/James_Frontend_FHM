@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { User } from './../../shared/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../shared/user/user.service';
+import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
+import { DatepickerComponent } from '../../shared/datepicker/datepicker.component';
 
 @Component({
   selector: 'app-my-account',
@@ -12,18 +14,22 @@ export class MyAccountComponent implements OnInit {
   isPasswordChanged = false;
   newPassword = '';
   verifyPassword = '';
+  alertMessage = '';
+  alertStyle = '';
+  datepickerDate: NgbDateStruct;
+
+  @ViewChild('MyAccountClosableAlert')
+  private closeableAlert: AlertCloseableComponent;
+
+  @ViewChild('MyDatepicker')
+  private datepicker: DatepickerComponent;
+
   user: User = {
     email: '',
     firstname: '',
     lastname: '',
     password: '',
     birth: ''
-  };
-
-  datepickerDate: NgbDateStruct = {
-    year: Number(this.user.birth.substring(0, 4)),
-    month: Number(this.user.birth.substring(5, 7)),
-    day: Number(this.user.birth.substring(8, 9))
   };
 
   firstnameRequired = 'Enter your firstname';
@@ -39,6 +45,12 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserData().subscribe(data => {
       this.user = data;
+      this.datepickerDate = {
+        year: Number(this.user.birth.substring(0, 4)),
+        month: Number(this.user.birth.substring(5, 7)),
+        day: Number(this.user.birth.substring(8, 10))
+      };
+      this.datepicker.initDate(this.datepickerDate);
     }, error => {
       this.errorMessage = error;
     });
@@ -48,12 +60,20 @@ export class MyAccountComponent implements OnInit {
     this.user.birth = `${event.year}-${event.month}-${event.day}`;
   }
 
-  async onSave() {
+  onSave() {
     if (this.isPasswordChanged) {
-      // call hash funktion on server for hashing password
+      this.user.password = this.newPassword;
     }
 
-    // update user information
+    this.userService.updateUser(this.user).subscribe(response => {
+      this.closeableAlert.reOpenAlert();
+      this.alertMessage = response.message;
+      this.alertStyle = 'success';
+    }, error => {
+      this.closeableAlert.reOpenAlert();
+      this.alertMessage = error;
+      this.alertStyle = 'danger';
+    });
   }
 
   passwordChange() {
