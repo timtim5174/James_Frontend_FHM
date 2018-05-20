@@ -1,5 +1,5 @@
 {
-  "/JamesBackend-web/*": {
+  "/JamesBackend-web/api/v1/boarding": {
     "target": "http://localhost:8080",
     "secure": false
   }

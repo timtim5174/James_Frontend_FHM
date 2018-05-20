@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../shared/user/user';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/user/user.service';
-import { ModalComponent } from '../../shared/modal/modal.component';
 import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
