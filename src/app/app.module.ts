@@ -20,7 +20,7 @@ import { DatepickerComponent } from './shared/datepicker/datepicker.component';
 import { DataPrivacyComponent } from './components/data-privacy/data-privacy.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ModalComponent } from './shared/modal/modal.component';
@@ -62,7 +62,7 @@ import { AlertCloseableComponent } from './shared/notifications/alert-closeable/
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

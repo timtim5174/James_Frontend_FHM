@@ -8,7 +8,7 @@ export class PasswordDirective implements Validator {
 
   constructor() { }
   validate(c: AbstractControl): { [key: string]: any; } {
-    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d#?!@$+\*%^&*-]{8,30}$/i;
+    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d#?!@+\*%^&*-]{8,30}$/i;
     if (!c.value || re.test(c.value)) {
       return null;
     } else {
