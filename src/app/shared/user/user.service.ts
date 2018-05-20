@@ -11,7 +11,11 @@ import { User } from './user';
 export class UserService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   isAuthenticated: boolean;
+
   private options = { withCredentials: true };
+  userData: User;
+  response: string;
+
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +35,20 @@ export class UserService {
     );
   }
 
+
+  getUserData() {
+    return this.http.get(this.baseURL + '/userData', this.options).pipe(
+      map(data => this.userData = data as User),
+      catchError(this.handleError)
+    );
+  }
+
+  updateUser(user: User) {
+    return this.http.patch(this.baseURL, '/updateUser', this.options).pipe(
+      map(data => this.response),
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     let msg: string;
