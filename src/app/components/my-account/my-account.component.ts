@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { User } from './../../shared/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../shared/user/user.service';
+import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
 
 @Component({
   selector: 'app-my-account',
@@ -12,6 +13,11 @@ export class MyAccountComponent implements OnInit {
   isPasswordChanged = false;
   newPassword = '';
   verifyPassword = '';
+  alertMessage = '';
+  alertStyle = '';
+  @ViewChild('MyAccountClosableAlert')
+  private closeableAlert: AlertCloseableComponent;
+
   user: User = {
     email: '',
     firstname: '',
@@ -48,12 +54,20 @@ export class MyAccountComponent implements OnInit {
     this.user.birth = `${event.year}-${event.month}-${event.day}`;
   }
 
-  async onSave() {
+  onSave() {
     if (this.isPasswordChanged) {
-      // call hash funktion on server for hashing password
+      this.user.password = this.newPassword;
     }
-
     // update user information
+    this.userService.updateUser(this.user).subscribe(response => {
+      this.closeableAlert.reOpenAlert();
+      this.alertMessage = response.message;
+      this.alertStyle = 'success';
+    }, error => {
+      this.closeableAlert.reOpenAlert();
+      this.alertMessage = error;
+      this.alertStyle = 'danger';
+    });
   }
 
   passwordChange() {
