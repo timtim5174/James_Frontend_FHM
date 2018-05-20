@@ -12,7 +12,7 @@ export class MyAccountComponent implements OnInit {
   isPasswordChanged = false;
   newPassword = '';
   verifyPassword = '';
-  user = {
+  user: User = {
     email: '',
     firstname: '',
     lastname: '',
@@ -26,6 +26,12 @@ export class MyAccountComponent implements OnInit {
     day: Number(this.user.birth.substring(8, 9))
   };
 
+  firstnameRequired = 'Enter your firstname';
+  lastnameRequired = 'Enter your lastname';
+  noValidEmail = 'Enter a valid email address';
+  emailRequired = 'Enter your email';
+  passwordRequired = 'Enter your password';
+  passwordCheckInvalid = 'Passwords must match';
   errorMessage = '';
 
   constructor(private userService: UserService) { }
@@ -42,7 +48,13 @@ export class MyAccountComponent implements OnInit {
     this.user.birth = `${event.year}-${event.month}-${event.day}`;
   }
 
-  onSave() {}
+  async onSave() {
+    if (this.isPasswordChanged) {
+      // call hash funktion on server for hashing password
+    }
+
+    // update user information
+  }
 
   passwordChange() {
     this.isPasswordChanged = !this.isPasswordChanged;

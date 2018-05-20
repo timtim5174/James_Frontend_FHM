@@ -12,6 +12,7 @@ export class UserService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   isAuthenticated: boolean;
   userData: User;
+  response: string;
   private options = {withCredentials: true};
 
   constructor(private http: HttpClient) { }
@@ -44,7 +45,10 @@ export class UserService {
   }
 
   updateUser(user: User) {
-
+    return this.http.patch(this.baseURL, '/updateUser', this.options).pipe(
+      map(data => this.response),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
