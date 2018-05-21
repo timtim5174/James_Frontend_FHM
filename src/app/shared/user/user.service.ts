@@ -55,6 +55,12 @@ export class UserService {
     );
   }
 
+  uploadFile(file: FormData) {
+    return this.http.post(this.baseURL + '/uploadFile', file, this.options).pipe(
+      map(data => this.response = data),
+      catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<any> {
     let msg: string;
     if (error.error) {
