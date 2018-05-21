@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/user/user.service';
+
+
 
 
 @Component({
@@ -9,13 +11,18 @@ import { UserService } from '../../shared/user/user.service';
   styleUrls: ['./sign-out.component.scss']
 })
 export class SignOutComponent implements OnInit {
-
+  signOutMessage = 'You have been successfully logged out!';
 
   constructor(private userService: UserService, private router: Router) {
-    document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    this.userService.signOut();
+    setTimeout(this.redirectToHome.bind(this), 3000);
   }
 
   ngOnInit() {
+  }
+
+  redirectToHome() {
     this.router.navigate(['/home']);
   }
 }
+

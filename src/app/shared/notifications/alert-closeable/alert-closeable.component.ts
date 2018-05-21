@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-alert-closeable',
@@ -9,7 +9,6 @@ export class AlertCloseableComponent implements OnInit {
   isClosed = false;
   @Input() message: string;
   @Input() style: string;
-
   constructor() {
   }
 

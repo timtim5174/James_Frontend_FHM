@@ -34,6 +34,11 @@ export class UserService {
     );
   }
 
+  signOut() {
+    this.isAuthenticated = false;
+    document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  }
+
 
   getUserData() {
     return this.http.get(this.baseURL + '/userData', this.options).pipe(

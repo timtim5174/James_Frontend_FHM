@@ -20,6 +20,7 @@ export class SignUpComponent implements OnInit {
     birth: ''
   };
   errorMessage = '';
+  registerClicked = false;
 
   @ViewChild('SignUpCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
@@ -40,11 +41,13 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
+    this.registerClicked = true;
     const userTO: User = { ...this.user };
     delete userTO.passwordCheck;
     this.userService.signUp(userTO).subscribe(
       success => this.router.navigate(['/home']),
       error => {
+        this.registerClicked = false;
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
       }
@@ -54,5 +57,7 @@ export class SignUpComponent implements OnInit {
   onSave(event: NgbDateStruct) {
     this.user.birth = `${event.year}-${event.month}-${event.day}`;
   }
+
+
 
 }

@@ -9,6 +9,7 @@ import { DataPrivacyComponent } from './components/data-privacy/data-privacy.com
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'privacy', component: DataPrivacyComponent},
   { path: 'legalnotice', component: LegalNoticeComponent},
   { path: 'contact', component: ContactComponent},
-  { path: 'users/myAccount', component: MyAccountComponent}
+  { path: 'users/myAccount', component: MyAccountComponent, canActivate: [AuthGuard]}
 ];
 @NgModule({
   imports: [

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { User } from '../../shared/user/user';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/user/user.service';
@@ -16,6 +16,7 @@ export class SignInComponent implements OnInit {
     password: '',
   };
   errorMessage = '';
+  @Input() authGuardRedirect: string;
 
   @ViewChild('SignInCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
@@ -32,14 +33,22 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.userService.signIn(this.user).subscribe(
       success => {
-        this.activeModal.dismiss();
-        this.router.navigate(['/home']);
+        this.closeModalBox();
+        if (this.authGuardRedirect) {
+          this.router.navigate([this.authGuardRedirect]);
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error => {
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
       }
     );
+  }
+
+  closeModalBox() {
+    this.activeModal.dismiss();
   }
 
 }

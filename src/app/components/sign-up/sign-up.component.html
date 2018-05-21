@@ -55,7 +55,9 @@
             </div>
           </div>
         </div>
-        <button [disabled]="!signOutForm.valid || !user.birth" type="submit" class="btn btn-primary">Register</button>
+        <div *ngIf="!registerClicked; else loading">
+          <button [disabled]="!signOutForm.valid || !user.birth" type="submit" class="btn btn-primary">Register</button>
+        </div>
       </form>
     </div>
   </div>
@@ -67,4 +69,12 @@
       the sign-in container would shrink and grow when messages appear -->
 <ng-template #space>
   <span class="m-1"></span>
+</ng-template>
+
+
+<!--   A loading icon which is shown until the authentication is complete  -->
+<ng-template #loading>
+  <span>
+    <img src="/assets/loading.svg">
+  </span>
 </ng-template>
