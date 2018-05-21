@@ -1,6 +1,7 @@
 img{
     width: 150px; 
     height: 150px;
+    border: 1px solid rgb(190, 190, 190);
 }
 .ng-valid:not(form):not(div)   { border-left: 5px solid #28a745; /* green */ }
 .ng-invalid:not(form):not(div) { border-left: 5px solid #dc3545; /* red */   }

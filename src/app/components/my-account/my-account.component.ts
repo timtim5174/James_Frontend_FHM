@@ -17,6 +17,8 @@ export class MyAccountComponent implements OnInit {
   alertMessage = '';
   alertStyle = '';
   datepickerDate: NgbDateStruct;
+  img = './assets/nobody_m.original.jpg';
+  selectedFile: File = null;
 
   @ViewChild('MyAccountClosableAlert')
   private closeableAlert: AlertCloseableComponent;
@@ -64,18 +66,10 @@ export class MyAccountComponent implements OnInit {
     if (this.isPasswordChanged) {
       this.user.password = this.newPassword;
     }
-
     this.userService.updateUser(this.user).subscribe(response => {
-      this.closeableAlert.reOpenAlert();
-      this.alertMessage = response.message;
-      this.alertStyle = 'success';
-      setTimeout(() => {
-        this.closeableAlert.closeAlert();
-      }, 3000);
+      this.showResponse(response.message, 'success');
     }, error => {
-      this.closeableAlert.reOpenAlert();
-      this.alertMessage = error;
-      this.alertStyle = 'danger';
+      this.showResponse(error, 'danger');
     });
   }
 
@@ -83,5 +77,32 @@ export class MyAccountComponent implements OnInit {
     this.isPasswordChanged = !this.isPasswordChanged;
     this.newPassword = '';
     this.verifyPassword = '';
+  }
+
+  onImageSelected(event) {
+   const reader: any = new FileReader();
+   if (event.target.files && event.target.files.length > 0) {
+    this.selectedFile = event.target.files[0];
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = (e) => {
+      this.img = e.target.result;
+    };
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+    this.userService.uploadFile(fd).subscribe(response => {
+      this.showResponse(response.message, 'success');
+    }, error => {
+      this.showResponse(error, 'danger');
+    });
+  }
+}
+
+  showResponse(message: string, style: string) {
+    this.closeableAlert.reOpenAlert();
+    this.alertMessage = message;
+    this.alertStyle = style;
+    setTimeout(() => {
+      this.closeableAlert.closeAlert();
+    }, 5000);
   }
 }
