@@ -47,6 +47,7 @@ export class SignUpComponent implements OnInit {
     this.userService.signUp(userTO).subscribe(
       success => this.router.navigate(['/home']),
       error => {
+        this.registerClicked = false;
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
       }

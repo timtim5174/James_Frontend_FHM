@@ -15,7 +15,7 @@ export class SignOutComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
     this.userService.signOut();
-    setTimeout(this.redirectToHome.bind(this), 2500);
+    setTimeout(this.redirectToHome.bind(this), 3000);
   }
 
   ngOnInit() {
