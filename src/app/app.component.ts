@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './shared/user/user.service';
 
 @Component({
@@ -6,10 +6,16 @@ import { UserService } from './shared/user/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(private userService: UserService) {
+  }
+
+  ngOnInit() {
+    if (document.cookie.includes('jwt-token')) {
+      this.userService.isAuthenticated = true;
+    }
   }
 
   get isAuthenticated() {
