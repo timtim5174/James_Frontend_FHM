@@ -69,6 +69,9 @@ export class MyAccountComponent implements OnInit {
       this.closeableAlert.reOpenAlert();
       this.alertMessage = response.message;
       this.alertStyle = 'success';
+      setTimeout(() => {
+        this.closeableAlert.closeAlert();
+      }, 3000);
     }, error => {
       this.closeableAlert.reOpenAlert();
       this.alertMessage = error;
