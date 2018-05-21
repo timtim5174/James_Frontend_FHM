@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 import { MyAccountComponent } from '../../components/my-account/my-account.component';
 
@@ -12,9 +12,11 @@ export class NavbarComponent implements OnInit {
   signInComponent = SignInComponent;
   title = 'James';
   navbarIsCollapsed = true;
-  constructor() { }
+  @Input() isAuthenticated: boolean;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
 }

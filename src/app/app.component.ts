@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './shared/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private userService: UserService) {
+  }
+
+  get isAuthenticated() {
+    return this.userService.isAuthenticated;
+  }
 }

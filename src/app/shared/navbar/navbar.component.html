@@ -7,13 +7,13 @@
     </button>
     <div class="collapse navbar-collapse" [ngbCollapse]="navbarIsCollapsed" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item navItem-hover" *ngIf="!isAuthenticated">
           <a class="nav-link" routerLink="/users/sign-up" routerLinkActive="active">
             <i class="fa fa-user-plus icons"></i>
             <span class="spanSpace">Sign Up</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item navItem-hover" *ngIf="!isAuthenticated">
           <a class="nav-link">
             <app-modal [component]="signInComponent">
               <i class="fa fa-sign-in icons"></i>
@@ -21,13 +21,13 @@
             </app-modal>
           </a>
         </li>
-        <li class="nav-item" *ngIf="true">
+        <li class="nav-item navItem-hover" *ngIf="isAuthenticated">
           <a class="nav-link" routerLink="/users/sign-out" routerLinkActive="active">
             <i class="fa fa-sign-out icons"></i>
             <span class="spanSpace">Sign out</span>
           </a>
         </li>
-        <li class="nav-item" *ngIf="true">
+        <li class="nav-item navItem-hover" *ngIf="isAuthenticated">
           <a class="nav-link" routerLink="/users/myAccount" routerLinkActive="active">
             <i class="fa fa-user-circle icons"></i>
             <span class="spanSpace">MyAccount</span>
