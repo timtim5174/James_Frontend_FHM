@@ -17,7 +17,9 @@ export class MyAccountComponent implements OnInit {
   alertMessage = '';
   alertStyle = '';
   datepickerDate: NgbDateStruct;
-  img = './assets/nobody_m.original.jpg';
+  defaultImgPath = './assets/nobody_m.original.jpg';
+  img = this.defaultImgPath;
+  uploadClicked = false;
   selectedFile: File = null;
 
   @ViewChild('MyAccountClosableAlert')
@@ -80,6 +82,7 @@ export class MyAccountComponent implements OnInit {
   }
 
   onImageSelected(event) {
+   this.uploadClicked = true;
    const reader: any = new FileReader();
    if (event.target.files && event.target.files.length > 0) {
     this.selectedFile = event.target.files[0];
@@ -91,8 +94,11 @@ export class MyAccountComponent implements OnInit {
     fd.append('image', this.selectedFile, this.selectedFile.name);
     this.userService.uploadFile(fd).subscribe(response => {
       this.showResponse(response.message, 'success');
+      this.uploadClicked = false;
     }, error => {
       this.showResponse(error, 'danger');
+      this.uploadClicked = false;
+      this.img = this.defaultImgPath;
     });
   }
 }
