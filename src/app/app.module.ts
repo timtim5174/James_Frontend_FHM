@@ -31,6 +31,8 @@ import { AlertCloseableComponent } from './shared/notifications/alert-closeable/
 import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BookSidebarComponent } from './shared/book/book-sidebar/book-sidebar.component';
+import { BookMainComponent } from './shared/book/book-main/book-main.component';
 
 
 
@@ -58,7 +60,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ErrorMessageComponent,
     AlertCloseableComponent,
     MainComponent,
-    SidebarComponent
+    SidebarComponent,
+    BookSidebarComponent,
+    BookMainComponent
   ],
   imports: [
     NgbModule.forRoot(),
