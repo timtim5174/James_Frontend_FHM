@@ -20,6 +20,7 @@ export class MyAccountComponent implements OnInit {
   defaultImgPath = './assets/nobody_m.original.jpg';
   img = this.defaultImgPath;
   uploadClicked = false;
+  saveClicked = false;
   selectedFile: File = null;
 
   @ViewChild('MyAccountClosableAlert')
@@ -65,13 +66,16 @@ export class MyAccountComponent implements OnInit {
   }
 
   onSave() {
+    this.saveClicked = true;
     if (this.isPasswordChanged) {
       this.user.password = this.newPassword;
     }
     this.userService.updateUser(this.user).subscribe(response => {
       this.showResponse(response.message, 'success');
+      this.saveClicked = false;
     }, error => {
       this.showResponse(error, 'danger');
+      this.saveClicked = false;
     });
   }
 
@@ -90,6 +94,7 @@ export class MyAccountComponent implements OnInit {
     reader.onload = (e) => {
       this.img = e.target.result;
     };
+    // Send file to server
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
     this.userService.uploadFile(fd).subscribe(response => {
