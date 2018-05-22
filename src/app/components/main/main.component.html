@@ -1,2 +1,7 @@
-<app-sidebar></app-sidebar>
+<div class="container-flex">
+<app-sidebar *ngIf="true" class="fixed"></app-sidebar>
+<div>
+    <button ng-click="toggleFunc()">Test</button>
+</div>
+</div>
 <router-outlet></router-outlet>
