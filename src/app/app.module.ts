@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertCloseableComponent } from './shared/notifications/alert-closeable/alert-closeable.component';
 import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -62,6 +63,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
