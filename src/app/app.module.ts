@@ -28,6 +28,8 @@ import { ErrorMessageComponent } from './shared/notifications/error-message/erro
 import { UserService } from './shared/user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertCloseableComponent } from './shared/notifications/alert-closeable/alert-closeable.component';
+import { MainComponent } from './components/main/main.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 
 
@@ -53,7 +55,9 @@ import { AlertCloseableComponent } from './shared/notifications/alert-closeable/
     MyAccountComponent,
     ModalComponent,
     ErrorMessageComponent,
-    AlertCloseableComponent
+    AlertCloseableComponent,
+    MainComponent,
+    SidebarComponent
   ],
   imports: [
     NgbModule.forRoot(),
