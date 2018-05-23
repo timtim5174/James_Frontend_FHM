@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  providers: [NgbDropdownConfig]
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(config: NgbDropdownConfig) {
-    config.placement = 'right-bottom';
-    config.autoClose = false;
+  constructor() {
   }
 
   ngOnInit() {
   }
 
 }
+
