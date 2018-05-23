@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ResponseContentType } from '@angular/http';
 import { Observable, of, throwError as _throw } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -59,6 +60,11 @@ export class UserService {
     return this.http.post(this.baseURL + '/uploadFile', file, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
+  }
+
+  getImageFile() {
+    return this.http.get(this.baseURL + '/getImageFile',
+    {responseType: 'blob', headers: new HttpHeaders().append('Content-Type', 'application/json')});
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
