@@ -63,8 +63,9 @@ export class UserService {
   }
 
   getImageFile() {
-    return this.http.get(this.baseURL + '/getImageFile',
-    {responseType: 'blob', headers: new HttpHeaders().append('Content-Type', 'application/json')});
+    return this.http.get(this.baseURL + '/getImageFile', {responseType: 'blob'}).pipe(
+      map(data => this.response = data),
+      catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {

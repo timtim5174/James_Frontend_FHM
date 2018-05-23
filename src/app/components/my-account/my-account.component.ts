@@ -49,13 +49,16 @@ export class MyAccountComponent implements OnInit {
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    /* TO DO
+    // Load user image
     this.userService.getImageFile().subscribe(res => {
-      console.log(res);
       if (res != null) {
-        this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res));
+        this.img = this.sanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(res));
       }
-    });*/
+    }, error => {
+      this.showResponse(error, 'danger');
+    });
+    // Load user data
     this.userService.getUserData().subscribe(data => {
       this.user = data;
       this.datepickerDate = {
@@ -91,14 +94,6 @@ export class MyAccountComponent implements OnInit {
     this.isPasswordChanged = !this.isPasswordChanged;
     this.newPassword = '';
     this.verifyPassword = '';
-  }
-
-  onShowImage(image) {
-    const reader: any = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = (e) => {
-      this.img = e.target.result;
-    };
   }
 
   onImageSelected(event) {
