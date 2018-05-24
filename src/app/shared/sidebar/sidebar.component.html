@@ -1,9 +1,10 @@
 <div class="wrapper">
-    <nav id="sidebar">
+    <nav id="sidebar" [@toggleState]="shouldToggle">
         <ul class="list-unstyled">
             <li><a href="/main">Dashboard</a></li>
             <li class="active"><a href="/main">Books</a></li>
             <li><a href="/main">Transactions</a></li>
+            <li><a routerLink="/users/myAccount" routerLinkActive="active">myAccount</a></li>
         </ul>
         <hr>
     </nav>
