@@ -1,6 +1,14 @@
+#wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 #sidebar {
-    background: rgb(225,225,225);
-    color: black;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgb(230, 230, 230);
     height: 100%;
     width: 160px;
     position: fixed;
@@ -24,7 +32,7 @@ a, a:hover, a:focus {
 }
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid rgb(204, 204, 204);
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 
 #sidebar ul p {
@@ -39,15 +47,29 @@ a, a:hover, a:focus {
 }
 #sidebar ul li a:hover {
     color: black;
-    background: rgb(200,200,200);
+    background: rgb(230, 230, 230);
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: black;
-    background: rgb(200,200,200);
+    background: rgb(230,230,230);
 }
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: rgb(225,225,225);
+}
+
+.pull {
+    position: fixed;
+    top: -50px;
+    left: 165px;
+    height: 100%;
+    padding: 5px;
+    z-index: 2000;
+}
+
+.arrow {
+    position: relative;
+    top: 48%;
 }
