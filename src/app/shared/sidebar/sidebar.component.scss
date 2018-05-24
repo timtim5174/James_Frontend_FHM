@@ -4,6 +4,7 @@
 
 .wrapper {
     display:flex;
+    
 }
 #sidebar.active {
     margin-left: -250px;
@@ -31,7 +32,6 @@ a, a:hover, a:focus {
 
     min-width: 250px;
     max-width: 250px;
-    min-height: 84.25vh;
 }
 
 #sidebar ul.components {
