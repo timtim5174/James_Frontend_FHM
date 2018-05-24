@@ -27,6 +27,8 @@
     cursor: pointer;
 }
 
-.navbar{
-    height: 10%
+.myContainer{
+    position: fixed;
+    width: 100%;
+    z-index: 1020;
 }

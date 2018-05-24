@@ -2,13 +2,19 @@
   flex-grow: 1;
 }
 
-.test{
+.myInnerContainer{
   display: flex;
   flex-direction: column;
-  height: 90%;
+  min-height: 100vh;
+  padding-top: 10vh;
 }
+
 
 .myContainer{
   height:100vh;
   position: relative;
+}
+
+.page-header{
+  height:10vh;
 }

@@ -16,7 +16,16 @@ export class NavbarComponent implements OnInit {
 
   constructor() {
   }
-
+  
   ngOnInit() {
+    let navElement = document.getElementById('nav');
+    navElement
   }
+
+
 }
+
+/* $('.div1,.div2')
+.on('sticky_kit:bottom', function(e) {
+$(this).parent().css('position', 'static');
+}) */
