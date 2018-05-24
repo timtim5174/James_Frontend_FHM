@@ -1,32 +1,15 @@
-/*
-    ADDITIONAL DEMO STYLE, NOT IMPORTANT TO MAKE THINGS WORK BUT TO MAKE IT A BIT NICER :)
-*/
-
-
 #sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
     background: rgb(225,225,225);
     color: black;
-    padding-top: 75px;
+    
     height: 100%;
     width: 160px;
     position: fixed;
     z-index: 0;
-    top: 0;
+    top: 10%;
     left: 0px;
     overflow-x: hidden;
     transition: 500;
-    
-    /* background: rgb(225,225,225);
-    color: black;
-    padding-top: 75px;
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    overflow-x: hidden; */
 }
 
 p {
