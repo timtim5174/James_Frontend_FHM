@@ -1,29 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import {trigger, style, animate, transition, state} from '@angular/animations';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  
+
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [
-    trigger('flyInOut', [
-      state('in', style({transform: 'translateX(0)'})),
-      transition('void => *', [
-        style({transform: 'translateX(-100%)'}),//
-        animate('0.5s ease-in-out')
-      ]),
-      transition('* => void', [
-        animate('0.5s ease-in-out', style({transform: 'translateX(-100%)'}))
-      ])
-    ]),
-  ],
 })
 export class MainComponent implements OnInit {
+  toggle = true;
 
-  toggle:boolean = true;
   constructor() { }
 
   ngOnInit() {
   }
+
+  handleToggle() {
+    if (this.toggle) {
+      document.getElementById('sidenav').style.marginLeft = '0';
+      document.getElementById('content').style.marginLeft = '0';
+    } else {
+      document.getElementById('content').style.marginLeft = '160px';
+
+    }
+    this.toggle = !this.toggle;
+  }
+
 }
