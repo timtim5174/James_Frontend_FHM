@@ -33,7 +33,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BookSidebarComponent } from './shared/book/book-sidebar/book-sidebar.component';
 import { BookMainComponent } from './shared/book/book-main/book-main.component';
-
+import { DashboardMainComponent} from './shared/dashboard/dashboard-main/dashboard-main.component';
+import { DashboardSidebarComponent} from './shared/dashboard/dashboard-sidebar/dashboard-sidebar.component';
 
 
 @NgModule({
@@ -62,7 +63,9 @@ import { BookMainComponent } from './shared/book/book-main/book-main.component';
     MainComponent,
     SidebarComponent,
     BookSidebarComponent,
-    BookMainComponent
+    BookMainComponent,
+    DashboardMainComponent,
+    DashboardSidebarComponent
   ],
   imports: [
     NgbModule.forRoot(),
