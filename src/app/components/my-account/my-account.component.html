@@ -1,4 +1,4 @@
-<div class="col-md-6 offset-md-3">
+<div class="col-md-8 offset-md-2">
   <span class="anchor" id="formRegister"></span>
   <br class="mb-5">
   <app-alert-closeable #MyAccountClosableAlert [style]="alertStyle" [message]="alertMessage"></app-alert-closeable>
@@ -7,7 +7,6 @@
       <h3 class="mb-0">User Profile</h3>
     </div>
     <div class="card-body">
-        <div class="container">
           <div class="form-group">
             <div class="row justify-content-start">
               <div class="col-md-4">
@@ -23,9 +22,7 @@
               </div>
             </div> 
           </div>   
-        </div>
         <br class="mb-2">
-        <div class="container">
         <form #myAccountForm="ngForm" (ngSubmit)="onSave()">
           <div class="container">
             <div class="form-group">
@@ -130,7 +127,6 @@
             </div>
           </div>
         </form>
-      </div>
   </div>
   </div>
   <br class="mb-5">

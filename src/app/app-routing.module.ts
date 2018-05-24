@@ -11,6 +11,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { AuthGuard } from './auth.guard';
 import { MainComponent } from './components/main/main.component';
+import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'legalnotice', component: LegalNoticeComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'users/myAccount', component: MyAccountComponent, canActivate: [AuthGuard]},
+  { path: 'main/dashboard', component: DashboardMainComponent, canActivate: [AuthGuard]}
   // { path: 'main', component: MainComponent, canActivate: [AuthGuard]}
 ];
 @NgModule({
