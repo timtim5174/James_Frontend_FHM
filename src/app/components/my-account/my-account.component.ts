@@ -4,6 +4,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../shared/user/user.service';
 import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
 import { DatepickerComponent } from '../../shared/datepicker/datepicker.component';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-account',
@@ -18,7 +19,7 @@ export class MyAccountComponent implements OnInit {
   alertStyle = '';
   datepickerDate: NgbDateStruct;
   defaultImgPath = './assets/nobody_m.original.jpg';
-  img = this.defaultImgPath;
+  img: SafeUrl = this.defaultImgPath;
   uploadClicked = false;
   saveClicked = false;
   selectedFile: File = null;
@@ -45,9 +46,19 @@ export class MyAccountComponent implements OnInit {
   passwordCheckInvalid = 'Passwords must match';
   errorMessage = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    // Load user image
+    this.userService.getImageFile().subscribe(res => {
+      if (res != null) {
+        this.img = this.sanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(res));
+      }
+    }, error => {
+      this.showResponse(error, 'danger');
+    });
+    // Load user data
     this.userService.getUserData().subscribe(data => {
       this.user = data;
       this.datepickerDate = {
