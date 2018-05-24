@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 import { MyAccountComponent } from '../../components/my-account/my-account.component';
 

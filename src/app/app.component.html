@@ -5,7 +5,8 @@
 
     <div class="test">
         <div class="page-content">
-            <router-outlet></router-outlet>
+            <app-main *ngIf="isAuthenticated"></app-main>
+            <router-outlet *ngIf="!isAuthenticated"></router-outlet>
         </div>
 
         <app-footer class="page-footer"></app-footer>
