@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'legalnotice', component: LegalNoticeComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'users/myAccount', component: MyAccountComponent, canActivate: [AuthGuard]},
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard]}
+  // { path: 'main', component: MainComponent, canActivate: [AuthGuard]}
 ];
 @NgModule({
   imports: [
