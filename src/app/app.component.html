@@ -1,3 +1,14 @@
-<app-navbar [isAuthenticated]="isAuthenticated"></app-navbar>
-<router-outlet></router-outlet>
-<app-footer class="mt-auto"></app-footer>
+<div class="myContainer">
+
+    <app-navbar class="page-header" [isAuthenticated]="isAuthenticated">
+    </app-navbar>
+
+    
+    <div class="myInnerContainer">
+        <app-sidebar *ngIf="isAuthenticated" id="sidenav" [shouldToggle]="toggle" (shouldPush)="handleToggle()"></app-sidebar>
+        <div class="page-content" id="page-content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer class="page-footer"></app-footer>
+    </div>
+</div>

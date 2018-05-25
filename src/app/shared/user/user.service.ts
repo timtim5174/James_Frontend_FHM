@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError as _throw } from 'rxjs';
+import { ResponseContentType } from '@angular/http';
+import { Observable, of, throwError as _throw, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
@@ -11,6 +12,7 @@ import { User } from './user';
 export class UserService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   isAuthenticated: boolean;
+  $changeAuthenticationStatus = new BehaviorSubject<boolean>(false);
 
   private options = { withCredentials: true };
   userData: User;
@@ -21,7 +23,7 @@ export class UserService {
   signUp(accountData: User) {
     this.isAuthenticated = false;
     return this.http.post(this.baseURL + '/registry', accountData, this.options).pipe(
-      map(data => this.isAuthenticated = true),
+      map(data => this.setIsAuthenticatedTrue()),
       catchError(this.handleError)
     );
   }
@@ -29,13 +31,13 @@ export class UserService {
   signIn(authData: Partial<User>) {
     this.isAuthenticated = false;
     return this.http.post(this.baseURL + '/login', authData, this.options).pipe(
-      map(data => this.isAuthenticated = true),
+      map(data => this.setIsAuthenticatedTrue()),
       catchError(this.handleError)
     );
   }
 
   signOut() {
-    this.isAuthenticated = false;
+    this.setIsAuthenticatedFalse();
     document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
@@ -60,6 +62,30 @@ export class UserService {
       map(data => this.response = data),
       catchError(this.handleError));
   }
+
+  getImageFile() {
+    return this.http.get(this.baseURL + '/getImageFile', {responseType: 'blob'}).pipe(
+      map(data => this.response = data),
+      catchError(this.handleError));
+  }
+
+  setIsAuthenticatedTrue() {
+    this.isAuthenticated = true;
+    this.giveChangeAuthenticationStatus(true);
+  }
+
+  setIsAuthenticatedFalse() {
+    this.isAuthenticated = false;
+    this.giveChangeAuthenticationStatus(false);
+  }
+
+  getChangeAuthenticationStatus(): Observable<boolean> {
+    return this.$changeAuthenticationStatus.asObservable();
+  }
+
+  giveChangeAuthenticationStatus(status: boolean) {
+    this.$changeAuthenticationStatus.next(status);
+}
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     let msg: string;
