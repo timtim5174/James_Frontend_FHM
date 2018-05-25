@@ -29,10 +29,10 @@ export class BookSidebarComponent implements OnInit {
   }
 
   removeBook(book: Book) {
-    console.log(book);
-     this.bookService.deleteBook(book).subscribe(
-       success => this.books.unshift(book),
-       error => this.errorMessage = error
-     );
+    console.log(book.id);
+    this.bookService.deleteBook(book.id).subscribe(
+      success => { console.log('XXX'); this.books = this.books.filter(b => b !== book); },
+      error => { this.errorMessage = error; console.log('YYY'); }
+    );
   }
 }

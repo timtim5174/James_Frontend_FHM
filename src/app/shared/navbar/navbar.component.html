@@ -30,7 +30,8 @@
         </li>
         <li class="nav-item navItem-hover" *ngIf="isAuthenticated">
           <a class="nav-link" routerLink="/main/myAccount" routerLinkActive="active">
-            <i class="fa fa-user-circle icons"></i>
+            <img [src]="img" class="profile-image rounded-circle" width="30px" height="30px" *ngIf="img">
+            <i class="fa fa-user-circle icons"*ngIf="!img"></i>
             <span class="spanSpace">MyAccount</span>
           </a>
         </li>
