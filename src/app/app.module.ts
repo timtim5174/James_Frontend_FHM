@@ -32,6 +32,7 @@ import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { BookSidebarComponent } from './shared/book/book-sidebar/book-sidebar.component';
 import { BookMainComponent } from './shared/book/book-main/book-main.component';
+import { CreateBookComponent } from './shared/book/create-book/create-book.component';
 
 
 
@@ -61,7 +62,8 @@ import { BookMainComponent } from './shared/book/book-main/book-main.component';
     MainComponent,
     SidebarComponent,
     BookSidebarComponent,
-    BookMainComponent
+    BookMainComponent,
+    CreateBookComponent
   ],
   imports: [
     NgbModule.forRoot(),

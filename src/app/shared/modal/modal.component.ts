@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 
@@ -10,15 +10,20 @@ import { SignInComponent } from '../../components/sign-in/sign-in.component';
 })
 export class ModalComponent implements OnInit {
   @Input() component: Component;
+  @Output() modalResult = new EventEmitter<any>();
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
-
   open() {
-    this.modalService.open(this.component, { centered: true });
+    this.modalService
+      .open(this.component)
+      .result
+      .then((result) => {
+        this.modalResult.emit(result);
+      })
+      .catch((error) => {
+      });
   }
-
-
 }

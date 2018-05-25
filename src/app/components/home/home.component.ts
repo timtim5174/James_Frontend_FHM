@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SharedSignOutService } from '../sign-out/shared-sign-out.service';
 
 
 @Component({
@@ -8,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  errorMessage = '';
+  constructor(private sharedService: SharedSignOutService) {
+    this.sharedService.errorMessage.subscribe(
+      message => this.errorMessage = message
+    );
+  }
 
   ngOnInit() {
+    setTimeout(() => { this.errorMessage = ''; }, 3500);
   }
+
 
 
 }

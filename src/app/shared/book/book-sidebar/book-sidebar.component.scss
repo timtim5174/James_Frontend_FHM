@@ -1,17 +1,80 @@
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
+.item {
+  display: block;
+  position: relative;
+  margin-bottom: 25px;
 }
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
+
+.item:hover {
+  background-color: rgba(211, 211, 211, 0.644);
+  border-radius: 20px;
+}
+
+img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+}
+
+.close {
+  position: absolute;
+  left: 87%;
+  top: 0%;
+  visibility: hidden;
+}
+
+.item:hover .close {
+  visibility: visible;
+}
+
+.settings:hover {
+  opacity: 0.7;
+}
+
+.settings {
+  position: absolute;
+  left: 87%;
+  top: 66%;
+  visibility: hidden;
+  opacity: 0.5; 
+}
+
+.item:hover .settings {
+  visibility: visible;
+}
+
+.btn {
+  position: realtive;
+  border-radius: 35px;
+}
+
+.my-btn {
+  margin-left: 7px;
+  width: 70px;
+  height: 70px;
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1.33;
-  border-radius: 25px;
+  position: relative;
+}
+
+.btn-caption {
+  position: absolute;
+  left: -1%;
+  bottom: -40%;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.591);
+}
+
+span {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  font-weight: bold;
+}
+
+.newBook {
+  margin-top: 60px;
+  text-align: center;
 }

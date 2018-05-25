@@ -11,20 +11,24 @@ import { ContactComponent } from './components/contact/contact.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { AuthGuard } from './auth.guard';
 import { MainComponent } from './components/main/main.component';
+import { CreateBookComponent } from './shared/book/create-book/create-book.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'users/sign-up', component: SignUpComponent},
-  { path: 'users/sign-in', component: SignInComponent},
-  { path: 'users/sign-out', component: SignOutComponent},
-  { path: 'privacy', component: DataPrivacyComponent},
-  { path: 'legalnotice', component: LegalNoticeComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: 'users/myAccount', component: MyAccountComponent, canActivate: [AuthGuard]},
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard]}
+  { path: 'users/sign-up', component: SignUpComponent },
+  { path: 'users/sign-in', component: SignInComponent },
+  { path: 'users/sign-out', component: SignOutComponent },
+  { path: 'privacy', component: DataPrivacyComponent },
+  { path: 'legalnotice', component: LegalNoticeComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'users/myAccount', component: MyAccountComponent, canActivate: [AuthGuard] },
+  { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [{path: 'myAccount', component: MyAccountComponent}] },
+  { path: 'TEST123', component: CreateBookComponent }
 ];
+
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),

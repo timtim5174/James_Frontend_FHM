@@ -16,6 +16,7 @@ export class SignInComponent implements OnInit {
     password: '',
   };
   errorMessage = '';
+  registerClicked = false;
   @Input() authGuardRedirect: string;
 
   @ViewChild('SignInCloseableAlert')
@@ -31,6 +32,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
+    this.registerClicked = true;
     this.userService.signIn(this.user).subscribe(
       success => {
         this.closeModalBox();
@@ -41,6 +43,7 @@ export class SignInComponent implements OnInit {
         }
       },
       error => {
+        this.registerClicked = false;
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
       }
