@@ -19,22 +19,20 @@ export class AppComponent implements OnInit {
     if (document.cookie.includes('jwt-token')) {
       this.userService.isAuthenticated = true;
     }
-    this.changeAuthenticationStatus = this.userService.getChangeAuthenticationStatus().subscribe(status => this.authToggle(status));
-  }
-
-  authToggle(status: boolean) {
-    if (status && !this.toggle) {
-      this.handleToggle();
-    } else if (!status && this.toggle) {
-      this.handleToggle();
-    }
+    this.changeAuthenticationStatus = this.userService.getChangeAuthenticationStatus().subscribe(status => {
+      if (status && !this.toggle) {
+        this.handleToggle();
+      } else if (!status && this.toggle) {
+        this.handleToggle();
+      }
+    });
   }
 
   handleToggle() {
     if (this.toggle) {
       document.getElementById('page-content').style.marginLeft = '0';
     } else {
-      document.getElementById('page-content').style.marginLeft = '160px';
+      document.getElementById('page-content').style.marginLeft = '250px';
     }
     this.toggle = !this.toggle;
   }

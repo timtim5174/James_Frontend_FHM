@@ -12,18 +12,24 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
         left: '0px',
       })),
       state('false', style({
-        left: '-160px',
+        left: '-250px',
       })),
       transition('* => *', animate('300ms')),
     ]),
-    trigger('toggleButton', [
+    trigger('toggleArrow', [
       state('true', style({
         transform: 'rotate(180deg)',
-        left: '165px',
       })),
       state('false', style({
         transform: 'rotate(0deg)',
-        left: '5px',
+      }))
+    ]),
+    trigger('toggleButtonNoRotate', [
+      state('true', style({
+        left: '250px',
+      })),
+      state('false', style({
+        left: '0px',
       })),
       transition('* => *', animate('300ms')),
     ]),
@@ -37,7 +43,6 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
  pushContent() {
