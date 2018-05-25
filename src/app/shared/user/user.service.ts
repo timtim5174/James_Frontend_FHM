@@ -70,24 +70,20 @@ export class UserService {
   }
 
   setIsAuthenticatedTrue() {
-    console.log('user set Authentisation true');
     this.isAuthenticated = true;
     this.giveChangeAuthenticationStatus(true);
   }
 
   setIsAuthenticatedFalse() {
-    console.log('user set Authentisation false');
     this.isAuthenticated = false;
     this.giveChangeAuthenticationStatus(false);
   }
 
   getChangeAuthenticationStatus(): Observable<boolean> {
-    console.log('user get change auth observable');
     return this.$changeAuthenticationStatus.asObservable();
   }
 
   giveChangeAuthenticationStatus(status: boolean) {
-    console.log('user give change auth');
     this.$changeAuthenticationStatus.next(status);
 }
 
