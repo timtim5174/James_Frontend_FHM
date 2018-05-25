@@ -37,7 +37,7 @@ export class SignInComponent implements OnInit {
         if (this.authGuardRedirect) {
           this.router.navigate([this.authGuardRedirect]);
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }
       },
       error => {

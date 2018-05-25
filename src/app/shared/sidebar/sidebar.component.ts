@@ -30,17 +30,17 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
   ],
 })
 export class SidebarComponent implements OnInit {
-  @Input() shouldToggle = true;
+  @Input() shouldToggle = false;
   @Output() shouldPush = new EventEmitter<boolean>();
 
   constructor() {
   }
 
   ngOnInit() {
+
   }
 
-  pushContent() {
+ pushContent() {
     this.shouldPush.emit(!this.shouldPush);
   }
 }
-
