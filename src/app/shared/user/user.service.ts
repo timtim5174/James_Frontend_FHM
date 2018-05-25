@@ -2,7 +2,7 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ResponseContentType } from '@angular/http';
 
-import { Observable, of, throwError as _throw, BehaviorSubject } from 'rxjs';
+import { Observable, of, throwError as _throw, BehaviorSubject, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
@@ -14,6 +14,7 @@ export class UserService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   isAuthenticated: boolean;
   $changeAuthenticationStatus = new BehaviorSubject<boolean>(false);
+  imgSubject = new Subject<object>();
 
   private options = { withCredentials: true };
   userData: User;
@@ -73,6 +74,14 @@ export class UserService {
   setIsAuthenticatedTrue() {
     this.isAuthenticated = true;
     this.giveChangeAuthenticationStatus(true);
+  }
+
+  setUserImg(img: object) {
+    this.imgSubject.next(img);
+  }
+
+  getUserImage(): Observable<object> {
+    return this.imgSubject.asObservable();
   }
 
   setIsAuthenticatedFalse() {

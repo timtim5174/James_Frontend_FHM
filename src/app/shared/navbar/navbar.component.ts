@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 import { MyAccountComponent } from '../../components/my-account/my-account.component';
 import { UserService } from '../user/user.service';
@@ -9,30 +9,33 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges {
   signInComponent = SignInComponent;
   title = 'James';
   navbarIsCollapsed = true;
   img;
   @Input() isAuthenticated: boolean;
 
-  constructor(private userService: UserService, private sanitizer: DomSanitizer) {
-  }
+  constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.setUserIcon();
-  }
-
-  onUserIconChange() {
-    this.setUserIcon();
-  }
-
-  setUserIcon() {
-    this.userService.getImageFile().subscribe(res => {
-      this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res));
+    this.userService.getUserImage().subscribe(img => {
+      if (img != null) {
+        this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
+      }
     }, error => {
-      // otherwise show default user icon
       this.img = '';
     });
+  }
+
+  ngOnChanges() {
+    // load user icon when user is authenticated
+    if (this.isAuthenticated) {
+      this.userService.getImageFile().subscribe(img => {
+        this.userService.setUserImg(img);
+      }, error => {
+        this.img = '';
+      });
+    }
   }
 }
