@@ -1,14 +1,12 @@
 <div class="myContainer">
 
-    <app-navbar class="page-header" [isAuthenticated]="isAuthenticated">
-    </app-navbar>
+    <app-navbar class="page-header" [isAuthenticated]="isAuthenticated"></app-navbar>
 
     <div class="myInnerContainer">
         <div class="page-content">
             <app-main *ngIf="isAuthenticated"></app-main>
             <router-outlet *ngIf="!isAuthenticated"></router-outlet>
         </div>
-
         <app-footer class="page-footer"></app-footer>
     </div>
 </div>

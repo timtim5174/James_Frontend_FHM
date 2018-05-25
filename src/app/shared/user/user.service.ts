@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ResponseContentType } from '@angular/http';
-import { Observable, of, throwError as _throw } from 'rxjs';
+import { Observable, of, throwError as _throw, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';

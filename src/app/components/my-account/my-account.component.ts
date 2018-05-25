@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { User } from './../../shared/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../shared/user/user.service';
@@ -97,27 +97,27 @@ export class MyAccountComponent implements OnInit {
   }
 
   onImageSelected(event) {
-   this.uploadClicked = true;
-   const reader: any = new FileReader();
-   if (event.target.files && event.target.files.length > 0) {
-    this.selectedFile = event.target.files[0];
-    reader.readAsDataURL(this.selectedFile);
-    reader.onload = (e) => {
-      this.img = e.target.result;
-    };
-    // Send file to server
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.userService.uploadFile(fd).subscribe(response => {
-      this.showResponse(response.message, 'success');
-      this.uploadClicked = false;
-    }, error => {
-      this.showResponse(error, 'danger');
-      this.uploadClicked = false;
-      this.img = this.defaultImgPath;
-    });
+    this.uploadClicked = true;
+    const reader: any = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+      reader.readAsDataURL(this.selectedFile);
+      reader.onload = (e) => {
+        this.img = e.target.result;
+      };
+      // Send file to server
+      const fd = new FormData();
+      fd.append('image', this.selectedFile, this.selectedFile.name);
+      this.userService.uploadFile(fd).subscribe(response => {
+        this.showResponse(response.message, 'success');
+        this.uploadClicked = false;
+      }, error => {
+        this.showResponse(error, 'danger');
+        this.uploadClicked = false;
+        this.img = this.defaultImgPath;
+      });
+    }
   }
-}
 
   showResponse(message: string, style: string) {
     this.closeableAlert.reOpenAlert();
