@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from '../../shared/user/user.service';
 
 @Component({
 
@@ -7,22 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  toggle = true;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  handleToggle() {
-    if (this.toggle) {
-      document.getElementById('sidenav').style.marginLeft = '0';
-      document.getElementById('content').style.marginLeft = '0';
-    } else {
-      document.getElementById('content').style.marginLeft = '160px';
-
-    }
-    this.toggle = !this.toggle;
   }
 
 }

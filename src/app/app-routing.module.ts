@@ -17,15 +17,16 @@ import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashbo
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'users/sign-up', component: SignUpComponent},
-  { path: 'users/sign-in', component: SignInComponent},
-  { path: 'users/sign-out', component: SignOutComponent},
-  { path: 'privacy', component: DataPrivacyComponent},
-  { path: 'legalnotice', component: LegalNoticeComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: 'users/myAccount', component: MyAccountComponent, canActivate: [AuthGuard]},
-  { path: 'main/dashboard', component: DashboardMainComponent, canActivate: [AuthGuard]}
-  // { path: 'main', component: MainComponent, canActivate: [AuthGuard]}
+  { path: 'users/sign-up', component: SignUpComponent },
+  { path: 'users/sign-in', component: SignInComponent },
+  { path: 'privacy', component: DataPrivacyComponent },
+  { path: 'legalnotice', component: LegalNoticeComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
+    { path: 'dashboard', component: DashboardMainComponent },
+    { path: 'myAccount', component: MyAccountComponent },
+    { path: 'sign-out', component: SignOutComponent }
+  ]}
 ];
 @NgModule({
   imports: [
