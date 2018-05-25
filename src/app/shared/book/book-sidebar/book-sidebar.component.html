@@ -1,1 +1,18 @@
-<button type="button" class="btn btn-info btn-circle btn-lg"><i class="fa fa-book"></i></button>
+<div class="item" *ngFor="let book of books">
+  <button type="button" class="btn btn-secondary my-btn">
+      <img src="/assets/penguin.svg" class="imgPenguin">
+  </button>
+  <span>{{book.title}}</span>
+  <button type="button" class="close" aria-label="Close" (click)="removeBook(book)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="settings fa fa-cog"></div>
+</div>
+<div class="newBook">
+  <hr>
+  <app-modal [component]="createBookComponent" (modalResult)="updateBooks($event)">
+    <button title="Create a new book" type="button" class="btn btn-outline-secondary new-book">
+      <i class="fa fa-plus"></i>
+    </button>
+  </app-modal>
+</div>

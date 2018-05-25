@@ -1,40 +1,36 @@
-<button type="button" class="close pr-1" aria-label="Close" (click)="activeModal.dismiss()">
-  <span aria-hidden="true">&times;</span>
-</button>
-<div class="container">
-  <span class="anchor" id="formRegister"></span>
-  <br class="mb-5">
-  <div class="card card-outline-secondary">
-    <div class="card-header">
-      <h3 class="mb-0">Login</h3>
-    </div>
-    <div class="card-body">
-      <form (ngSubmit)="onSubmit()" #signOutForm="ngForm">
-        <div class="form-group">
-          <label for="email" class="control-label">E-Mail</label>
-          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel">
-          <div *ngIf="(email.dirty || email.touched) && !email.valid; else space"></div>
-          <app-error-message [control]='email' [error]="'required'" [message]="emailRequired"></app-error-message>
-          <app-error-message [control]='email' [error]="'appEmail'" [message]="noValidEmail"></app-error-message>
-        </div>
-        <div class="form-group">
-          <label for="password" class="control-label">Password</label>
-          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required
-            #password="ngModel">
-          <div *ngIf="(password.dirty || password.touched) && !password.valid; else space"></div>
-          <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
-          <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
-        </div>
-        <app-alert-closeable #SignInCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
-        <button [disabled]="!signOutForm.valid" type="submit" class="btn btn-primary">Login</button>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <a (click)="closeModalBox()"class="nav-link offset-md-4" routerLink="/users/sign-up" routerLinkActive="active">Create an account</a>
+<div class="modal-header">
+  <h4 class="modal-title">Login</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form id="myForm" (ngSubmit)="onSubmit()" #signOutForm="ngForm">
+      <div class="form-group">
+        <label for="email" class="control-label">E-Mail</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel">
+        <div *ngIf="(email.dirty || email.touched) && !email.valid; else space"></div>
+        <app-error-message [control]='email' [error]="'required'" [message]="emailRequired"></app-error-message>
+        <app-error-message [control]='email' [error]="'appEmail'" [message]="noValidEmail"></app-error-message>
+      </div>
+      <div class="form-group">
+        <label for="password" class="control-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required
+          #password="ngModel">
+        <div *ngIf="(password.dirty || password.touched) && !password.valid; else space"></div>
+        <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
+        <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
+      </div>
+    </form>
+    <app-alert-closeable #SignInCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
   </div>
 </div>
-<br class="mb-5">
+<div class="modal-footer">
+  <button *ngIf="!registerClicked; else loading" form="myForm" [disabled]="!signOutForm.valid" type="submit" class="btn btn-success">Login</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>
+
 
 
 
@@ -42,4 +38,12 @@
       the sign-in container would shrink and grow when messages appear -->
 <ng-template #space>
   <span class="m-1"></span>
+</ng-template>
+
+
+<!--   A loading icon which is shown until the authentication is complete  -->
+<ng-template #loading>
+  <span>
+    <img src="/assets/loading.svg">
+  </span>
 </ng-template>
