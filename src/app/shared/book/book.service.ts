@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError as _throw } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -27,8 +27,8 @@ export class BookService {
     );
   }
 
-  deleteBook(book: Book): Observable<any> {
-    return this.http.delete<Book>(this.baseURL + '/deleteBook').pipe(
+  deleteBook(id: string): Observable<any> {
+    return this.http.delete<Book>(this.baseURL + `/deleteBook/${id}`).pipe(
       catchError(this.handleError)
     );
   }
