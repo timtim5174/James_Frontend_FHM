@@ -22,6 +22,8 @@ export class NavbarComponent implements OnInit {
     this.userService.getUserImage().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
+      } else {
+        this.img = '';
       }
     }, error => {
       this.img = '';

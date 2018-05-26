@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
 
   loadUserData() {
     this.userService.getImageFile().subscribe(img => {
-      this.userService.setUserImg(img);
+      this.userService.setUserImage(img);
     });
   }
 }
