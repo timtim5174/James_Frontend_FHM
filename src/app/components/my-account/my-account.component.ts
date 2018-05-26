@@ -49,20 +49,16 @@ export class MyAccountComponent implements OnInit {
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    /*this.userService.getUserImage().subscribe(img => {
-      this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
-    }, error => {
-      this.img = this.defaultImgPath;
-    });*/
     this.userService.getImageFile().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
         this.userService.setUserImg(img);
       }
     }, error => {
+      this.img = this.defaultImgPath;
       this.errorMessage = error;
     });
-    // Load user data
+
     this.userService.getUserData().subscribe(data => {
       this.user = data;
       this.datepickerDate = {
