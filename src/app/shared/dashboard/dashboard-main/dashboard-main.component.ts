@@ -12,7 +12,7 @@ export class DashboardMainComponent implements OnInit {
   user: User = {
     firstname: '',
     lastname: '',
-    birth: '',
+    birth: new Date(),
     email: '',
     password: ''
   };

@@ -35,7 +35,7 @@ export class MyAccountComponent implements OnInit {
     firstname: '',
     lastname: '',
     password: '',
-    birth: ''
+    birth: new Date()
   };
 
   firstnameRequired = 'Enter your firstname';
@@ -60,10 +60,11 @@ export class MyAccountComponent implements OnInit {
 
     this.userService.getUserData().subscribe(data => {
       this.user = data;
+      const mapDate: Date = new Date(this.user.birth);
       this.datepickerDate = {
-        year: Number(this.user.birth.substring(0, 4)),
-        month: Number(this.user.birth.substring(5, 7)),
-        day: Number(this.user.birth.substring(8, 10))
+        year: mapDate.getFullYear(),
+        month: mapDate.getMonth() + 1,
+        day: mapDate.getDate(),
       };
       this.datepicker.initDate(this.datepickerDate);
     }, error => {
@@ -72,7 +73,7 @@ export class MyAccountComponent implements OnInit {
   }
 
   onSaveDate(event: NgbDateStruct) {
-    this.user.birth = `${event.year}-${event.month}-${event.day}`;
+    this.user.birth = new Date(event.year, event.month - 1, event.day);
   }
 
   onSave() {

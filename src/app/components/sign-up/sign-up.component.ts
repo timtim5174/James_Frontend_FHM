@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
     lastname: '',
     password: '',
     passwordCheck: '',
-    birth: ''
+    birth: new Date()
   };
   errorMessage = '';
   registerClicked = false;
@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSave(event: NgbDateStruct) {
-    this.user.birth = `${event.year}-${event.month}-${event.day}`;
+    this.user.birth = new Date(event.year, event.month - 1, event.day);
   }
 
 
