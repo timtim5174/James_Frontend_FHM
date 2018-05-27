@@ -27,13 +27,19 @@ export class BookSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.bookService.getBooks().subscribe(
-      books => { this.books = books; this.selectedBook = this.books[0]; },
+      books => {
+        this.books = books;
+        if (this.books.length) {
+          this.selectedBook = this.books[0];
+        }
+      },
       error => this.errorMessage = error
     );
   }
 
   addBook(book: Book) {
     this.books.push(book);
+    this.selectedBook = book;
   }
 
   removeBook(book: Book) {
@@ -59,6 +65,8 @@ export class BookSidebarComponent implements OnInit {
   }
 
   isBookSelected(book: Book) {
-    return this.selectedBook.id === book.id ? true : false;
+    if (this.books.length > 1) {
+      return this.selectedBook.id === book.id ? true : false;
+    }
   }
 }
