@@ -70,11 +70,16 @@ img {
 span {
   position: absolute;
   top: 30%;
-  left: 55%;
+  left: 35%;
   font-weight: bold;
 }
 
 .newBook {
   margin-top: 60px;
   text-align: center;
+}
+
+.selected {
+  background-color: rgba(211, 211, 211, 0.644);
+  border-radius: 20px;
 }

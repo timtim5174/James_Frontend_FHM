@@ -11,19 +11,21 @@ import { SignInComponent } from '../../components/sign-in/sign-in.component';
 export class ModalComponent implements OnInit {
   @Input() component: Component;
   @Output() modalResult = new EventEmitter<any>();
+  @Input() payload: any;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
-  open() {
-    this.modalService
-      .open(this.component)
-      .result
-      .then((result) => {
-        this.modalResult.emit(result);
-      })
-      .catch((error) => {
-      });
+  async open() {
+    try {
+      const modalRef = await this.modalService.open(this.component);
+      if (this.payload) { modalRef.componentInstance.modalInput = this.payload; }
+      const result = await modalRef.result;
+      this.modalResult.emit(result);
+    } catch (err) { }
   }
 }
+
+
+

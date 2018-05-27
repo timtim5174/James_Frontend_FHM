@@ -1,6 +1,7 @@
 export interface Book {
     id: string;
     title: string;
-    timeFrame: string;
+    creationDate?: Date;
+    timeFrame: Date;
     rangeEnum: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY';
 }

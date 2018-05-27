@@ -36,6 +36,7 @@ import { BookMainComponent } from './shared/book/book-main/book-main.component';
 import { CreateBookComponent } from './shared/book/create-book/create-book.component';
 import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
 import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/dashboard-sidebar.component';
+import { UpdateBookComponent } from './shared/book/update-book/update-book.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/
     BookMainComponent,
     CreateBookComponent,
     DashboardMainComponent,
-    DashboardSidebarComponent
+    DashboardSidebarComponent,
+    UpdateBookComponent
   ],
   imports: [
     NgbModule.forRoot(),
