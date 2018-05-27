@@ -49,20 +49,15 @@ export class MyAccountComponent implements OnInit {
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    /*this.userService.getUserImage().subscribe(img => {
-      this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
-    }, error => {
-      this.img = this.defaultImgPath;
-    });*/
-    this.userService.getImageFile().subscribe(img => {
+    this.userService.getUserImage().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
-        this.userService.setUserImg(img);
       }
     }, error => {
+      this.img = this.defaultImgPath;
       this.errorMessage = error;
     });
-    // Load user data
+
     this.userService.getUserData().subscribe(data => {
       this.user = data;
       this.datepickerDate = {
@@ -114,7 +109,7 @@ export class MyAccountComponent implements OnInit {
       fd.append('image', this.selectedFile, this.selectedFile.name);
       this.userService.uploadFile(fd).subscribe(responseUpload => {
         this.userService.getImageFile().subscribe(responseGet => {
-          this.userService.setUserImg(responseGet);
+          this.userService.setUserImage(responseGet);
         });
         this.showResponse(responseUpload.message, 'success');
         this.uploadClicked = false;

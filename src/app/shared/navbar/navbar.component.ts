@@ -9,11 +9,11 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, OnChanges {
+export class NavbarComponent implements OnInit {
   signInComponent = SignInComponent;
   title = 'James';
   navbarIsCollapsed = true;
-  img;
+  img: SafeUrl = ''; // if empty default user icon will be shown
   @Input() isAuthenticated: boolean;
 
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
@@ -22,20 +22,11 @@ export class NavbarComponent implements OnInit, OnChanges {
     this.userService.getUserImage().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
+      } else {
+        this.img = '';
       }
     }, error => {
       this.img = '';
     });
-  }
-
-  ngOnChanges() {
-    // load user icon when user is authenticated
-    if (this.isAuthenticated) {
-      this.userService.getImageFile().subscribe(img => {
-        this.userService.setUserImg(img);
-      }, error => {
-        this.img = '';
-      });
-    }
   }
 }
