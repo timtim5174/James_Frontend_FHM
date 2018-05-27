@@ -22,9 +22,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  signUp(accountData: User) {
+  signUp(accountData: User): Observable<User> {
     this.isAuthenticated = false;
-    return this.http.post(this.baseURL + '/registry', accountData, this.options).pipe(
+    return this.http.post<User>(this.baseURL + '/registry', accountData, this.options).pipe(
       map(data => this.setIsAuthenticatedTrue()),
       catchError(this.handleError)
     );
@@ -32,7 +32,7 @@ export class UserService {
 
   signIn(authData: Partial<User>) {
     this.isAuthenticated = false;
-    return this.http.post(this.baseURL + '/login', authData, this.options).pipe(
+    return this.http.post<Partial<User>>(this.baseURL + '/login', authData, this.options).pipe(
       map(data => this.setIsAuthenticatedTrue()),
       catchError(this.handleError)
     );
@@ -44,8 +44,8 @@ export class UserService {
   }
 
 
-  getUserData() {
-    return this.http.get(this.baseURL + '/userData', this.options).pipe(
+  getUserData(): Observable<User> {
+    return this.http.get<User>(this.baseURL + '/userData', this.options).pipe(
       map(data => this.userData = data as User),
       catchError(this.handleError)
     );
@@ -53,20 +53,20 @@ export class UserService {
 
   updateUser(user: User) {
     delete user.passwordCheck;
-    return this.http.patch(this.baseURL + '/updateUser', user, this.options).pipe(
+    return this.http.patch<User>(this.baseURL + '/updateUser', user, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError)
     );
   }
 
   uploadFile(file: FormData) {
-    return this.http.post(this.baseURL + '/uploadFile', file, this.options).pipe(
+    return this.http.post<FormData>(this.baseURL + '/uploadFile', file, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
 
   getImageFile() {
-    return this.http.get(this.baseURL + '/getImageFile', {responseType: 'blob'}).pipe(
+    return this.http.get(this.baseURL + '/getImageFile', { responseType: 'blob' }).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
@@ -95,7 +95,7 @@ export class UserService {
 
   giveChangeAuthenticationStatus(status: boolean) {
     this.$changeAuthenticationStatus.next(status);
-}
+  }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     let msg: string;

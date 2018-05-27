@@ -33,7 +33,11 @@ export class BookService {
     );
   }
 
-
+  updateBook(book: Partial<Book>) {
+    return this.http.patch<Partial<Book>>(this.baseURL + '/updateBook', book).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     let msg: string;

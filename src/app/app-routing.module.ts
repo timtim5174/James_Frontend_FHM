@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { MainComponent } from './components/main/main.component';
 import { CreateBookComponent } from './shared/book/create-book/create-book.component';
 import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
+import { UpdateBookComponent } from './shared/book/update-book/update-book.component';
 
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'users/sign-up', component: SignUpComponent },
   { path: 'users/sign-in', component: SignInComponent },
   { path: 'users/sign-out', component: SignOutComponent },
-  { path: 'newBook', component: CreateBookComponent },
+  { path: 'createBook', component: CreateBookComponent },
+  { path: 'updateBook', component: UpdateBookComponent},
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
