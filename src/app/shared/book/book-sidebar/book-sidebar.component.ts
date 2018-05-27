@@ -4,6 +4,7 @@ import { BookService } from '../book.service';
 import { CreateBookComponent } from '../create-book/create-book.component';
 import { UpdateBookComponent } from '../update-book/update-book.component';
 import { AlertCloseableComponent } from '../../notifications/alert-closeable/alert-closeable.component';
+import { Router } from '@angular/router';
 
 
 
@@ -23,9 +24,10 @@ export class BookSidebarComponent implements OnInit {
 
   @ViewChild('BookSidebarCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit() {
+    this.router.navigate(['/main/book']);
     this.bookService.getBooks().subscribe(
       books => {
         this.books = books;
