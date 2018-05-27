@@ -37,6 +37,7 @@ import { CreateBookComponent } from './shared/book/create-book/create-book.compo
 import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
 import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/dashboard-sidebar.component';
 import { UpdateBookComponent } from './shared/book/update-book/update-book.component';
+import { MapBookDatesPipe } from './shared/book/map-book-dates.pipe';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { UpdateBookComponent } from './shared/book/update-book/update-book.compo
     CreateBookComponent,
     DashboardMainComponent,
     DashboardSidebarComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    MapBookDatesPipe
   ],
   imports: [
     NgbModule.forRoot(),

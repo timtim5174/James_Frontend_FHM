@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 
 
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
