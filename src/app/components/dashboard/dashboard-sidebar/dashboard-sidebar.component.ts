@@ -11,7 +11,6 @@ export class DashboardSidebarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['/main/dashboard']);
   }
 
 }

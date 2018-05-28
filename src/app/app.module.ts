@@ -31,13 +31,15 @@ import { AlertCloseableComponent } from './shared/notifications/alert-closeable/
 import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BookSidebarComponent } from './shared/book/book-sidebar/book-sidebar.component';
-import { CreateBookComponent } from './shared/book/create-book/create-book.component';
+import { BookSidebarComponent } from './components/book/book-sidebar/book-sidebar.component';
+import { CreateBookComponent } from './components/book/create-book/create-book.component';
 import { DashboardMainComponent } from './components/dashboard/dashboard-main/dashboard-main.component';
 import { DashboardSidebarComponent } from './components/dashboard/dashboard-sidebar/dashboard-sidebar.component';
-import { UpdateBookComponent } from './shared/book/update-book/update-book.component';
-import { MapBookDatesPipe } from './shared/book/map-book-dates.pipe';
+import { UpdateBookComponent } from './components/book/update-book/update-book.component';
+import { MapBookDatesPipe } from './components/book/map-book-dates.pipe';
 import { BookViewComponent } from './components/book-view/book-view.component';
+import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
+import { SameNameDirective } from './components/book/delete-book/same-name.directive';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { BookViewComponent } from './components/book-view/book-view.component';
     DashboardSidebarComponent,
     UpdateBookComponent,
     MapBookDatesPipe,
-    BookViewComponent
+    BookViewComponent,
+    DeleteBookComponent,
+    SameNameDirective
   ],
   imports: [
     NgbModule.forRoot(),

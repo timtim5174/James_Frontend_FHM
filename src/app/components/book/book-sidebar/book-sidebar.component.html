@@ -3,7 +3,11 @@
     <img src="/assets/penguin.svg" class="imgPenguin">
   </button>
   <span>{{book.title}}</span>
-  <div class="close" (click)="removeBook(book)">&times;</div>
+
+  <app-modal [component]="deleteBookComponent" [payload]="book | mapBookDates" (modalResult)="'removeBook($event)'">
+    <div class="close">&times;</div>
+  </app-modal>
+
   <app-modal [component]="updateBookComponent" [payload]="book | mapBookDates" (modalResult)="updateBook($event)">
     <div class="settings fa fa-cog"></div>
   </app-modal>
