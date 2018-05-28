@@ -39,6 +39,7 @@ import { MapBookDatesPipe } from './components/book/map-book-dates.pipe';
 import { BookViewComponent } from './components/book/book-view/book-view.component';
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SameNameDirective } from './components/book/delete-book/same-name.directive';
+import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { SameNameDirective } from './components/book/delete-book/same-name.direc
     MapBookDatesPipe,
     BookViewComponent,
     DeleteBookComponent,
-    SameNameDirective
+    SameNameDirective,
+    TransactionOverviewComponent
   ],
   imports: [
     NgbModule.forRoot(),

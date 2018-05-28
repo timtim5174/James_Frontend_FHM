@@ -4,6 +4,7 @@
 
 .top {
     background-color: rgb(230, 230, 230);
+    z-index: 5000;
 }
 
 .book {
@@ -11,16 +12,10 @@
     padding: 5px;
 }
 
-.bookInfo {
-    display: inline-flex;
-    position: absolute;
+.bookName {
+    float: right;
     right: 10px;
-    height: 100%;
-}
-
-.imgPenguin {
-    padding: 5px;
-    height: 50%;
+    max-height: 100%;
 }
 
 .value {
@@ -28,14 +23,11 @@
     margin: 10px;
 }
 
-#nav {
+ul {
+    margin-left: 40px;
 }
 
-li {
-    border: 1px solid black;
-}
-
-.navItem-hover:hover{
+.navItem:hover{
     .icons{
         color: rgb(100,100,100);
     }
