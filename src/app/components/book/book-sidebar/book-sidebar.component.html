@@ -1,4 +1,4 @@
-<div tabindex="-1" class="item" *ngFor="let book of books" (click)="selectedBook = book" [class.selected]="isBookSelected(book)">
+<div routerLink="/main/book" tabindex="-1" class="item" *ngFor="let book of books" (click)="clickBook(book)" [class.selected]="isBookSelected(book)">
   <button type="button" class="btn btn-secondary my-btn">
     <img src="/assets/penguin.svg" class="imgPenguin">
   </button>
