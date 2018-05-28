@@ -1,7 +1,10 @@
-.btnTrash{
-    background-color:rgb(255, 185, 185);
+.bs-callout {
+    margin-left: 100px;
+    padding: 5px;
+    border: 1px solid white;
+    border-left-width: 5px;
+    border-radius: 3px;    
 }
-.btnEdit{
-    background-color: rgb(200, 255, 200); 
-    margin-right: 10px;
+.bs-callout-info {
+    border-left-color: lightgrey;
 }
