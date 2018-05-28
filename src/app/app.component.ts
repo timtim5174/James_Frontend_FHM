@@ -18,12 +18,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (document.cookie.includes('jwt-token')) {
       this.userService.isAuthenticated = true;
+      this.loadUserData();
     }
     this.changeAuthenticationStatus = this.userService.getChangeAuthenticationStatus().subscribe(status => {
       if (status && !this.toggle) {
         this.handleToggle();
       } else if (!status && this.toggle) {
         this.handleToggle();
+      }
+
+      if (status) {
+        this.loadUserData();
       }
     });
   }
@@ -41,4 +46,9 @@ export class AppComponent implements OnInit {
     return this.userService.isAuthenticated;
   }
 
+  loadUserData() {
+    this.userService.getImageFile().subscribe(img => {
+      this.userService.setUserImage(img);
+    });
+  }
 }

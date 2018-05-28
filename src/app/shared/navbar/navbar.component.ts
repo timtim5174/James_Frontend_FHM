@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 import { MyAccountComponent } from '../../components/my-account/my-account.component';
 import { UserService } from '../user/user.service';
@@ -13,25 +13,19 @@ export class NavbarComponent implements OnInit {
   signInComponent = SignInComponent;
   title = 'James';
   navbarIsCollapsed = true;
-  img;
+  img: SafeUrl = ''; // if empty default user icon will be shown
   @Input() isAuthenticated: boolean;
 
-  constructor(private userService: UserService, private sanitizer: DomSanitizer) {
-  }
+  constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.setUserIcon();
-  }
-
-  onUserIconChange() {
-    this.setUserIcon();
-  }
-
-  setUserIcon() {
-    this.userService.getImageFile().subscribe(res => {
-      this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(res));
+    this.userService.getUserImage().subscribe(img => {
+      if (img != null) {
+        this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
+      } else {
+        this.img = '';
+      }
     }, error => {
-      // otherwise show default user icon
       this.img = '';
     });
   }

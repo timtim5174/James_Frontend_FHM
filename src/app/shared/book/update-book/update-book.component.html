@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Create Book</h4>
+  <h4 class="modal-title">Update Book</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -8,7 +8,8 @@
   <div class="container">
     <form id="myForm" (ngSubmit)="onSubmit(createBook.value)" #createBook="ngForm">
       <div class="form-group mt-4"></div>
-      <input type="text" class="form-control" maxlength="12" name="title" [(ngModel)]="newBook.title" required placeholder="Book name"
+      <label for="title" class="control-label">Title</label>
+      <input id="title" type="text" class="form-control" maxlength="12" name="title" [(ngModel)]="newBook.title" required placeholder="Book name"
         #bookName="ngModel">
       <div *ngIf="(bookName.dirty || bookName.touched) && !bookName.valid; else space"></div>
       <app-error-message [control]='bookName' [error]="'required'" [message]="'Enter a name'"></app-error-message>
@@ -29,12 +30,12 @@
         </div>
       </div>
       <div *ngIf="!isOptionsOpened || !(newBook.rangeEnum === 'MONTHLY' || newBook.rangeEnum === 'YEARLY'); else timeFrameOptions"></div>
-      <app-alert-closeable #CreateBookCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
+      <app-alert-closeable #UpdateBookCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
     </form>
   </div>
 </div>
 <div class="modal-footer">
-  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createBook.valid" type="submit" class="btn btn-success">Create</button>
+  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createBook.valid" type="submit" class="btn btn-success">Save</button>
   <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
 </div>
 

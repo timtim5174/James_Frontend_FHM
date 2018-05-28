@@ -1,16 +1,17 @@
-<div class="item" *ngFor="let book of books">
+<div tabindex="-1" class="item" *ngFor="let book of books" (click)="selectedBook = book" [class.selected]="isBookSelected(book)">
   <button type="button" class="btn btn-secondary my-btn">
-      <img src="/assets/penguin.svg" class="imgPenguin">
+    <img src="/assets/penguin.svg" class="imgPenguin">
   </button>
   <span>{{book.title}}</span>
-  <button type="button" class="close" aria-label="Close" (click)="removeBook(book)">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <div class="settings fa fa-cog"></div>
+  <div class="close" (click)="removeBook(book)">&times;</div>
+  <app-modal [component]="updateBookComponent" [payload]="book | mapBookDates" (modalResult)="updateBook($event)">
+    <div class="settings fa fa-cog"></div>
+  </app-modal>
 </div>
+<app-alert-closeable #BookSidebarCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
 <div class="newBook">
   <hr>
-  <app-modal [component]="createBookComponent" (modalResult)="updateBooks($event)">
+  <app-modal [component]="createBookComponent" (modalResult)="addBook($event)">
     <button title="Create a new book" type="button" class="btn btn-outline-secondary new-book">
       <i class="fa fa-plus"></i>
     </button>

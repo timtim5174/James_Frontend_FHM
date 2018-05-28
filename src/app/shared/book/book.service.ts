@@ -16,7 +16,8 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.baseURL + '/getBooks', this.options).pipe(
+    return this.http.get<Book[]>(this.baseURL + '/getBooks').pipe(
+      map(books => books.sort(((a: Book, b: Book) => a.title <= b.title ? 0 : 1))),
       catchError(this.handleError)
     );
   }
@@ -33,7 +34,11 @@ export class BookService {
     );
   }
 
-
+  updateBook(book: Partial<Book>) {
+    return this.http.patch<Partial<Book>>(this.baseURL + '/updateBook', book).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     let msg: string;

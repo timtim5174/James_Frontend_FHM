@@ -11,13 +11,8 @@
             <div class="row justify-content-start">
               <div class="col-md-4">
                 <div *ngIf="!uploadClicked; else loading">
-                  <img [src]="img">
                   <input type="file" (change)="onImageSelected($event)" id="file" name="files" style="display: none;" #fileInput accept="image/jpeg" size="16000000">
-                  <div class="row justify-content-start">
-                      <div class="col-md-4">
-                        <i class="fa fa-edit" (click)="fileInput.click()"></i>
-                      </div>
-                    </div>
+                  <img [src]="img" (click)="fileInput.click()">
                 </div>
               </div>
             </div> 

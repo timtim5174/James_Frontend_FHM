@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit {
     this.registerClicked = true;
     this.userService.signIn(this.user).subscribe(
       success => {
-        this.closeModalBox();
+        this.activeModal.close();
         if (this.authGuardRedirect) {
           this.router.navigate([this.authGuardRedirect]);
         } else {
@@ -49,9 +49,4 @@ export class SignInComponent implements OnInit {
       }
     );
   }
-
-  closeModalBox() {
-    this.activeModal.dismiss();
-  }
-
 }

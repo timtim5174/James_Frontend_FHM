@@ -35,7 +35,7 @@ export class MyAccountComponent implements OnInit {
     firstname: '',
     lastname: '',
     password: '',
-    birth: ''
+    birth: new Date()
   };
 
   firstnameRequired = 'Enter your firstname';
@@ -49,22 +49,22 @@ export class MyAccountComponent implements OnInit {
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    // Load user image
-    this.userService.getImageFile().subscribe(res => {
-      if (res != null) {
-        this.img = this.sanitizer.bypassSecurityTrustUrl(
-          URL.createObjectURL(res));
+    this.userService.getUserImage().subscribe(img => {
+      if (img != null) {
+        this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
       }
     }, error => {
-      this.showResponse(error, 'danger');
+      this.img = this.defaultImgPath;
+      this.errorMessage = error;
     });
-    // Load user data
+
     this.userService.getUserData().subscribe(data => {
       this.user = data;
+      const mapDate: Date = new Date(this.user.birth);
       this.datepickerDate = {
-        year: Number(this.user.birth.substring(0, 4)),
-        month: Number(this.user.birth.substring(5, 7)),
-        day: Number(this.user.birth.substring(8, 10))
+        year: mapDate.getFullYear(),
+        month: mapDate.getMonth() + 1,
+        day: mapDate.getDate(),
       };
       this.datepicker.initDate(this.datepickerDate);
     }, error => {
@@ -73,7 +73,7 @@ export class MyAccountComponent implements OnInit {
   }
 
   onSaveDate(event: NgbDateStruct) {
-    this.user.birth = `${event.year}-${event.month}-${event.day}`;
+    this.user.birth = new Date(event.year, event.month - 1, event.day);
   }
 
   onSave() {
@@ -108,8 +108,11 @@ export class MyAccountComponent implements OnInit {
       // Send file to server
       const fd = new FormData();
       fd.append('image', this.selectedFile, this.selectedFile.name);
-      this.userService.uploadFile(fd).subscribe(response => {
-        this.showResponse(response.message, 'success');
+      this.userService.uploadFile(fd).subscribe(responseUpload => {
+        this.userService.getImageFile().subscribe(responseGet => {
+          this.userService.setUserImage(responseGet);
+        });
+        this.showResponse(responseUpload.message, 'success');
         this.uploadClicked = false;
       }, error => {
         this.showResponse(error, 'danger');
