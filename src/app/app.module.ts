@@ -39,6 +39,7 @@ import { MapBookDatesPipe } from './components/book/map-book-dates.pipe';
 import { BookViewComponent } from './components/book/book-view/book-view.component';
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SameNameDirective } from './components/book/delete-book/same-name.directive';
+import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
 import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-main-widget/dashboard-main-widget.component';
@@ -76,6 +77,7 @@ import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-m
     BookViewComponent,
     DeleteBookComponent,
     SameNameDirective,
+    TransactionOverviewComponent,
     BookOverviewComponent,
     BookStatisticsComponent,
     DashboardMainWidgetComponent

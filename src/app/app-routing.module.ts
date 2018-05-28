@@ -18,6 +18,7 @@ import { BookViewComponent } from './components/book/book-view/book-view.compone
 import { BookSidebarComponent } from './components/book/book-sidebar/book-sidebar.component';
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,8 @@ const routes: Routes = [
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
       { path: 'book', component: BookViewComponent, children: [
+        { path: 'home', component: HomeComponent },
+        { path: 'transactions', component: TransactionOverviewComponent}
         ]
       }
     ]
