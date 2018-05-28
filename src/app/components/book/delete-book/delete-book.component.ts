@@ -23,9 +23,16 @@ export class DeleteBookComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private bookService: BookService) { }
 
+
+
   ngOnInit() {
     this.book = { ...this.modalInput };
-    this.book.title = '';
+    this.modalInput.title = '';
+    this.bookService.getBooks().subscribe(
+      books => {
+        this.book = books.find(b => b.id === this.modalInput.id);
+      }
+    );
   }
 
   onSubmit() {

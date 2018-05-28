@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { Book } from '../book';
 import { BookService } from '../book.service';
 import { CreateBookComponent } from '../create-book/create-book.component';
@@ -46,9 +46,8 @@ export class BookSidebarComponent implements OnInit {
   }
 
   removeBook(book: Book) {
-    this.books = this.books.filter(b => b !== book);
+    this.books = this.books.filter(b => b.title !== book.title);
   }
-
 
   updateBook(book: Book) {
     const id = book.id;
@@ -60,6 +59,7 @@ export class BookSidebarComponent implements OnInit {
         b.timeFrame = book.timeFrame;
       }
     });
+
   }
 
   isBookSelected(book: Book) {
