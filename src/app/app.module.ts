@@ -40,6 +40,9 @@ import { BookViewComponent } from './components/book/book-view/book-view.compone
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SameNameDirective } from './components/book/delete-book/same-name.directive';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
+import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
+import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
+import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-main-widget/dashboard-main-widget.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,10 @@ import { TransactionOverviewComponent } from './components/transaction/transacti
     BookViewComponent,
     DeleteBookComponent,
     SameNameDirective,
-    TransactionOverviewComponent
+    TransactionOverviewComponent,
+    BookOverviewComponent,
+    BookStatisticsComponent,
+    DashboardMainWidgetComponent
   ],
   imports: [
     NgbModule.forRoot(),
