@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
@@ -35,6 +35,7 @@ const routes: Routes = [
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
       { path: 'book', component: BookViewComponent, children: [
+        { path: 'home', component: HomeComponent }
       ]}
     ]
   }

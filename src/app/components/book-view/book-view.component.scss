@@ -8,18 +8,31 @@
 
 .book {
     font-size: 50px;
+    padding: 5px;
 }
 
 .bookInfo {
     display: inline-flex;
     position: absolute;
-    border: 1px solid black;
+    right: 10px;
     height: 100%;
+}
+
+.imgPenguin {
+    padding: 5px;
+    height: 50%;
 }
 
 .value {
     color: green;
-    margin-left: 10px;
+    margin: 10px;
+}
+
+#nav {
+}
+
+li {
+    border: 1px solid black;
 }
 
 .navItem-hover:hover{
@@ -32,5 +45,5 @@
 }
 
 .spanSpace {
-    margin: 3px;
+    margin: 5px;
 }

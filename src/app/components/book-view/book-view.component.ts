@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-view.component.scss']
 })
 export class BookViewComponent implements OnInit {
+  navbarIsCollapsed = true;
 
   constructor() { }
 
