@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -38,7 +39,7 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
 export class SidebarComponent implements OnInit {
   @Input() shouldToggle = false;
   @Output() shouldPush = new EventEmitter<boolean>();
-  activeView: 'books' | 'dashboard' = 'books';
+
   constructor() {
   }
 
@@ -49,7 +50,5 @@ export class SidebarComponent implements OnInit {
     this.shouldPush.emit(!this.shouldPush);
   }
 
-  isActiveView(event: string) {
-    return event === this.activeView ? true : false;
-  }
+
 }

@@ -38,6 +38,8 @@ import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/
 import { UpdateBookComponent } from './shared/book/update-book/update-book.component';
 import { MapBookDatesPipe } from './shared/book/map-book-dates.pipe';
 import { BookViewComponent } from './components/book-view/book-view.component';
+import { DeleteBookComponent } from './shared/book/delete-book/delete-book.component';
+import { SameNameDirective } from './shared/book/delete-book/same-name.directive';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { BookViewComponent } from './components/book-view/book-view.component';
     DashboardSidebarComponent,
     UpdateBookComponent,
     MapBookDatesPipe,
-    BookViewComponent
+    BookViewComponent,
+    DeleteBookComponent,
+    SameNameDirective
   ],
   imports: [
     NgbModule.forRoot(),

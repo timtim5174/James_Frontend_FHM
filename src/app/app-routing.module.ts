@@ -17,6 +17,7 @@ import { UpdateBookComponent } from './shared/book/update-book/update-book.compo
 import { BookViewComponent } from './components/book-view/book-view.component';
 import { BookSidebarComponent } from './shared/book/book-sidebar/book-sidebar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { DeleteBookComponent } from './shared/book/delete-book/delete-book.component';
 
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'users/sign-out', component: SignOutComponent },
   { path: 'createBook', component: CreateBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
+  { path: 'deleteBook', component: DeleteBookComponent },
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
