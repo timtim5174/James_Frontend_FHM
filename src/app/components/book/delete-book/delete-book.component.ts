@@ -2,8 +2,8 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { BookService } from '../book.service';
 import { Book } from '../book';
-import { DatepickerComponent } from '../../datepicker/datepicker.component';
-import { AlertCloseableComponent } from '../../notifications/alert-closeable/alert-closeable.component';
+import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
+import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 
 
 @Component({

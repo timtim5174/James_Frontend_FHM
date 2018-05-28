@@ -1,43 +1,41 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { BookService } from '../book.service';
 import { Book } from '../book';
-import { AlertCloseableComponent } from '../../notifications/alert-closeable/alert-closeable.component';
-import { DatepickerComponent } from '../../datepicker/datepicker.component';
+import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
+import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 
 
 
 @Component({
-  selector: 'app-update-book',
-  templateUrl: './update-book.component.html',
-  styleUrls: ['./update-book.component.scss']
+  selector: 'app-create-book',
+  templateUrl: './create-book.component.html',
+  styleUrls: ['./create-book.component.scss']
 })
-export class UpdateBookComponent implements OnInit {
-  newBook: Partial<Book>;
+export class CreateBookComponent implements OnInit {
+  newBook: Partial<Book> = {
+    title: '',
+    rangeEnum: 'MONTHLY',
+    timeFrame: new Date(2018, 0, 1, 0, 0, 0, 0)
+  };
   errorMessage = '';
   isOptionsOpened = false;
-  createClicked = false;
-
-  @ViewChild('UpdateBookCloseableAlert')
+  @ViewChild('CreateBookCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
-
   @ViewChild('MyDatepicker')
   private datepicker: DatepickerComponent;
   datepickerDate: NgbDateStruct;
-  dateManuallyPicked = true;
-
-
+  dateManuallyPicked = false;
+  createClicked = false;
   constructor(public activeModal: NgbActiveModal, private bookService: BookService) { }
-  @Input() modalInput: Book;
 
   ngOnInit() {
-    this.newBook = this.modalInput;
   }
 
   onSubmit() {
     this.createClicked = true;
-    this.bookService.updateBook(this.newBook).subscribe(
-      success => this.activeModal.close(this.newBook),
+    this.bookService.createBook(this.newBook).subscribe(
+      book => this.activeModal.close(book),
       error => {
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
@@ -91,5 +89,4 @@ export class UpdateBookComponent implements OnInit {
 
     return this.newBook.rangeEnum === 'MONTHLY' ? monthly : yearly;
   }
-
 }

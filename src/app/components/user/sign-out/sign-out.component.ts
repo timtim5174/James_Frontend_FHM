@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../shared/user/user.service';
+import { UserService } from '../../user/user.service';
 import { SharedSignOutService } from './shared-sign-out.service';
 
 
