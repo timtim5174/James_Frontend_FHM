@@ -3,8 +3,9 @@ import { Book } from '../book';
 import { BookService } from '../book.service';
 import { CreateBookComponent } from '../create-book/create-book.component';
 import { UpdateBookComponent } from '../update-book/update-book.component';
-import { AlertCloseableComponent } from '../../notifications/alert-closeable/alert-closeable.component';
+import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 import { Router } from '@angular/router';
+import { DeleteBookComponent } from '../delete-book/delete-book.component';
 
 
 
@@ -20,6 +21,7 @@ export class BookSidebarComponent implements OnInit {
   errorMessage = '';
   createBookComponent = CreateBookComponent;
   updateBookComponent = UpdateBookComponent;
+  deleteBookComponent = DeleteBookComponent;
   selectedBook: Book;
 
   @ViewChild('BookSidebarCloseableAlert')
@@ -27,7 +29,6 @@ export class BookSidebarComponent implements OnInit {
   constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['/main/book']);
     this.bookService.getBooks().subscribe(
       books => {
         this.books = books;
@@ -45,14 +46,9 @@ export class BookSidebarComponent implements OnInit {
   }
 
   removeBook(book: Book) {
-    this.bookService.deleteBook(book.id).subscribe(
-      success => { this.books = this.books.filter(b => b !== book); },
-      error => {
-        this.closeableAlert.reOpenAlert();
-        this.errorMessage = error;
-      }
-    );
+    this.books = this.books.filter(b => b !== book);
   }
+
 
   updateBook(book: Book) {
     const id = book.id;

@@ -1,0 +1,35 @@
+<div class="container" style="padding-top:10px">
+  <div class="row">
+    <div class="card" style="padding: 15px;">
+      <div class="card-body">
+        <div class="row">
+          <div class="text-muted text-left mb-4">
+            <img [src]="img" class="profile-image rounded-circle" width="40px" height="40px" *ngIf="img; else defaultImg">
+            <span style="padding-left: 10px">{{user.firstname}} {{user.lastname}}</span>
+          </div>
+          <div class="bs-callout bs-callout-info">
+            <small class="text-muted">Members</small>
+            <br>
+            <strong>{{members}}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="h4">{{bookName}}</div>
+      <hr class="mt-0">
+      <div class="form-group">
+        <i class="fa fa-inbox bg-success p-3 font-2xl" style="color:white; margin-right: 10px;"></i>
+        <span class="text-muted text-uppercase font-weight-bold small">Income:</span>
+        <span class="text-value-sm"> {{incomes}} €</span>
+      </div>
+      <div class="form-group">
+        <i class="fa fa-inbox bg-danger p-3 font-2xl" style="color:white; margin-right: 10px"></i>
+        <span class="text-muted text-uppercase font-weight-bold small">Outgoings:</span>
+        <span class="text-value-sm"> {{outgoings}} €</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultImg>
+  <i class="fa fa-user-circle"></i>
+</ng-template>

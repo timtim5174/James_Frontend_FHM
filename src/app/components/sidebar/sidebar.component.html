@@ -1,19 +1,12 @@
 <div class="wrapper">
     <nav id="sidebar" [@toggleState]="shouldToggle">
         <ul class="list-unstyled">
-            <li (click)="activeView = 'dashboard'">
+            <li routerLink="/main/dashboard">
                 <a>Dashboard</a>
-            </li>
-            <li class="active" (click)="activeView = 'books'">
-                <a>Books</a>
-            </li>
-            <li>
-                <a>Transactions</a>
             </li>
         </ul>
         <hr>
-        <app-book-sidebar *ngIf="isActiveView('books')"></app-book-sidebar>
-        <app-dashboard-sidebar *ngIf="isActiveView('dashboard')"></app-dashboard-sidebar>
+        <app-book-sidebar></app-book-sidebar>
     </nav>
     <div class="pull" (click)="pushContent()" [@toggleButtonNoRotate]="shouldToggle">
         <i class="fa fa-angle-right fa-2x arrow" aria-hidden="true" [@toggleArrow]="shouldToggle"></i>

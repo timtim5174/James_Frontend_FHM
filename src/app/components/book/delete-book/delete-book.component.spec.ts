@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardSidebarComponent } from './dashboard-sidebar.component';
+import { DeleteBookComponent } from './delete-book.component';
 
-describe('DashboardSidebarComponent', () => {
-  let component: DashboardSidebarComponent;
-  let fixture: ComponentFixture<DashboardSidebarComponent>;
+describe('DeleteBookComponent', () => {
+  let component: DeleteBookComponent;
+  let fixture: ComponentFixture<DeleteBookComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardSidebarComponent ]
+      declarations: [ DeleteBookComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardSidebarComponent);
+    fixture = TestBed.createComponent(DeleteBookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

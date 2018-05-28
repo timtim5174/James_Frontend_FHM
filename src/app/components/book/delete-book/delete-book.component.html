@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">Delete Book</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form id="myForm" (ngSubmit)="onSubmit()" #deleteBookForm="ngForm">
+      <div class="form-group">
+        <label for="bookName" class="control-label">Enter the book name to continue</label>
+        <input type="text" class="form-control" id="bookName" name="bookName" [(ngModel)]="book.title" appSameName [bookTitle]="modalInput.title"
+          #bookTitle="ngModel" required>
+        <div *ngIf="(bookTitle.dirty || bookTitle.touched) && !bookTitle.valid; else space"></div>
+        <app-error-message [control]='bookTitle' [error]="'required'" [message]="'Enter a name'"></app-error-message>
+        <app-error-message [control]='bookTitle' [error]="'appSameName'" [message]="'The name you entered is wrong'"></app-error-message>
+      </div>
+    </form>
+    <app-alert-closeable #DeleteBookCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
+  </div>
+</div>
+<div class="modal-footer">
+  <button *ngIf="!deleteClicked; else loading" form="myForm" [disabled]="!deleteBookForm.valid" type="submit" class="btn btn-danger">Delete</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>
+
+
+
+
+<!--  A little space, used when no app-error-message is shown - otherwise
+      the delete container would shrink and grow when messages appear -->
+<ng-template #space>
+  <span class="m-1"></span>
+</ng-template>
+
+
+<!--   A loading icon which is shown until the deletion is complete  -->
+<ng-template #loading>
+  <span>
+    <img src="/assets/loading.svg">
+  </span>
+</ng-template>
