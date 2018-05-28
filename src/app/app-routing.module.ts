@@ -34,7 +34,8 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardMainComponent },
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
-      { path: 'book', component: BookViewComponent }
+      { path: 'book', component: BookViewComponent, children: [
+      ]}
     ]
   }
 ];
