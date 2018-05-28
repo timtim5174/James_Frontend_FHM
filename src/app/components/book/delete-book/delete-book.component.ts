@@ -4,6 +4,7 @@ import { BookService } from '../book.service';
 import { Book } from '../book';
 import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
+import { SharedBookService } from '../shared-book.service';
 
 
 @Component({
@@ -21,18 +22,16 @@ export class DeleteBookComponent implements OnInit {
   @ViewChild('DeleteBookCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
 
-  constructor(public activeModal: NgbActiveModal, private bookService: BookService) { }
-
-
+  constructor(public activeModal: NgbActiveModal, private bookService: BookService, private sharedBookService: SharedBookService) {
+    this.sharedBookService.getUpdateDeleteBookSubject().subscribe(
+      book =>
+        this.book = book
+    );
+  }
 
   ngOnInit() {
     this.book = { ...this.modalInput };
     this.modalInput.title = '';
-    this.bookService.getBooks().subscribe(
-      books => {
-        this.book = books.find(b => b.id === this.modalInput.id);
-      }
-    );
   }
 
   onSubmit() {

@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { BookDataService } from './shared-book.service';
+import { SharedBookService } from './shared-book.service';
 
-describe('BookDataService', () => {
+describe('SharedBookService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BookDataService]
+      providers: [SharedBookService]
     });
   });
 
-  it('should be created', inject([BookDataService], (service: BookDataService) => {
+  it('should be created', inject([SharedBookService], (service: SharedBookService) => {
     expect(service).toBeTruthy();
   }));
 });

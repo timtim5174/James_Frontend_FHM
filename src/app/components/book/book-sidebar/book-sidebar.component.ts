@@ -6,7 +6,7 @@ import { UpdateBookComponent } from '../update-book/update-book.component';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 import { Router } from '@angular/router';
 import { DeleteBookComponent } from '../delete-book/delete-book.component';
-import {BookDataService} from '../shared-book.service';
+import { SharedBookService } from '../shared-book.service';
 
 
 
@@ -27,7 +27,7 @@ export class BookSidebarComponent implements OnInit {
 
   @ViewChild('BookSidebarCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
-  constructor(private bookService: BookService, private router: Router, private bookDataService: BookDataService) { }
+  constructor(private bookService: BookService, private router: Router, private sharedBookService: SharedBookService) { }
 
   ngOnInit() {
     this.bookService.getBooks().subscribe(
@@ -47,10 +47,11 @@ export class BookSidebarComponent implements OnInit {
   }
 
   removeBook(book: Book) {
-    this.books = this.books.filter(b => b.title !== book.title);
+    this.books = this.books.filter(b => b.id !== book.id);
   }
 
   updateBook(book: Book) {
+    this.sharedBookService.setUpdateDeleteBookSubject(book);
     const id = book.id;
     const arr = this.books.filter(b => b.id === id);
     this.books.forEach((b) => {
@@ -64,13 +65,11 @@ export class BookSidebarComponent implements OnInit {
   }
 
   isBookSelected(book: Book) {
-    if (this.books.length > 1) {
-      return this.selectedBook.id === book.id ? true : false;
-    }
+    return this.selectedBook.id === book.id ? true : false;
   }
 
   clickBook(book: Book) {
     this.selectedBook = book;
-    this.bookDataService.setBook(book);
+    this.sharedBookService.setBook(book);
   }
 }
