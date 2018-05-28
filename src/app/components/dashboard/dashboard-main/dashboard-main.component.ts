@@ -17,6 +17,10 @@ export class DashboardMainComponent implements OnInit {
     password: ''
   };
   img: SafeUrl;
+  members = 5;
+  bookName = 'Testbook';
+  incomes = 2000;
+  outgoings = -2500;
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {

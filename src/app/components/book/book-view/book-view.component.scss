@@ -4,25 +4,30 @@
 
 .top {
     background-color: rgb(230, 230, 230);
+    z-index: 5000;
 }
 
 .book {
     font-size: 50px;
+    padding: 5px;
 }
 
-.bookInfo {
-    display: inline-flex;
-    position: absolute;
-    border: 1px solid black;
-    height: 100%;
+.bookName {
+    float: right;
+    right: 10px;
+    max-height: 100%;
 }
 
 .value {
     color: green;
-    margin-left: 10px;
+    margin: 10px;
 }
 
-.navItem-hover:hover{
+ul {
+    margin-left: 40px;
+}
+
+.navItem:hover{
     .icons{
         color: rgb(100,100,100);
     }
@@ -32,5 +37,5 @@
 }
 
 .spanSpace {
-    margin: 3px;
+    margin: 5px;
 }

@@ -33,13 +33,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookSidebarComponent } from './components/book/book-sidebar/book-sidebar.component';
 import { CreateBookComponent } from './components/book/create-book/create-book.component';
-import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
-import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/dashboard-sidebar.component';
+import { DashboardMainComponent } from './components/dashboard/dashboard-main/dashboard-main.component';
 import { UpdateBookComponent } from './components/book/update-book/update-book.component';
 import { MapBookDatesPipe } from './components/book/map-book-dates.pipe';
-import { BookViewComponent } from './components/book-view/book-view.component';
+import { BookViewComponent } from './components/book/book-view/book-view.component';
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SameNameDirective } from './components/book/delete-book/same-name.directive';
+import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
+import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
+import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
+import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-main-widget/dashboard-main-widget.component';
 
 @NgModule({
   declarations: [
@@ -69,12 +72,15 @@ import { SameNameDirective } from './components/book/delete-book/same-name.direc
     BookSidebarComponent,
     CreateBookComponent,
     DashboardMainComponent,
-    DashboardSidebarComponent,
     UpdateBookComponent,
     MapBookDatesPipe,
     BookViewComponent,
     DeleteBookComponent,
-    SameNameDirective
+    SameNameDirective,
+    TransactionOverviewComponent,
+    BookOverviewComponent,
+    BookStatisticsComponent,
+    DashboardMainWidgetComponent
   ],
   imports: [
     NgbModule.forRoot(),
