@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedSignOutService } from '../sign-out/shared-sign-out.service';
+import { SharedSignOutService } from '../user/sign-out/shared-sign-out.service';
 
 
 @Component({

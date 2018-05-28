@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
-import { SignInComponent } from '../../components/sign-in/sign-in.component';
-import { MyAccountComponent } from '../../components/my-account/my-account.component';
-import { UserService } from '../user/user.service';
+import { SignInComponent } from '../../components/user/sign-in/sign-in.component';
+import { MyAccountComponent } from '../../components/user/my-account/my-account.component';
+import { UserService } from '../../components/user/user.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({

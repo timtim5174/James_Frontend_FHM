@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SignInComponent } from '../../components/sign-in/sign-in.component';
+import { SignInComponent } from '../../components/user/sign-in/sign-in.component';
 
 
 
