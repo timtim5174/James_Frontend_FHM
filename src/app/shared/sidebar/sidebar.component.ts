@@ -38,14 +38,18 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
 export class SidebarComponent implements OnInit {
   @Input() shouldToggle = false;
   @Output() shouldPush = new EventEmitter<boolean>();
-
+  activeView: 'books' | 'dashboard' = 'books';
   constructor() {
   }
 
   ngOnInit() {
   }
 
- pushContent() {
+  pushContent() {
     this.shouldPush.emit(!this.shouldPush);
+  }
+
+  isActiveView(event: string) {
+    return event === this.activeView ? true : false;
   }
 }

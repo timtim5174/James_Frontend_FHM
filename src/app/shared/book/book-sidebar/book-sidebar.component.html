@@ -4,7 +4,7 @@
   </button>
   <span>{{book.title}}</span>
   <div class="close" (click)="removeBook(book)">&times;</div>
-  <app-modal [component]="updateBookComponent" [payload]="book" (modalResult)="updateBook($event)">
+  <app-modal [component]="updateBookComponent" [payload]="book | mapBookDates" (modalResult)="updateBook($event)">
     <div class="settings fa fa-cog"></div>
   </app-modal>
 </div>

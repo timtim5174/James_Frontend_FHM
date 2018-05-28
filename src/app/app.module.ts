@@ -32,11 +32,12 @@ import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookSidebarComponent } from './shared/book/book-sidebar/book-sidebar.component';
-import { BookMainComponent } from './shared/book/book-main/book-main.component';
 import { CreateBookComponent } from './shared/book/create-book/create-book.component';
 import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
 import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/dashboard-sidebar.component';
 import { UpdateBookComponent } from './shared/book/update-book/update-book.component';
+import { MapBookDatesPipe } from './shared/book/map-book-dates.pipe';
+import { BookViewComponent } from './components/book-view/book-view.component';
 
 
 @NgModule({
@@ -65,11 +66,12 @@ import { UpdateBookComponent } from './shared/book/update-book/update-book.compo
     MainComponent,
     SidebarComponent,
     BookSidebarComponent,
-    BookMainComponent,
     CreateBookComponent,
     DashboardMainComponent,
     DashboardSidebarComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    MapBookDatesPipe,
+    BookViewComponent
   ],
   imports: [
     NgbModule.forRoot(),

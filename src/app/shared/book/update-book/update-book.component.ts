@@ -24,14 +24,14 @@ export class UpdateBookComponent implements OnInit {
   @ViewChild('MyDatepicker')
   private datepicker: DatepickerComponent;
   datepickerDate: NgbDateStruct;
-  dateManuallyPicked = false;
+  dateManuallyPicked = true;
 
 
   constructor(public activeModal: NgbActiveModal, private bookService: BookService) { }
   @Input() modalInput: Book;
 
   ngOnInit() {
-    this.newBook = { ...this.modalInput };
+    this.newBook = this.modalInput;
   }
 
   onSubmit() {
