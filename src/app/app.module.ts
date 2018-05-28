@@ -37,7 +37,6 @@ import { CreateBookComponent } from './shared/book/create-book/create-book.compo
 import { DashboardMainComponent } from './shared/dashboard/dashboard-main/dashboard-main.component';
 import { DashboardSidebarComponent } from './shared/dashboard/dashboard-sidebar/dashboard-sidebar.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
