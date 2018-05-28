@@ -1,1 +1,34 @@
-<p>book-view works</p>
+<div class="wrapper">
+
+    <div class="top">
+        <div class="book">
+            <span class="value">1000+</span>
+            <span class="bookInfo">
+                BuchName
+                <img src="/assets/penguin.svg" class="imgPenguin">
+            </span>
+        </div>
+        <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light main-nav navbar-top myContainer">
+            <button class="navbar-toggler" (click)="navbarIsCollapsed = !navbarIsCollapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" [ngbCollapse]="navbarIsCollapsed" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item navItem-hover">
+                        <a class="nav-link" routerLink="" routerLinkActive="active">
+                            <i class="fa fa-user-plus icons"></i>
+                            <span class="spanSpace">Users</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../shared/user/user';
+import { User } from '../../user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { UserService } from '../../shared/user/user.service';
-import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
+import { UserService } from '../../user/user.service';
+import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 
 @Component({
   selector: 'app-sign-up',

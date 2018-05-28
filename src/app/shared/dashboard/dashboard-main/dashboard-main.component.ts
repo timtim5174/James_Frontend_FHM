@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../user/user.service';
-import { User } from '../../user/user';
+import { UserService } from '../../../components/user/user.service';
+import { User } from '../../../components/user/user';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({

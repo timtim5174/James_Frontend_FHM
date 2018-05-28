@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { User } from './../../shared/user/user';
+import { User } from './../../../components/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../../shared/user/user.service';
-import { AlertCloseableComponent } from '../../shared/notifications/alert-closeable/alert-closeable.component';
-import { DatepickerComponent } from '../../shared/datepicker/datepicker.component';
+import { UserService } from '../../../components/user/user.service';
+import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
+import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({

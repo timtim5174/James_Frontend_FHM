@@ -1,0 +1,36 @@
+.wrapper {
+    position: relative;
+}
+
+.top {
+    background-color: rgb(230, 230, 230);
+}
+
+.book {
+    font-size: 50px;
+}
+
+.bookInfo {
+    display: inline-flex;
+    position: absolute;
+    border: 1px solid black;
+    height: 100%;
+}
+
+.value {
+    color: green;
+    margin-left: 10px;
+}
+
+.navItem-hover:hover{
+    .icons{
+        color: rgb(100,100,100);
+    }
+    .spanSpace{
+        color:rgb(100,100,100);
+    }
+}
+
+.spanSpace {
+    margin: 3px;
+}
