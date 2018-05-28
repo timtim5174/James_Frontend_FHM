@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from './shared/user/user.service';
+import { UserService } from './components/user/user.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignInComponent } from './components/user/sign-in/sign-in.component';
 
 @Injectable({
   providedIn: 'root'
