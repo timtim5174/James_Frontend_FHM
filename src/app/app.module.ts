@@ -43,6 +43,8 @@ import { TransactionOverviewComponent } from './components/transaction/transacti
 import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
 import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-main-widget/dashboard-main-widget.component';
+import { SharedBookService } from './components/book/shared-book.service';
+import { SharedUserService } from './components/user/shared-user.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,7 @@ import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-m
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, NgbActiveModal],
+  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

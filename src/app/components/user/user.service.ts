@@ -7,6 +7,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { User } from './user';
+import { SharedUserService } from './shared-user.service';
 
 
 @Injectable()
@@ -20,12 +21,14 @@ export class UserService {
   userData: User;
   response: object;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sharedUserService: SharedUserService) { }
 
   signUp(accountData: User): Observable<User> {
     this.isAuthenticated = false;
     return this.http.post<User>(this.baseURL + '/registry', accountData, this.options).pipe(
-      map(data => this.setIsAuthenticatedTrue()),
+      map(data => this.setIsAuthenticatedTrue(),
+      this.sharedUserService.setAuthentificationStatus(true)
+      ),
       catchError(this.handleError)
     );
   }
@@ -33,13 +36,16 @@ export class UserService {
   signIn(authData: Partial<User>) {
     this.isAuthenticated = false;
     return this.http.post<Partial<User>>(this.baseURL + '/login', authData, this.options).pipe(
-      map(data => this.setIsAuthenticatedTrue()),
+      map(data => this.setIsAuthenticatedTrue(),
+      this.sharedUserService.setAuthentificationStatus(true)
+      ),
       catchError(this.handleError)
     );
   }
 
   signOut() {
     this.setIsAuthenticatedFalse();
+    this.sharedUserService.setAuthentificationStatus(false);
     document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 

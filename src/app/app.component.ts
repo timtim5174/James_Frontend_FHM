@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from './components/user/user.service';
 import { Observable, Subscription } from 'rxjs';
+import { SharedUserService } from './components/user/shared-user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   @Input() toggle = false;
   changeAuthenticationStatus: Subscription;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private sharedUserService: SharedUserService) {
   }
 
   ngOnInit() {
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
       this.userService.isAuthenticated = true;
       this.loadUserData();
     }
-    this.changeAuthenticationStatus = this.userService.getChangeAuthenticationStatus().subscribe(status => {
+
+    this.changeAuthenticationStatus = this.sharedUserService.getAuthentificationStatus().subscribe(status => {
       if (status && !this.toggle) {
         this.handleToggle();
       } else if (!status && this.toggle) {

@@ -38,9 +38,6 @@ export class BookSidebarComponent implements OnInit {
           this.selectedBook = this.books[0];
         }
 
-
-        this.sharedBookService.setArrayData(this.books);
-
         this.sharedBookService.getSelectedIdBook().subscribe(id => {
           for (const book of this.books) {
             if (book.id === id) {
@@ -48,6 +45,7 @@ export class BookSidebarComponent implements OnInit {
             }
           }
         });
+        this.sharedBookService.setArrayData(this.books);
       },
       error => this.errorMessage = error
     );
@@ -83,6 +81,7 @@ export class BookSidebarComponent implements OnInit {
 
   clickBook(book: Book) {
     this.selectedBook = book;
+    this.sharedBookService.setArrayData(this.books);
     this.router.navigate(['/main/book', book.id]);
   }
 
