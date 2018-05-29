@@ -108,8 +108,8 @@ export class MyAccountComponent implements OnInit {
       // Send file to server
       const fd = new FormData();
       fd.append('image', this.selectedFile, this.selectedFile.name);
-      this.userService.uploadFile(fd).subscribe(responseUpload => {
-        this.userService.getImageFile().subscribe(responseGet => {
+      this.userService.uploadUserImage(fd).subscribe(responseUpload => {
+        this.userService.receiveUserImage().subscribe(responseGet => {
           this.userService.setUserImage(responseGet);
         });
         this.showResponse(responseUpload.message, 'success');

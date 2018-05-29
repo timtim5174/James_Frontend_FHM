@@ -59,14 +59,14 @@ export class UserService {
     );
   }
 
-  uploadFile(file: FormData) {
-    return this.http.post<FormData>(this.baseURL + '/uploadFile', file, this.options).pipe(
+  uploadUserImage(file: FormData) {
+    return this.http.post<FormData>(this.baseURL + '/uploadUserImage', file, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
 
-  getImageFile() {
-    return this.http.get(this.baseURL + '/getImageFile', { responseType: 'blob' }).pipe(
+  receiveUserImage() {
+    return this.http.get(this.baseURL + '/getUserImage', { responseType: 'blob' }).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }

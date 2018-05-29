@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../components/user/user.service';
-import { User } from '../../../components/user/user';
+import { User, UserInfo } from '../../../components/user/user';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -16,6 +16,15 @@ export class DashboardMainComponent implements OnInit {
     email: '',
     password: ''
   };
+  data: [{
+    user: UserInfo,
+    img: SafeUrl,
+    bookName: string,
+    members: number
+    incomes: number,
+    outgoings: number
+  }];
+
   img: SafeUrl;
   members = 5;
   bookName = 'Testbook';
