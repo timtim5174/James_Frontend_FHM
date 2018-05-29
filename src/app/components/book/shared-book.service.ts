@@ -12,7 +12,6 @@ export class SharedBookService {
 
   constructor() { }
 
-  //Connection for Bookmarks, backward selecting of right book in sidebar
   setSelectedIdBook(s: String) {
     this.bookSelectedIdSubject.next(s);
   }
@@ -21,8 +20,7 @@ export class SharedBookService {
     return this.bookSelectedIdSubject.asObservable();
   }
 
-  //Connection for Array of Sidebar in book-view, to can select right book with id(URL)
-  setArrayData(a: Book[]){
+  setArrayData(a: Book[]) {
     this.bookArrayDataSubject.next(a);
   }
 
