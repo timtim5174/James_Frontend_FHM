@@ -37,4 +37,5 @@ export class BookViewComponent implements OnInit {
       this.sharedBookService.setSelectedIdBook(this.id);
     });
   }
+
 }

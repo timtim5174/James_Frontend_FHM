@@ -24,8 +24,7 @@ export class DeleteBookComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private bookService: BookService, private sharedBookService: SharedBookService) {
     this.sharedBookService.getUpdateDeleteBookSubject().subscribe(
-      book =>
-        this.book = book
+      book => this.book = book
     );
   }
 
