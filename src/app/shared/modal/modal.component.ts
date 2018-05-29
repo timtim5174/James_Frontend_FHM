@@ -11,8 +11,12 @@ import { SignInComponent } from '../../components/user/sign-in/sign-in.component
 })
 export class ModalComponent implements OnInit {
   @Input() component: Component;
-  @Output() modalResult = new EventEmitter<any>();
   @Input() payload: any;
+  @Output() modalResult = new EventEmitter<any>();
+
+
+
+
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {

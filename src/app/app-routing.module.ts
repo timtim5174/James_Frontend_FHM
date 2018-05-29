@@ -39,7 +39,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardMainComponent },
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
-      { path: 'book', component: BookViewComponent, children: [
+      { path: 'book/:id', component: BookViewComponent, children: [
         { path: 'home', component: HomeComponent },
         { path: 'transactions', component: TransactionOverviewComponent},
         {path: 'overview', component: BookOverviewComponent}
