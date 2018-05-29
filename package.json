@@ -24,6 +24,7 @@
     "@types/googlemaps": "^3.30.8",
     "angular-animate": "^1.7.0",
     "bootstrap": "^4.1.1",
+    "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "rxjs": "^6.1.0",

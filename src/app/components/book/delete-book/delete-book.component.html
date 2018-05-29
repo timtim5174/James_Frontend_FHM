@@ -9,7 +9,7 @@
     <form id="myForm" (ngSubmit)="onSubmit()" #deleteBookForm="ngForm">
       <div class="form-group">
         <label for="bookName" class="control-label">Enter the book name to continue</label>
-        <input type="text" class="form-control" id="bookName" name="bookName" [(ngModel)]="book.title" appSameName [bookTitle]="modalInput.title"
+        <input type="text" class="form-control" id="bookName" name="bookName" [(ngModel)]="modalInput.title" appSameName [bookTitle]="book.title"
           #bookTitle="ngModel" required>
         <div *ngIf="(bookTitle.dirty || bookTitle.touched) && !bookTitle.valid; else space"></div>
         <app-error-message [control]='bookTitle' [error]="'required'" [message]="'Enter a name'"></app-error-message>

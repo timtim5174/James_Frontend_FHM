@@ -1,10 +1,10 @@
-<div tabindex="-1" class="item" *ngFor="let book of books" (click)="selectedBook = book" [class.selected]="isBookSelected(book)">
+<div tabindex="-1" class="item" *ngFor="let book of books" (click)="clickBook(book)" [class.selected]="isBookSelected(book)">
   <button type="button" class="btn btn-secondary my-btn">
     <img src="/assets/penguin.svg" class="imgPenguin">
   </button>
   <span>{{book.title}}</span>
 
-  <app-modal [component]="deleteBookComponent" [payload]="book | mapBookDates" (modalResult)="'removeBook($event)'">
+  <app-modal [component]="deleteBookComponent" [payload]="book | mapBookDates" (modalResult)="removeBook($event)">
     <div class="close">&times;</div>
   </app-modal>
 
