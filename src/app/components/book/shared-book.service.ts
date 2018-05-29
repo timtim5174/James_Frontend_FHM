@@ -6,17 +6,28 @@ import { Book } from '../book/book';
   providedIn: 'root'
 })
 export class SharedBookService {
-  bookSubject = new BehaviorSubject<Book>(null);
+  bookSelectedIdSubject = new BehaviorSubject<String>(null);
+  bookArrayDataSubject = new BehaviorSubject<Book[]>(null);
   updateDeleteBookSubject = new BehaviorSubject<Book>(null);
 
   constructor() { }
 
-  setBook(b: Book) {
-    this.bookSubject.next(b);
+  //Connection for Bookmarks, backward selecting of right book in sidebar
+  setSelectedIdBook(s: String) {
+    this.bookSelectedIdSubject.next(s);
   }
 
-  getBook(): Observable<Book> {
-    return this.bookSubject.asObservable();
+  getSelectedIdBook(): Observable<String> {
+    return this.bookSelectedIdSubject.asObservable();
+  }
+
+  //Connection for Array of Sidebar in book-view, to can select right book with id(URL)
+  setArrayData(a: Book[]){
+    this.bookArrayDataSubject.next(a);
+  }
+
+  getArrayData(): Observable<Book[]> {
+    return this.bookArrayDataSubject.asObservable();
   }
 
   setUpdateDeleteBookSubject(b: Book) {
@@ -24,7 +35,7 @@ export class SharedBookService {
   }
 
   getUpdateDeleteBookSubject(): Observable<Book> {
-    return this.bookSubject.asObservable();
+    return this.updateDeleteBookSubject.asObservable();
   }
 
 }

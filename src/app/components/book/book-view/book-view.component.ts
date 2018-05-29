@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedBookService} from '../shared-book.service';
+import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-book-view',
@@ -8,14 +9,30 @@ import { Book } from '../book';
   styleUrls: ['./book-view.component.scss']
 })
 export class BookViewComponent implements OnInit {
-  navbarIsCollapsed = true;
   book: Book;
-  constructor(private sharedBookService: SharedBookService) { }
+  navbarIsCollapsed = true;
+  id: string;
+  constructor(private sharedBookService: SharedBookService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.sharedBookService.getBook().subscribe(book => {
-      this.book = book;
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
     });
+
+    this.sharedBookService.getArrayData().subscribe(books => {
+      if(books != null){
+        books = books;
+        for (let book of  books) {
+          if (book.id === this.id) {
+            this.book = book;
+          }
+        }
+        console.log(this.book);
+      }
+    })
+
+    this.sharedBookService.setSelectedIdBook(this.id);
   }
 
 }
