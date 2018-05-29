@@ -10,12 +10,13 @@ import { Book } from '../book';
 export class BookViewComponent implements OnInit {
   navbarIsCollapsed = true;
   book: Book;
-  constructor(private bookDataService: BookDataService) { }
-
-  ngOnInit() {
+  constructor(private bookDataService: BookDataService) {
     this.bookDataService.getBook().subscribe(book => {
       this.book = book;
     });
+  }
+
+  ngOnInit() {
   }
 
 }
