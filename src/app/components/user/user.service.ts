@@ -71,6 +71,13 @@ export class UserService {
       catchError(this.handleError));
   }
 
+  getUsersOfBook(id: string) {
+    return this.http.get(this.baseURL + `/getUsersOfBook/${id}`, this.options).pipe(
+      map(data => this.response = data),
+      catchError(this.handleError)
+    );
+  }
+
   setIsAuthenticatedTrue() {
     this.isAuthenticated = true;
     this.giveChangeAuthenticationStatus(true);

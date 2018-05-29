@@ -4,6 +4,7 @@ import { User, UserInfo } from '../../../components/user/user';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { BookService } from '../../book/book.service';
 import { SharedBookService } from '../../book/shared-book.service';
+import { BookInfo } from '../../book/book';
 
 @Component({
   selector: 'app-dashboard-main',
@@ -11,49 +12,42 @@ import { SharedBookService } from '../../book/shared-book.service';
   styleUrls: ['./dashboard-main.component.scss']
 })
 export class DashboardMainComponent implements OnInit {
+  usersOfBook: UserInfo[] = [];
+  booksInfo: BookInfo[] = [];
   user: User = {
-    firstname: '',
-    lastname: '',
+    firstname: 'Test',
+    lastname: 'Test',
     birth: new Date(),
-    email: '',
-    password: ''
+    email: 'asfasf',
+    password: 'asdfasdf'
   };
-  booksInfo: [
-    {
-      bookName: string,
-      creatorId: string
-      creatorFirstName: string,
-      creatorLastName: string,
-      members: number
-      incomes ?: number
-      outgoings ?: number
-    }
-  ];
-
   img: SafeUrl;
   members = 5;
   bookName = 'Testbook';
   incomes = 2000;
   outgoings = -2500;
-  constructor(private userService: UserService, private bookSharedService: SharedBookService, private sanitizer: DomSanitizer) { }
+  constructor(private userService: UserService, private bookService: BookService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.userService.getUserData().subscribe(data => {
-      this.user = data;
-    });
     this.userService.getUserImage().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
       }
     });
-    this.loadData();
+    this.loadBooksData();
   }
 
-  loadData() {
-    this.bookSharedService.getArrayData().subscribe(data => {
-      // book meta data abrufen
-      // this.bookServive.getBookMetaData().subscribe(bookData => {});
-
+  async loadBooksData() {
+    let i = 0;
+    const books = await this.bookService.getBooks().toPromise();
+    books.forEach(async book => {
+      const users = await this.userService.getUsersOfBook(book.id).toPromise();
+      users.forEach(async user => {
+        this.usersOfBook.push({id: user.id, firstname: user.firstname, lastname: user.lastname});
+        i++;
+      });
+      this.booksInfo.push({bookName: book.title, members: i, users: this.usersOfBook});
+      this.usersOfBook = [];
     });
   }
 }

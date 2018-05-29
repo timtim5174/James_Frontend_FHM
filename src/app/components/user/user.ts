@@ -8,7 +8,6 @@ export interface User {
 }
 export interface UserInfo {
     id: string;
-    lastname: string;
     firstname: string;
-    email: string;
+    lastname: string;
 }
