@@ -38,17 +38,16 @@ export class BookSidebarComponent implements OnInit {
           this.selectedBook = this.books[0];
         }
 
-        //Gives books Array to book-view
+
         this.sharedBookService.setArrayData(this.books);
 
-        //Correction of selected book, when bookmark is selecting the right book
         this.sharedBookService.getSelectedIdBook().subscribe(id => {
-          for(let book of this.books){
-            if(book.id === id){
+          for (const book of this.books) {
+            if (book.id === id) {
               this.selectedBook = book;
             }
           }
-        })
+        });
       },
       error => this.errorMessage = error
     );
@@ -84,7 +83,7 @@ export class BookSidebarComponent implements OnInit {
 
   clickBook(book: Book) {
     this.selectedBook = book;
-    this.router.navigate(['/main/book', book.id])
+    this.router.navigate(['/main/book', book.id]);
   }
 
 }

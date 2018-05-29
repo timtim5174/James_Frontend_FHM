@@ -21,16 +21,16 @@ export class BookViewComponent implements OnInit {
     });
 
     this.sharedBookService.getArrayData().subscribe(books => {
-      if(books != null){
+      if (books != null) {
         books = books;
-        for (let book of  books) {
+        for (const book of  books) {
           if (book.id === this.id) {
             this.book = book;
           }
         }
         console.log(this.book);
       }
-    })
+    });
 
     this.sharedBookService.setSelectedIdBook(this.id);
   }
