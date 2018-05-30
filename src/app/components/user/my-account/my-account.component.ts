@@ -5,6 +5,7 @@ import { UserService } from '../../../components/user/user.service';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SharedUserService } from '../shared-user.service';
 
 @Component({
   selector: 'app-my-account',
@@ -46,10 +47,10 @@ export class MyAccountComponent implements OnInit {
   passwordCheckInvalid = 'Passwords must match';
   errorMessage = '';
 
-  constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
+  constructor(private userService: UserService, private sharedUserService: SharedUserService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.userService.getUserImage().subscribe(img => {
+    this.sharedUserService.getUserImage().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
       }
@@ -110,7 +111,7 @@ export class MyAccountComponent implements OnInit {
       fd.append('image', this.selectedFile, this.selectedFile.name);
       this.userService.uploadUserImage(fd).subscribe(responseUpload => {
         this.userService.receiveUserImage().subscribe(responseGet => {
-          this.userService.setUserImage(responseGet);
+          this.sharedUserService.setUserImage(responseGet);
         });
         this.showResponse(responseUpload.message, 'success');
         this.uploadClicked = false;

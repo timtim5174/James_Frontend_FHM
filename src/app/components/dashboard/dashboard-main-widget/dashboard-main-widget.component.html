@@ -1,18 +1,20 @@
 <div class="card cardStyle">
   <div class="card-body">
     <div class="row">
+      <div class="col-sm-6">
       <div class="text-muted text-left mb-4">
-        <img [src]="img" class="profile-image rounded-circle imgStyle" *ngIf="img; else defaultImg">
-        <span class="spanStyle">{{user.firstname}} {{user.lastname}}</span>
+          <div class="h4">{{bookName}}</div>
       </div>
-      <div class="bs-callout bs-callout-info">
+    </div>
+    <div class="col-sm-4">
+      <div class="bs-callout bs-callout-info" id="members" (click)="onMembersClicked()">
         <small class="text-muted">Members</small>
         <br>
         <strong>{{members}}</strong>
       </div>
     </div>
+    </div>
   </div>
-  <div class="h4">{{bookName}}</div>
   <hr class="mt-0">
   <div class="form-group">
     <i class="fa fa-inbox bg-success p-3 font-2xl iconStyle"></i>
@@ -25,7 +27,3 @@
     <span class="text-value-sm"> {{outgoings}} €</span>
   </div>
 </div>
-
-<ng-template #defaultImg>
-  <i class="fa fa-user-circle"></i>
-</ng-template>
