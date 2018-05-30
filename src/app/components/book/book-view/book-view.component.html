@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" [ngbCollapse]="" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
                     <li class="nav-item navItem">
-                        <a class="nav-link" routerLink="/main/book/transactions" routerLinkActive="active">
+                        <a class="nav-link" routerLink="info" routerLinkActive="active">
                             <span class="spanSpace">
                                 <i class="fa fa-home icons"></i>
                             </span>
@@ -43,8 +43,6 @@
 
 
     <div class="bookOutlet">
-        <p>{{this.id}}</p>
-        <p>{{this.book.title}}</p>
         <router-outlet></router-outlet>
     </div>
 
