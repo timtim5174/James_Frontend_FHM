@@ -45,7 +45,7 @@
     <div class="bookOutlet">
         <p>{{this.id}}</p>
         <p>{{this.book.title}}</p>
-        <router-outlet></router-outlet>
+        <router-outlet [book]="this.book"></router-outlet>
     </div>
 
 </div> 
