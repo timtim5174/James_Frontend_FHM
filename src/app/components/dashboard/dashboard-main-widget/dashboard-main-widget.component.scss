@@ -1,5 +1,4 @@
 .bs-callout {
-    margin-left: 100px;
     padding: 5px;
     border: 1px solid white;
     border-left-width: 5px;
@@ -9,16 +8,16 @@
     border-left-color: lightgrey;
 }
 .iconStyle{
-    color:white; margin-right: 10px;
+    color:white; 
+    margin-right: 10px;
 }
 .cardStyle{
     padding: 15px;
     margin: 10px;
 }
-.imgStyle{
-    width: 40px;
-    height: 40px;
+.membersStyle:hover{
+    color: black;
 }
-.spanStyle{
-    padding-left: 10px
+#members:hover{
+    cursor: pointer;
 }

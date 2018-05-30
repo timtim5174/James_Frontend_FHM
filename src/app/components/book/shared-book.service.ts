@@ -8,6 +8,7 @@ import { Book } from '../book/book';
 export class SharedBookService {
   bookSelectedIdSubject = new BehaviorSubject<String>(null);
   bookArrayDataSubject = new BehaviorSubject<Book[]>(null);
+  bookDataSubject = new BehaviorSubject<Book>(null);
   updateDeleteBookSubject = new BehaviorSubject<Book>(null);
 
   constructor() { }
@@ -20,12 +21,20 @@ export class SharedBookService {
     return this.bookSelectedIdSubject.asObservable();
   }
 
-  setArrayData(a: Book[]) {
+  setBookArrayData(a: Book[]) {
     this.bookArrayDataSubject.next(a);
   }
 
-  getArrayData(): Observable<Book[]> {
+  getBookArrayData(): Observable<Book[]> {
     return this.bookArrayDataSubject.asObservable();
+  }
+
+  setBookData(a: Book){
+    this.bookDataSubject.next(a);
+  }
+
+  getBookData(): Observable<Book> {
+    return this.bookDataSubject.asObservable();
   }
 
   setUpdateDeleteBookSubject(b: Book) {

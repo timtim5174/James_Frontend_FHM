@@ -40,9 +40,11 @@ import { BookViewComponent } from './components/book/book-view/book-view.compone
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SameNameDirective } from './components/book/delete-book/same-name.directive';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
-import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
 import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-main-widget/dashboard-main-widget.component';
+import { SharedBookService } from './components/book/shared-book.service';
+import { SharedUserService } from './components/user/shared-user.service';
+import { BookInfoComponent } from './components/book/book-info/book-info.component';
 
 @NgModule({
   declarations: [
@@ -78,9 +80,9 @@ import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-m
     DeleteBookComponent,
     SameNameDirective,
     TransactionOverviewComponent,
-    BookOverviewComponent,
     BookStatisticsComponent,
-    DashboardMainWidgetComponent
+    DashboardMainWidgetComponent,
+    BookInfoComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -90,7 +92,7 @@ import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-m
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, NgbActiveModal],
+  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
