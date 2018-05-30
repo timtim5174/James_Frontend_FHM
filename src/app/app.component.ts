@@ -50,9 +50,9 @@ export class AppComponent implements OnInit {
 
   loadUserData() {
     this.userService.receiveUserImage().subscribe(img => {
-      this.userService.setUserImage(img);
+      this.sharedUserService.setUserImage(img);
     }, error => {
-      this.userService.setUserImage(null);
+      this.sharedUserService.setUserImage(null);
     });
   }
 }

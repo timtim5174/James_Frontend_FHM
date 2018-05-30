@@ -1,8 +1,8 @@
 <div class="container" style="padding-top:10px">
   <div class="row">
     <!-- for books-->
-    <div class="col-lg-6">
-      <app-dashboard-main-widget [user]="user" [bookName]="bookName" [incomes]="incomes" [outgoings]="outgoings" [img]="img" [members]="members">
+    <div class="col-lg-6" *ngFor="let book of booksInfo">
+      <app-dashboard-main-widget [bookName]="book.bookName" [incomes]="book.incomes" [outgoings]="book.outgoings" [members]="book.members" [users]="book.users">
       </app-dashboard-main-widget>
     </div>
   </div>
