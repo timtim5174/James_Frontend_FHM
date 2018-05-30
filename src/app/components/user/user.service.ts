@@ -6,7 +6,7 @@ import { Observable, of, throwError as _throw, BehaviorSubject} from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
-import { User } from './user';
+import { User, UserInfo } from './user';
 import { SharedUserService } from './shared-user.service';
 
 
@@ -77,7 +77,7 @@ export class UserService {
       catchError(this.handleError));
   }
 
-  getUsersOfBook(id: string) {
+  getUsersOfBook(id: string): Observable<UserInfo[]> {
     return this.http.get(this.baseURL + `/getUsersOfBook/${id}`, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError)
