@@ -5,6 +5,7 @@ import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { BookService } from '../../book/book.service';
 import { SharedBookService } from '../../book/shared-book.service';
 import { BookInfo } from '../../book/book';
+import { SharedUserService } from '../../user/shared-user.service';
 
 @Component({
   selector: 'app-dashboard-main',
@@ -26,10 +27,11 @@ export class DashboardMainComponent implements OnInit {
   bookName = 'Testbook';
   incomes = 2000;
   outgoings = -2500;
-  constructor(private userService: UserService, private bookService: BookService, private sanitizer: DomSanitizer) { }
+  constructor(private userService: UserService, private sharedUserService: SharedUserService,
+    private bookService: BookService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.userService.getUserImage().subscribe(img => {
+    this.sharedUserService.getUserImage().subscribe(img => {
       if (img != null) {
         this.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(img));
       }

@@ -1,18 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError as _throw, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedUserService {
-  authentificationStatus = new BehaviorSubject<boolean>(false);
+  changeAuthenticationStatus = new BehaviorSubject<boolean>(false);
+  imgSubject = new BehaviorSubject<object>(null);
+
   constructor() { }
 
-  setAuthentificationStatus(aut: boolean) {
-    this.authentificationStatus.next(aut);
+  setAuthentificationStatus(status: boolean) {
+    console.log('sharedUserService SET: ', status);
+    this.changeAuthenticationStatus.next(status);
   }
 
   getAuthentificationStatus(): Observable<boolean> {
-    return this.authentificationStatus.asObservable();
+    console.log('sharedUserService GET: ', this.changeAuthenticationStatus.asObservable());
+    return this.changeAuthenticationStatus.asObservable();
+  }
+
+  setUserImage(img: object) {
+    this.imgSubject.next(img);
+  }
+
+  getUserImage(): Observable<object> {
+    return this.imgSubject.asObservable();
   }
 }
