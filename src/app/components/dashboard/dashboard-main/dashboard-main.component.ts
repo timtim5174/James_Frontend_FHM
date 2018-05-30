@@ -14,7 +14,6 @@ import { Transaction } from '../../transaction/transaction';
 })
 export class DashboardMainComponent implements OnInit {
   booksInfo: BookInfo[] = [];
-  iMembers: number[] = [];
 
   constructor(private userService: UserService, private bookService: BookService, private transactionService: TransactionsService) { }
 
