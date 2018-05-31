@@ -2,17 +2,19 @@
   <div class="card-body">
     <div class="row">
       <div class="col-sm-6">
-      <div class="text-muted text-left mb-4">
+        <div class="text-muted text-left mb-4">
           <div class="h4">{{bookName}}</div>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="bs-callout bs-callout-info" id="members" (click)="onMembersClicked()">
-        <small class="text-muted">Members</small>
-        <br>
-        <strong>{{members}}</strong>
+      <div class="col-sm-4">
+        <app-modal [component]="membersComponent" [payload]="users">
+          <div class="bs-callout bs-callout-info" id="members">
+            <small class="text-muted">Members</small>
+            <br>
+            <strong>{{members}}</strong>
+          </div>
+        </app-modal>
       </div>
-    </div>
     </div>
   </div>
   <hr class="mt-0">
