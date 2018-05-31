@@ -11,6 +11,8 @@ export interface BookInfo {
     bookName: string;
     members: number;
     users: UserInfo[];
-    incomes?: number;
-    outgoings?: number;
+    incomes: number;
+    outgoings: number;
+    rateOfIncomes?: number;
+    rateOfOutgoings?: number;
 }

@@ -14,6 +14,9 @@ import { Transaction } from '../../transaction/transaction';
 })
 export class DashboardMainComponent implements OnInit {
   booksInfo: BookInfo[] = [];
+  month = 'May';
+  totalIncomes = 0;
+  totalOutgoings = 0;
 
   constructor(private userService: UserService, private bookService: BookService, private transactionService: TransactionsService) { }
 
@@ -23,7 +26,7 @@ export class DashboardMainComponent implements OnInit {
 
   async loadBooksData() {
     const books = await this.bookService.getBooks().toPromise();
-    books.forEach(async book => {
+    await books.forEach(async book => {
       let usersOfBook: UserInfo[] = [];
       let tOutgoings = 0;
       let tIncomes = 0;
@@ -38,11 +41,22 @@ export class DashboardMainComponent implements OnInit {
         members: usersOfBook.length,
         users: usersOfBook,
         incomes: tIncomes,
-        outgoings: tOutgoings
+        outgoings: tOutgoings,
       });
+      this.totalIncomes = await this.getBooksTotals(this.booksInfo, 'incomes');
+      this.totalOutgoings = await this.getBooksTotals(this.booksInfo, 'outgoings');
+      await this.loadBookRateOfTotalsData();
     });
   }
-  async loadBooksUserData(book: Book) {
+
+  async loadBookRateOfTotalsData() {
+    this.booksInfo.forEach(async book => {
+      book.rateOfIncomes = await this.getBookRateOfTotals(book, this.totalIncomes, 'incomes');
+      book.rateOfOutgoings = await this.getBookRateOfTotals(book, this.totalOutgoings, 'outgoings');
+    });
+  }
+
+  async loadBooksUserData(book: Book): Promise<UserInfo[]> {
     const users = await this.userService.getUsersOfBook(book.id).toPromise();
     const usersOfBook: UserInfo[] = [];
     users.forEach(user => {
@@ -51,14 +65,40 @@ export class DashboardMainComponent implements OnInit {
     return usersOfBook;
   }
 
-  async getBookTotals(transaction: Transaction[], type: 'incomes' | 'outgoings') {
+
+  // possible to export in shared service?
+  async getBookRateOfTotals(bookInfo: BookInfo, ofTotals: number, type: 'incomes'|'outgoings'): Promise<number> {
+    if (type === 'incomes') {
+      return Math.round((100 * bookInfo.incomes) / ofTotals);
+    }
+    if (type === 'outgoings') {
+      return Math.round((100 * bookInfo.outgoings) / ofTotals);
+    }
+  }
+
+  async getBooksTotals(books: BookInfo[], type: 'incomes' | 'outgoings'): Promise<number> {
+    let total = 0;
+    if (type === 'incomes') {
+      books.forEach(book => {
+        total += book.incomes;
+      });
+    }
+    if (type === 'outgoings') {
+      books.forEach(book => {
+        total += book.outgoings;
+      });
+    }
+    return total;
+  }
+
+  async getBookTotals(transaction: Transaction[], type: 'incomes' | 'outgoings', inMonth?: number): Promise<number> {
     let totals: number [] = [];
     let total = 0;
-
+    const month = inMonth ? inMonth : new Date().getMonth() + 1;
     // filter transaction on current month, incomes and outgoings, summarize values
     transaction = await transaction.filter(async t => {
       const tmp = new Date(t.creationDate).getMonth() + 1;
-      if (tmp === new Date().getMonth() + 1) {
+      if (tmp === month) {
         return true;
       }
       return false;
