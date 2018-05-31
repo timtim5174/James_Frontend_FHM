@@ -29,7 +29,7 @@ export class SharedBookService {
     return this.bookArrayDataSubject.asObservable();
   }
 
-  setBookData(a: Book){
+  setBookData(a: Book) {
     this.bookDataSubject.next(a);
   }
 
