@@ -46,6 +46,7 @@ import { SharedBookService } from './components/book/shared-book.service';
 import { SharedUserService } from './components/user/shared-user.service';
 import { MembersComponent } from './components/dashboard/members/members.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
+import { LineGraphComponent } from './shared/graphs/line-graph/line-graph.component';
 
 @NgModule({
   declarations: [
@@ -83,8 +84,9 @@ import { BookInfoComponent } from './components/book/book-info/book-info.compone
     TransactionOverviewComponent,
     BookStatisticsComponent,
     DashboardMainWidgetComponent,
-    MembersComponent,
-    BookInfoComponent
+    BookInfoComponent,
+    LineGraphComponent,
+    MembersComponent
   ],
   imports: [
     NgbModule.forRoot(),

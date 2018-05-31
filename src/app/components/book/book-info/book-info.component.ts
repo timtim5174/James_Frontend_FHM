@@ -9,6 +9,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./book-info.component.scss']
 })
 export class BookInfoComponent implements OnInit {
+
   book: Book = {
     id: '',
     title: '',
@@ -16,51 +17,38 @@ export class BookInfoComponent implements OnInit {
     timeFrame: null,
     rangeEnum: null
   };
+  // Preparing Dataset for Graph
+  type = 'line';
+  axisLables = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+  pointLable = 'Amount';
+  data = [12, 19, 3, 5, -6, 3];
+  backgroundColor = 'rgba(0, 0, 255, 0.3)';
+  borderColor = 'rgba(0, 0, 255, 0.9)';
+  fill = true;
+
+  dataset = [{
+    label: this.pointLable,
+    data: this.data,
+    fill: this.fill,
+    backgroundColor : this.backgroundColor,
+    borderColor: this.borderColor
+  },
+  {
+    label: 'Amount2',
+    data: [15, 30, 45, 20, -10, 5],
+    fill: false,
+    backgroundColor : 'red',
+    borderColor: 'green'
+  }];
   chart = [];
-  constructor(private sharedBookService: SharedBookService, private elementRef: ElementRef) { }
+
+
+  constructor(private sharedBookService: SharedBookService) {}
   ngOnInit() {
     this.sharedBookService.getBookData().subscribe( book => {
       this.book = book;
     });
-    this.chartit();
   }
 
-  chartit() {
-    this.chart = new Chart('canvas', {
-      type: 'bar',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
-    });
-  }
+
 }
