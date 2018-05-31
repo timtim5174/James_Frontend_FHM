@@ -25,8 +25,7 @@ export class BookViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       this.sharedBookService.setSelectedIdBook(this.id);
-
-      this.sharedBookService.getArrayData().subscribe(books => {
+      this.sharedBookService.getBookArrayData().subscribe(books => {
         if (books != null) {
           for (const book of books) {
             if (book.id === this.id) {
@@ -34,6 +33,7 @@ export class BookViewComponent implements OnInit {
             }
           }
         }
+        this.sharedBookService.setBookData(this.book);
       });
     });
   }

@@ -19,8 +19,9 @@ import { BookSidebarComponent } from './components/book/book-sidebar/book-sideba
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
-import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
+import { BookInfoComponent } from './components/book/book-info/book-info.component';
 import { MembersComponent } from './components/dashboard/members/members.component';
+
 
 
 const routes: Routes = [
@@ -42,9 +43,7 @@ const routes: Routes = [
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
       { path: 'book/:id', component: BookViewComponent, children: [
-        { path: 'home', component: HomeComponent },
-        { path: 'transactions', component: TransactionOverviewComponent},
-        { path: 'overview', component: BookOverviewComponent}
+        { path: 'info', component: BookInfoComponent}
         ]
       }
     ]
