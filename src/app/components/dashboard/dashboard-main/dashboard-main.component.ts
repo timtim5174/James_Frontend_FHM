@@ -17,6 +17,8 @@ export class DashboardMainComponent implements OnInit {
   month = 'May';
   totalIncomes = 0;
   totalOutgoings = 0;
+  userHasBooks = true;
+  noBooksMessage = 'No books available';
 
   constructor(private userService: UserService, private bookService: BookService, private transactionService: TransactionsService) { }
 
@@ -26,27 +28,31 @@ export class DashboardMainComponent implements OnInit {
 
   async loadBooksData() {
     const books = await this.bookService.getBooks().toPromise();
-    await books.forEach(async book => {
-      let usersOfBook: UserInfo[] = [];
-      let tOutgoings = 0;
-      let tIncomes = 0;
+    if (books.length > 0) {
+      await books.forEach(async book => {
+        let usersOfBook: UserInfo[] = [];
+        let tOutgoings = 0;
+        let tIncomes = 0;
 
-      usersOfBook = await this.loadBooksUserData(book);
-      const transaction = await this.transactionService.getTransactions(book.id).toPromise();
-      tIncomes = await this.getBookTotals(transaction, 'incomes');
-      tOutgoings = await this.getBookTotals(transaction, 'outgoings');
+        usersOfBook = await this.loadBooksUserData(book);
+        const transaction = await this.transactionService.getTransactions(book.id).toPromise();
+        tIncomes = await this.getBookTotals(transaction, 'incomes');
+        tOutgoings = await this.getBookTotals(transaction, 'outgoings');
 
-      await this.booksInfo.push({
-        bookName: book.title,
-        members: usersOfBook.length,
-        users: usersOfBook,
-        incomes: tIncomes,
-        outgoings: tOutgoings,
+        await this.booksInfo.push({
+          bookName: book.title,
+          members: usersOfBook.length,
+          users: usersOfBook,
+          incomes: tIncomes,
+          outgoings: tOutgoings,
+        });
+        this.totalIncomes = await this.getBooksTotals(this.booksInfo, 'incomes');
+        this.totalOutgoings = await this.getBooksTotals(this.booksInfo, 'outgoings');
+        await this.loadBookRateOfTotalsData();
       });
-      this.totalIncomes = await this.getBooksTotals(this.booksInfo, 'incomes');
-      this.totalOutgoings = await this.getBooksTotals(this.booksInfo, 'outgoings');
-      await this.loadBookRateOfTotalsData();
-    });
+    } else {
+      this.userHasBooks = false;
+    }
   }
 
   async loadBookRateOfTotalsData() {
@@ -67,7 +73,7 @@ export class DashboardMainComponent implements OnInit {
 
 
   // possible to export in shared service?
-  async getBookRateOfTotals(bookInfo: BookInfo, ofTotals: number, type: 'incomes'|'outgoings'): Promise<number> {
+  async getBookRateOfTotals(bookInfo: BookInfo, ofTotals: number, type: 'incomes' | 'outgoings'): Promise<number> {
     if (type === 'incomes') {
       return Math.round((100 * bookInfo.incomes) / ofTotals);
     }
@@ -92,7 +98,7 @@ export class DashboardMainComponent implements OnInit {
   }
 
   async getBookTotals(transaction: Transaction[], type: 'incomes' | 'outgoings', inMonth?: number): Promise<number> {
-    let totals: number [] = [];
+    let totals: number[] = [];
     let total = 0;
     const month = inMonth ? inMonth : new Date().getMonth() + 1;
     // filter transaction on current month, incomes and outgoings, summarize values

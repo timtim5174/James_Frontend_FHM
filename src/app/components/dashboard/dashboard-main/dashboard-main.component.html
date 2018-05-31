@@ -1,6 +1,7 @@
 <!-- main widget -->
 <div class="container" style="padding-top: 10px">
-  <div class="row">
+  <app-standard-notification *ngIf="!userHasBooks" [info]="noBooksMessage"></app-standard-notification>
+  <div class="row" *ngIf="userHasBooks">
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
