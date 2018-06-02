@@ -41,8 +41,8 @@ const routes: Routes = [
       { path: 'sign-out', component: SignOutComponent },
       { path: 'book/:id', component: BookViewComponent, children: [
         { path: 'home', component: HomeComponent },
-        { path: 'transactions', component: TransactionOverviewComponent},
-        {path: 'overview', component: BookOverviewComponent}
+        { path: 'transactions', component: TransactionOverviewComponent },
+        { path: 'overview', component: BookOverviewComponent }
         ]
       }
     ]
