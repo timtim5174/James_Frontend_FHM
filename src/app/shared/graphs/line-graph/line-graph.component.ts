@@ -9,9 +9,10 @@ import { Chart } from 'chart.js';
 export class LineGraphComponent implements OnChanges {
   @Input() type: string;
   @Input() axisLables: string[];
-  @Input() data: [{
+  @Input() data: number[];
+  @Input() dataset: [{
     label: string,
-    data: number[],
+    data: number[];
     fill: boolean,
     backgroundColor: string,
     borderColor: string
@@ -35,12 +36,11 @@ export class LineGraphComponent implements OnChanges {
   }
 
   private chartit() {
-    console.log('Chartit');
     this.chart = new Chart('canvas', {
       type: this.type,
       data: {
         labels: this.axisLables,
-        datasets: this.data
+        datasets: this.dataset
       },
       options: {
           maintainAspectRatio: false,

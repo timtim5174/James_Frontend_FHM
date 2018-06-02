@@ -37,7 +37,6 @@ export class BookSidebarComponent implements OnInit {
         if (this.books.length) {
           this.selectedBook = this.books[0];
           this.sharedBookService.setBookArrayData(this.books);
-          console.log('Set Array Data');
         }
         this.sharedBookService.getSelectedIdBook().subscribe(id => {
           for (const book of this.books) {

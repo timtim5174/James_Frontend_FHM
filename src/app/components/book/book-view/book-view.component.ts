@@ -26,7 +26,6 @@ export class BookViewComponent implements OnInit {
       this.id = params.get('id');
       this.sharedBookService.setSelectedIdBook(this.id);
       this.sharedBookService.getBookArrayData().subscribe(books => {
-        console.log('get Array Data' + books);
         if (books != null) {
           for (const book of books) {
             if (book.id === this.id) {
@@ -35,7 +34,6 @@ export class BookViewComponent implements OnInit {
           }
         }
         if (this.book != null) {
-          console.log('Set Book' + this.book);
         this.sharedBookService.setBookData(this.book);
         }
       });
