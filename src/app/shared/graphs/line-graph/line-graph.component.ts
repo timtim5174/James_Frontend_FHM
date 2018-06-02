@@ -1,13 +1,12 @@
-import { Component, OnInit, Input, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnChanges, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-line-graph',
   templateUrl: './line-graph.component.html',
   styleUrls: ['./line-graph.component.scss']
 })
-export class LineGraphComponent implements OnInit, AfterViewInit {
+export class LineGraphComponent implements OnChanges {
   @Input() type: string;
   @Input() axisLables: string[];
   @Input() data: [{
@@ -21,18 +20,22 @@ export class LineGraphComponent implements OnInit, AfterViewInit {
   @Input() yName: string;
   @Input() chartName: string;
 
-  chart: any;
-  constructor() {
-    this.chart = [];
+  chart: any = [];
+  checkObject: any = this.chart;
+  constructor(private elementRef: ElementRef) {
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+    if (this.chart !== this.checkObject) {
+      this.chart.destroy();
+    }
+    if (this.elementRef.nativeElement.querySelector(`#canvas`) != null) {
+      this.chartit();
+    }
   }
 
-  ngAfterViewInit() {
-    this.chartit();
-  }
   private chartit() {
+    console.log('Chartit');
     this.chart = new Chart('canvas', {
       type: this.type,
       data: {
@@ -51,8 +54,7 @@ export class LineGraphComponent implements OnInit, AfterViewInit {
           intersect: false,
         },
         hover: {
-          mode: 'nearest',
-          intersect: true
+          mode: 'nearest'
         },
         scales: {
           xAxes: [{

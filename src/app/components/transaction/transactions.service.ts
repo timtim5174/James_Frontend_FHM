@@ -23,6 +23,7 @@ export class TransactionsService {
 
   getTransactions(id: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`).pipe(
+      map(transactions => transactions.sort(((a: Transaction, b: Transaction) => a.creationDate <= b.creationDate ? 0 : 1))),
       catchError(this.handleError)
     );
   }
