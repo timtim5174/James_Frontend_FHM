@@ -12,6 +12,8 @@ import { Transaction } from './transaction';
 export class TransactionsService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   private options = { withCredentials: true };
+  response: object;
+
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +25,7 @@ export class TransactionsService {
 
   getTransactions(id: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`).pipe(
-      map(transactions => transactions.sort(((a: Transaction, b: Transaction) => a.creationDate <= b.creationDate ? 0 : 1))),
+      map(data => this.response = data),
       catchError(this.handleError)
     );
   }
