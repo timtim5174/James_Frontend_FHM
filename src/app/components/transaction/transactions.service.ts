@@ -10,7 +10,7 @@ import { Transaction } from './transaction';
   providedIn: 'root'
 })
 export class TransactionsService {
-  private baseURL = window.location.origin + '/JamesBAckend-web/api/v1/boarding';
+  private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   private options = { withCredentials: true };
 
   constructor(private http: HttpClient) { }
@@ -21,7 +21,7 @@ export class TransactionsService {
     );
   }
 
-  getTransactions(id: string): Observable<Transaction> {
+  getTransactions(id: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`).pipe(
       catchError(this.handleError)
     );

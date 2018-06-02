@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-transaction-overview',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction-overview.component.scss']
 })
 export class TransactionOverviewComponent implements OnInit {
-
+  @Input() book;
   constructor() { }
 
   ngOnInit() {

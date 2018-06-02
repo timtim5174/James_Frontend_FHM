@@ -1,8 +1,83 @@
+<!-- main widget -->
+<div class="container" style="padding-top: 10px">
+  <app-standard-notification *ngIf="!userHasBooks" [info]="noBooksMessage"></app-standard-notification>
+  <div class="row" *ngIf="userHasBooks">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>{{month}}</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- Incomes -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <h5>Incomes</h5>
+                </div>
+                <div class="col-sm-6 text-right">{{totalIncomes}} €</div>
+              </div>
+              <hr class="mt-0">
+              <!-- for book-->
+              <div class="row" *ngFor="let book of booksInfo">
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="text-muted">{{book.bookName}}</div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="text-muted text-right">
+                        <small>{{book.rateOfIncomes}} %</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <ngb-progressbar type="success" [value]="book.rateOfIncomes" height="10px"></ngb-progressbar>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- Outgoings -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <h5>Outgoings</h5>
+                </div>
+                <div class="col-sm-6 text-right">{{totalOutgoings}} €</div>
+              </div>
+              <hr class="mt-0">
+              <!-- for book-->
+              <div class="row" *ngFor="let book of booksInfo">
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="text-muted">{{book.bookName}}</div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="text-muted text-right">
+                        <small>{{book.rateOfOutgoings}} %</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <ngb-progressbar type="danger" [value]="book.rateOfOutgoings" height="10px"></ngb-progressbar>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- book widgets -->
 <div class="container" style="padding-top:10px">
   <div class="row">
     <!-- for books-->
-    <div class="col-lg-6">
-      <app-dashboard-main-widget [user]="user" [bookName]="bookName" [incomes]="incomes" [outgoings]="outgoings" [img]="img" [members]="members">
+    <div class="col-lg-6" *ngFor="let book of booksInfo">
+      <app-dashboard-main-widget [bookName]="book.bookName" [incomes]="book.incomes" [outgoings]="book.outgoings" [members]="book.members"
+        [users]="book.users">
       </app-dashboard-main-widget>
     </div>
   </div>

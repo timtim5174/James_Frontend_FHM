@@ -19,7 +19,8 @@ import { BookSidebarComponent } from './components/book/book-sidebar/book-sideba
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
-import { BookOverviewComponent } from './components/book/book-overview/book-overview.component';
+import { BookInfoComponent } from './components/book/book-info/book-info.component';
+import { MembersComponent } from './components/dashboard/members/members.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'members', component: MembersComponent },
   {
     path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
       { path: 'dashboard', component: DashboardMainComponent },
@@ -42,7 +44,7 @@ const routes: Routes = [
       { path: 'book/:id', component: BookViewComponent, children: [
         { path: 'home', component: HomeComponent },
         { path: 'transactions', component: TransactionOverviewComponent },
-        { path: 'overview', component: BookOverviewComponent }
+        { path: 'info', component: BookInfoComponent}
         ]
       }
     ]
