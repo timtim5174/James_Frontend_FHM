@@ -11,12 +11,10 @@ export class SharedUserService {
   constructor() { }
 
   setAuthentificationStatus(status: boolean) {
-    console.log('sharedUserService SET: ', status);
     this.changeAuthenticationStatus.next(status);
   }
 
   getAuthentificationStatus(): Observable<boolean> {
-    console.log('sharedUserService GET: ', this.changeAuthenticationStatus.asObservable());
     return this.changeAuthenticationStatus.asObservable();
   }
 
