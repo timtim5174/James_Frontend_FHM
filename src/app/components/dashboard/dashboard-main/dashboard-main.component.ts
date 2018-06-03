@@ -6,6 +6,7 @@ import { SharedBookService } from '../../book/shared-book.service';
 import { BookInfo, Book } from '../../book/book';
 import { TransactionsService } from '../../transaction/transactions.service';
 import { Transaction } from '../../transaction/transaction';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard-main',
@@ -14,15 +15,17 @@ import { Transaction } from '../../transaction/transaction';
 })
 export class DashboardMainComponent implements OnInit {
   booksInfo: BookInfo[] = [];
-  month = 'May';
+  month = '';
   totalIncomes = 0;
   totalOutgoings = 0;
   userHasBooks = true;
   noBooksMessage = 'No books available';
 
-  constructor(private userService: UserService, private bookService: BookService, private transactionService: TransactionsService) { }
+  constructor(private userService: UserService, private bookService: BookService,
+    private transactionService: TransactionsService, private dateService: NgbDatepickerI18n) { }
 
   ngOnInit() {
+    this.month = this.dateService.getMonthFullName(new Date().getMonth() + 1) + ' ' + new Date().getFullYear();
     this.loadBooksData();
   }
 
@@ -75,10 +78,10 @@ export class DashboardMainComponent implements OnInit {
   // possible to export in shared service?
   async getBookRateOfTotals(bookInfo: BookInfo, ofTotals: number, type: 'incomes' | 'outgoings'): Promise<number> {
     if (type === 'incomes') {
-      return Math.round((100 * bookInfo.incomes) / ofTotals);
+      return (Math.round(((100 * bookInfo.incomes) / ofTotals) * 100) / 100);
     }
     if (type === 'outgoings') {
-      return Math.round((100 * bookInfo.outgoings) / ofTotals);
+      return (Math.round(((100 * bookInfo.outgoings) / ofTotals) * 100) / 100);
     }
   }
 
