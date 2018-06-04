@@ -43,6 +43,11 @@ export class LineGraphComponent implements OnChanges {
         datasets: this.dataset
       },
       options: {
+          elements: {
+            line: {
+            tension: 0.1, // disables bezier curves
+            }
+          },
           maintainAspectRatio: false,
           responsive: true,
           title: {
