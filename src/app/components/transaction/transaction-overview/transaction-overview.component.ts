@@ -54,5 +54,6 @@ export class TransactionOverviewComponent implements OnInit {
   deleteTransaction(transaction: Transaction) {
     this.transactionService.deleteTransaction(transaction.id, transaction.bookId).subscribe();
     this.transactions = this.transactions.filter(t => t.id !== transaction.id);
+    this.sharedTransactionService.setTransactions(this.transactions);
   }
 }
