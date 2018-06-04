@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
 import { Chart } from 'chart.js';
-import { TransactionsService } from '../../transaction/transactions.service';
+import { TransactionService } from '../../transaction/transaction.service';
 
 @Component({
   selector: 'app-book-info',
@@ -37,14 +37,14 @@ export class BookInfoComponent implements OnInit {
   chart = [];
 
 
-  constructor(private sharedBookService: SharedBookService, private transactionsService: TransactionsService) {}
+  constructor(private sharedBookService: SharedBookService, private transactionService: TransactionService) {}
 
   ngOnInit() {
     this.sharedBookService.getBookData().subscribe( book => {
       if (book != null) {
         this.book = book;
       }
-      this.transactionsService.getTransactions(book.id).subscribe( transactions => {
+      this.transactionService.getTransactions(this.book.id).subscribe( transactions => {
         this.axisLables = [];
         let z = 0;
         // Loop for sorting the incoming TransactionArray right for Graph

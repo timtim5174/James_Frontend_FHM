@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedBookService } from '../../book/shared-book.service';
 import { Transaction } from '../transaction';
-import { TransactionsService } from '../transactions.service';
+import { TransactionService } from '../transaction.service';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '../../book/book';
+import { SharedTransactionService } from '../shared-transaction.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-overview',
@@ -11,40 +13,47 @@ import { Book } from '../../book/book';
   styleUrls: ['./transaction-overview.component.scss']
 })
 export class TransactionOverviewComponent implements OnInit {
-  transactions: Transaction[];
+  transactions: Transaction[] = [];
   book: Book;
-  constructor(private sharedBookService: SharedBookService, private transactionsService: TransactionsService,
-    private route: ActivatedRoute) { }
+  constructor(private sharedBookService: SharedBookService, private sharedTransactionService: SharedTransactionService,
+    private transactionService: TransactionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sharedBookService.getBookData().subscribe(book => {
       this.book = book;
     });
 
-    console.log('book id: ', this.book.id);
-    this.transactionsService.getTransactions(this.book.id).subscribe(transaction => {
-      this.transactions = transaction;
-      console.log('transactions: ', this.transactions);
+    this.transactionService.getTransactions(this.book.id).subscribe(
+      transactions => {
+        this.sharedTransactionService.setTransactions(transactions);
+        this.sharedTransactionService.getTransactions().subscribe(data => {
+          this.transactions = data;
+        });
     });
-
   }
 
   createTransaction() {
     const transaction: Transaction = {
-      id: 'jhgfds',
+      id: null,
       title: 'Test Transaction',
       comment: 'Test Comment',
       bookId: this.book.id,
-      categoryId: 'catId',
+      categoryId: '1',
       amount: 250.50,
       creationDate: null,
-      timeFrame: new Date(2018, 10, 10),
+      timeFrame: new Date(2019, 0, 1, 0, 0, 0, 0),
       rangeEnum: 'DAILY'
     };
-
-    this.transactions.push(transaction);
-
-    this.transactionsService.createTransaction(transaction);
+    this.transactionService.createTransaction(transaction).subscribe(
+      data => {
+        this.sharedTransactionService.setTransactions([...this.transactions, data]);
+      }
+    );
   }
 
+  deleteTransaction(transaction: Transaction) {
+    this.transactionService.deleteTransaction(transaction.id, transaction.bookId).subscribe();
+    this.transactions = this.transactions.filter(t => t.id !== transaction.id);
+    this.sharedTransactionService.setTransactions(this.transactions);
+  }
 }
