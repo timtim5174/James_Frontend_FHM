@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
 import { Chart } from 'chart.js';
-import { TransactionsService } from '../../transaction/transactions.service';
+import { TransactionService } from '../../transaction/transaction.service';
 
 @Component({
   selector: 'app-book-info',
@@ -20,7 +20,7 @@ export class BookInfoComponent implements OnInit {
   };
   // Preparing Dataset for Graph
   type = 'line';
-  axisLables: String[];
+  axisLables = [];
   pointLable = 'Amount';
   data = [];
   backgroundColor = 'rgba(0, 0, 255, 0.3)';
@@ -35,23 +35,34 @@ export class BookInfoComponent implements OnInit {
     borderColor: this.borderColor
   }];
   chart = [];
-  transactions = [];
 
 
-  constructor(private sharedBookService: SharedBookService, private transactionsService: TransactionsService) {}
+  constructor(private sharedBookService: SharedBookService, private transactionService: TransactionService) {}
 
   ngOnInit() {
     this.sharedBookService.getBookData().subscribe( book => {
       if (book != null) {
         this.book = book;
       }
-      this.transactionsService.getTransactions(book.id).subscribe( transactions => {
-        this.transactions = transactions;
-        this.axisLables = new Array(transactions.length);
+      this.transactionService.getTransactions(this.book.id).subscribe( transactions => {
+        this.axisLables = [];
+        let z = 0;
+        // Loop for sorting the incoming TransactionArray right for Graph
         for (let i = 0; i < transactions.length; i++) {
-          // tslint:disable-next-line:max-line-length
-          this.axisLables[i] = new Date(transactions[i].creationDate).getDate() + '.' + (new Date(transactions[i].creationDate).getMonth() + 1);
-          this.data[i] = transactions[i].amount;
+          const creationDate = new Date(transactions[i].creationDate);
+          const axisLable =  (creationDate).getDate() + '.' + (creationDate.getMonth() + 1) + '.' + creationDate.getFullYear() ;
+          const index = this.axisLables.indexOf(axisLable);
+          if (index > -1) {
+            this.data[index] = this.data[index] + transactions[i].amount;
+          } else {
+            this.axisLables[z] = axisLable;
+            if (z - 1 >= 0) {
+            this.data[z] = this.data[z - 1] + transactions[i].amount;
+            } else {
+              this.data[z] = transactions[i].amount;
+            }
+            z += 1;
+          }
         }
       });
     });

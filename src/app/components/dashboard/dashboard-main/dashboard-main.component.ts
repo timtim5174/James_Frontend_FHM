@@ -4,7 +4,7 @@ import { User, UserInfo } from '../../../components/user/user';
 import { BookService } from '../../book/book.service';
 import { SharedBookService } from '../../book/shared-book.service';
 import { BookInfo, Book } from '../../book/book';
-import { TransactionsService } from '../../transaction/transactions.service';
+import { TransactionService } from '../../transaction/transaction.service';
 import { Transaction } from '../../transaction/transaction';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 
@@ -26,7 +26,7 @@ export class DashboardMainComponent implements OnInit {
   filterMonth = new Date().getMonth() + 1 ; // start values
 
   constructor(private userService: UserService, private bookService: BookService,
-    private transactionService: TransactionsService, private dateService: NgbDatepickerI18n) { }
+    private transactionService: TransactionService, private dateService: NgbDatepickerI18n) { }
 
   ngOnInit() {
     this.monthTitle = this.dateService.getMonthFullName(this.filterMonth) + ' ' + this.filterYear;
