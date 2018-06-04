@@ -5,8 +5,25 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h4>{{month}}</h4>
-          <app-datepicker [hidden]="true"></app-datepicker>
+          <div class="row">
+            <div class="col-sm-8">
+              <h4>{{monthTitle}}</h4>
+            </div>
+            <div class="offset-sm-1 col-sm-3">
+              <div ngbDropdown #monthDropDown="ngbDropdown" class="d-inline-block">
+                <button class="btn btn-outline-secondary mr-2" ngbDropdownToggle>Month</button>
+                <div ngbDropdownMenu>
+                  <button class="dropdown-item" *ngFor="let month of months" (click)="setFilterMonth($event)">{{month}}</button>
+                </div>
+              </div>
+              <div ngbDropdown #yearDropDown="ngbDropdown" class="d-inline-block">
+                <button class="btn btn-outline-secondary" ngbDropdownToggle>Year</button>
+                <div ngbDropdownMenu>
+                  <button class="dropdown-item" *ngFor="let year of years" (click)="setFilterYear($event)">{{year}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <div class="row">
