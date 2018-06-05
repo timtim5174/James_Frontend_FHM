@@ -26,7 +26,8 @@ export class AddUserToBookComponent implements OnInit {
   @ViewChild('AddUserToBookCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
 
-  constructor(public activeModal: NgbActiveModal, private bookService: BookService, private sharedBookService: SharedBookService) { }
+  constructor(public activeModal: NgbActiveModal, private bookService: BookService, private sharedBookService: SharedBookService) {
+  }
 
   ngOnInit() {
     this.sharedBookService.getAddUserToBookSubbject().subscribe(

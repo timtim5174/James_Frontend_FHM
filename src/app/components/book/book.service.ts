@@ -30,7 +30,7 @@ export class BookService {
   }
 
   deleteBook(id: string): Observable<any> {
-    return this.http.delete<Book>(this.baseURL + `/deleteBook/${id}`).pipe(
+    return this.http.delete<Book>(this.baseURL + `/deleteCallerFromBook/${id}`).pipe(
       catchError(this.handleError)
     );
   }
