@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Book } from './book';
+import { User } from '../user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,13 @@ export class BookService {
 
   updateBook(book: Partial<Book>) {
     return this.http.patch<Partial<Book>>(this.baseURL + '/updateBook', book).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addUserToBook(book: Book, user: Partial<User>) {
+    const a = { bookId: book.id, email: user.email };
+    return this.http.post(this.baseURL + '/addUserToBook', a).pipe(
       catchError(this.handleError)
     );
   }

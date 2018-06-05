@@ -20,6 +20,7 @@ import { DeleteBookComponent } from './components/book/delete-book/delete-book.c
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
+import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'createBook', component: CreateBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'deleteBook', component: DeleteBookComponent },
+  { path: 'addUserToBook', component: AddUserToBookComponent },
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
@@ -39,8 +41,9 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardMainComponent },
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
-      { path: 'book/:id', component: BookViewComponent, children: [
-        { path: 'info', component: BookInfoComponent}
+      {
+        path: 'book/:id', component: BookViewComponent, children: [
+          { path: 'info', component: BookInfoComponent }
         ]
       }
     ]

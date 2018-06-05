@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
 import { ActivatedRoute } from '@angular/router';
+import { AddUserToBookComponent } from '../add-user-to-book/add-user-to-book.component';
 
 @Component({
   selector: 'app-book-view',
@@ -16,6 +17,7 @@ export class BookViewComponent implements OnInit {
     timeFrame: null,
     rangeEnum: null
   };
+  addUserToBookComponent = AddUserToBookComponent;
   navbarIsCollapsed = true;
   id: string;
   constructor(private sharedBookService: SharedBookService, private route: ActivatedRoute) {
@@ -34,8 +36,10 @@ export class BookViewComponent implements OnInit {
           }
         }
         this.sharedBookService.setBookData(this.book);
+        this.sharedBookService.setAddUserToBookSubject(this.book);
       });
     });
   }
 
 }
+

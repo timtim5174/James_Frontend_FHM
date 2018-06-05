@@ -61,6 +61,11 @@ export class BookSidebarComponent implements OnInit {
 
   removeBook(book: Book) {
     this.books = this.books.filter(b => b.id !== book.id);
+    if (this.books.length) {
+      this.clickBook(this.books[0]);
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 
   updateBook(book: Book) {

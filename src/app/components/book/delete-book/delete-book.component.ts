@@ -40,6 +40,7 @@ export class DeleteBookComponent implements OnInit {
       error => {
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
+        this.deleteClicked = false;
       }
     );
   }
