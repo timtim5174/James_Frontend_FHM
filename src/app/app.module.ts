@@ -44,8 +44,13 @@ import { BookStatisticsComponent } from './components/book/book-statistics/book-
 import { DashboardMainWidgetComponent } from './components/dashboard/dashboard-main-widget/dashboard-main-widget.component';
 import { SharedBookService } from './components/book/shared-book.service';
 import { SharedUserService } from './components/user/shared-user.service';
+import { MembersComponent } from './components/dashboard/members/members.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
 import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
+import { LineGraphComponent } from './shared/graphs/line-graph/line-graph.component';
+import { MapTransactionDatesPipe } from './components/transaction/map-transaction-dates.pipe';
+import { SharedTransactionService } from './components/transaction/shared-transaction.service';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +89,11 @@ import { AddUserToBookComponent } from './components/book/add-user-to-book/add-u
     BookStatisticsComponent,
     DashboardMainWidgetComponent,
     BookInfoComponent,
-    AddUserToBookComponent
+    AddUserToBookComponent,
+    LineGraphComponent,
+    MembersComponent,
+    MapTransactionDatesPipe
+
   ],
   imports: [
     NgbModule.forRoot(),
@@ -94,7 +103,7 @@ import { AddUserToBookComponent } from './components/book/add-user-to-book/add-u
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService],
+  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService, SharedTransactionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

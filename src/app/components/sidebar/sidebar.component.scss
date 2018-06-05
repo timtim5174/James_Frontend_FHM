@@ -4,39 +4,32 @@
 }
 
 #sidebar {
-    background: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-right-color: rgb(230, 230, 230);
     position: fixed;
-    height: 100%;
+    min-height: 82%;
+    max-height: 91%;
     width: 250px;
     left: 0px;
-    z-index: 1000;
+    background: rgb(255, 255, 255);
+    border-right: 1px solid rgb(230, 230, 230);
+    color: rgb(0, 0, 0);
+    overflow-y: scroll;
+    z-index: 1020;
 }
 
-p {
-    font-family: sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: black;
+::-webkit-scrollbar {
+    width: 5px;
 }
 
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.4s;
-}
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid rgb(230, 230, 230);
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255); 
 }
 
-#sidebar ul p {
-    color: black;
-    padding: 10px;
+::-webkit-scrollbar-thumb {
+    background: rgb(230, 230, 230); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(200, 200, 200); 
 }
 
 #sidebar ul li a {
@@ -44,19 +37,15 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover {
+
+a:hover {
     color: black;
     background: rgb(230, 230, 230);
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+li.active {
+    background: rgb(230, 230, 230);
     color: black;
-    background: rgb(230,230,230);
-}
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: rgb(225,225,225);
 }
 
 div.pull {
@@ -64,12 +53,13 @@ div.pull {
     bottom: 0px;
     top: 76.5px;
     width: 40px;
-    z-index: 1000;
+    z-index: 90;
 }
 
 .pull:hover {
     background-color: rgba(225, 225, 225, 0.5);
     transition: 400ms;
+    z-index: 90;
 }
 
 .arrow {
@@ -81,3 +71,5 @@ div.pull {
     margin-right: auto;
     transition: 300ms;
 }
+
+

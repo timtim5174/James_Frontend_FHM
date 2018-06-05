@@ -6,7 +6,7 @@ import { Book } from '../book/book';
   providedIn: 'root'
 })
 export class SharedBookService {
-  bookSelectedIdSubject = new BehaviorSubject<String>(null);
+  bookSelectedIdSubject = new BehaviorSubject<string>(null);
   bookArrayDataSubject = new BehaviorSubject<Book[]>(null);
   bookDataSubject = new BehaviorSubject<Book>(null);
   updateDeleteBookSubject = new BehaviorSubject<Book>(null);
@@ -14,11 +14,11 @@ export class SharedBookService {
 
   constructor() { }
 
-  setSelectedIdBook(s: String) {
+  setSelectedIdBook(s: string) {
     this.bookSelectedIdSubject.next(s);
   }
 
-  getSelectedIdBook(): Observable<String> {
+  getSelectedIdBook(): Observable<string> {
     return this.bookSelectedIdSubject.asObservable();
   }
 

@@ -35,8 +35,10 @@ export class BookViewComponent implements OnInit {
             }
           }
         }
-        this.sharedBookService.setBookData(this.book);
-        this.sharedBookService.setAddUserToBookSubject(this.book);
+        if (this.book != null) {
+          this.sharedBookService.setBookData(this.book);
+          this.sharedBookService.setAddUserToBookSubject(this.book);
+        }
       });
     });
   }

@@ -1,3 +1,43 @@
-<p>
-  transaction-overview works!
-</p>
+<table class="table table-responsive-sm table-hover table-outline mb-0">
+  <thead class="thead-light">
+    <tr>
+      <th class="text-center">Title</th>
+      <th class="text-center">Amount</th>
+      <th class="text-center">Category</th>
+      <th class="text-center">Book</th>
+      <th class="text-center">Date</th>
+      <th class="text-center">
+        <a class="btn btn-light btnTrash" (click)="createTransaction()">
+          <i class="fa fa-plus"></i>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td class="text-center">
+        <div>{{ transaction.title }}</div>
+      </td>
+      <td class="text-center">
+        <div>{{ transaction.amount }}</div>
+      </td>
+      <td class="text-center">
+        <div>Category</div>
+      </td>
+      <td class="text-center" style="color: red">
+        <div>book</div>
+      </td>
+      <td class="text-center">
+        <div>{{ transaction.creationDate }}</div>
+      </td>
+      <td class="text-center">
+        <a class="btn btn-light btnEdit">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
+            <i class="fa fa-trash"></i>
+          </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, of, throwError as _throw } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Transaction } from './transaction';
+import { SharedTransactionService } from './shared-transaction.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsService {
+export class TransactionService {
   private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
   private options = { withCredentials: true };
+  response: object;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private sharedTransactionService: SharedTransactionService) { }
 
   createTransaction(transaction: Partial<Transaction>): Observable<Transaction> {
     return this.http.post<Transaction>(this.baseURL + '/createTransaction', transaction).pipe(
@@ -23,6 +26,8 @@ export class TransactionsService {
 
   getTransactions(id: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`).pipe(
+      map(transactions => transactions.sort(((a: Transaction, b: Transaction) => a.creationDate <= b.creationDate ? 0 : 1))),
+      map(data => this.response = data),
       catchError(this.handleError)
     );
   }
@@ -33,8 +38,8 @@ export class TransactionsService {
     );
   }
 
-  deleteTransaction(id: string): Observable<any> {
-    return this.http.delete<Transaction>(this.baseURL + `/deleteTransaction/${id}`).pipe(
+  deleteTransaction(id: string, bid: string): Observable<any> {
+    return this.http.delete<Transaction>(this.baseURL + `/deleteTransaction/${id}&${bid}`).pipe(
       catchError(this.handleError)
     );
   }
@@ -48,6 +53,6 @@ export class TransactionsService {
     } else {
       msg = `${error.status} - ${error.statusText || ''}`;
     }
-    return _throw(msg);
+    return throwError(msg);
   }
 }

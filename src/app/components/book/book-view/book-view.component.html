@@ -3,7 +3,7 @@
     <div class="top">
         <div class="book">
             <span class="value">1000+</span>
-            <span class="bookName">BuchName
+            <span class="bookName">{{this.book.title}}
                 <span class="bookImg">
                 </span>
             </span>
@@ -24,8 +24,10 @@
                     </li>
                     <li class="nav-item navItem">
                         <app-modal [component]="addUserToBookComponent">
-                            <i class="fa fa-user-plus icons"></i>
-                            <span class="spanSpace">Users</span>
+                            <a class="nav-link" routerLink="transactions" routerLinkActive="active">
+                                <i class="fa fa-user-plus icons"></i>
+                                <span class="spanSpace">Users</span>
+                            </a>
                         </app-modal>
                     </li>
                     <li class="nav-item navItem">

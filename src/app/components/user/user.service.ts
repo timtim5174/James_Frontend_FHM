@@ -80,6 +80,12 @@ export class UserService {
       catchError(this.handleError));
   }
 
+  getUserInfoImage(userId: string) {
+    return this.http.get(this.baseURL + `/getUserInfoImage/${userId}`, { responseType: 'blob' }).pipe(
+      map(data => this.response = data),
+      catchError(this.handleError));
+  }
+
   getUsersOfBook(id: string): Observable<UserInfo[]> {
     return this.http.get(this.baseURL + `/getUsersOfBook/${id}`, this.options).pipe(
       map(data => this.response = data),
