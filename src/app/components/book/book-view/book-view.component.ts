@@ -35,10 +35,12 @@ export class BookViewComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
+      if (this.id != null) {
       this.transactionService.getTransactions(this.id).subscribe(
         transactions => {
           this.sharedTransactionService.setTransactions(transactions);
       });
+    }
       this.categoryService.getBookCategories(this.id).subscribe(categorys => {
         this.sharedCategoryService.setCategorys(categorys);
       });

@@ -18,7 +18,7 @@ export class BookService {
 
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.baseURL + '/getBooks').pipe(
-      map(books => books.sort(((a: Book, b: Book) => a.title <= b.title ? 0 : 1))),
+      map(res => res.sort((a, b) => a.title.length - b.title.length)),
       catchError(this.handleError)
     );
   }
