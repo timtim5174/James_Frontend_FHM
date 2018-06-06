@@ -4,7 +4,6 @@
       <th class="text-center">Title</th>
       <th class="text-center">Amount</th>
       <th class="text-center">Category</th>
-      <th class="text-center">Book</th>
       <th class="text-center">Date</th>
       <th class="text-center">
         <app-modal [component]="createTransactionComponent" (modalResult)="addTransaction($event)">
@@ -24,18 +23,17 @@
         <div>{{ transaction.amount }}</div>
       </td>
       <td class="text-center">
-        <div>Category</div>
+        <div>{{ getCategoryWithId(transaction.categoryId) }}</div>
       </td>
       <td class="text-center">
-        <div>book</div>
-      </td>
-      <td class="text-center">
-        <div>{{ transaction.creationDate }}</div>
+        <div>{{ generateDate(transaction.creationDate) }}</div>
       </td>
       <td class="text-center">
         <a class="btn btn-light btnEdit">
-          <i class="fa fa-edit"></i>
-        </a>
+          <app-modal [component]="updateTransactionComponent" [payload]="transaction" (modalResult)="updateTransaction($event)">
+            <i class="fa fa-edit"></i>
+          </app-modal>
+          </a>
         <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
           <i class="fa fa-trash"></i>
         </a>

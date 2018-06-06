@@ -18,10 +18,19 @@ export class BookService {
 
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.baseURL + '/getBooks').pipe(
-      map(res => res.sort((a, b) => a.title.length - b.title.length)),
+      map(books => books.sort(((a: Book, b: Book) => {
+        if (a.title > b.title) {
+          return 1;
+        } else if (a.title < b.title) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }))),
       catchError(this.handleError)
     );
   }
+
 
   createBook(book: Partial<Book>): Observable<Book> {
     return this.http.post<Book>(this.baseURL + '/createBook', book).pipe(

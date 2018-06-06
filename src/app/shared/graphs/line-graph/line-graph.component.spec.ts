@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LineGraphComponent } from './line-graph.component';
 
-describe('LineGraphComponent', () => {
+xdescribe('LineGraphComponent', () => {
   let component: LineGraphComponent;
   let fixture: ComponentFixture<LineGraphComponent>;
 
