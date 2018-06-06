@@ -1,12 +1,12 @@
 <div class="modal-header">
-  <h4 class="modal-title">Create Transaction</h4>
+  <h4 class="modal-title">Update Transaction</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
   <div class="container">
-    <form id="myForm" (ngSubmit)="onSubmit(createTransaction.value)" #createTransaction="ngForm">
+    <form id="myForm" (ngSubmit)="onSubmit(updateTransaction.value)" #updateTransaction="ngForm">
 
       <div class="form-group mt-4"></div>
       <label for="range">Title</label>
@@ -25,10 +25,12 @@
 
       <div class="form-group mt-4">
         <label for="category">Category</label>
-        <select name="category" [(ngModel)]="newTransaction.categoryId" class="form-control" id="category">
+        <select #transactionCategory name="category" [(ngModel)]="newTransaction.categoryId" class="form-control" id="category">
             <option *ngFor="let category of categorys" [value]='category.categoryId'>{{ category.name }}</option>
         </select>
       </div>
+      <div *ngIf="(transactionCategory.dirty || transactionCategory.touched) && !transactionTitle.valid;"></div>
+      <app-error-message [control]='transactionCategory' [error]="'required'" [message]="'Chose a Category'"></app-error-message>
 
       <div class="form-group options" *ngIf="!isOptionsOpened" (click)="switchIsOptionsOpened()">
         <div id="innerOptions">
@@ -44,7 +46,7 @@
 </div>
 
 <div class="modal-footer">
-  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createTransaction.valid" type="submit" class="btn btn-success">Create</button>
+  <button *ngIf="!updateClicked; else loading" form="myForm" [disabled]="!updateTransaction.valid" type="submit" class="btn btn-success">Update</button>
   <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
 </div>
 
@@ -56,6 +58,7 @@
   <div class="form-group mt-4">
     <label for="range">Billing cycle</label>
     <select name="rangeEnum" (click)="rangeEnumChanged()" [(ngModel)]="newTransaction.rangeEnum" class="form-control" id="range">
+      <option value="null">none</option>
       <option value="DAILY">Daily</option>
       <option value="WEEKLY">Weekly</option>
       <option value="MONTHLY">Monthly</option>
@@ -64,7 +67,7 @@
   </div>
   
   <div class="mt-4">
-    <app-datepicker #MyDatepicker (save)="datePicked($event)" [title]="'Periodic reset'"></app-datepicker>
+    <app-datepicker #MyDatepicker (save)="datePicked($event)" [title]="'Settlement date'"></app-datepicker>
   </div>
   
 </ng-template>

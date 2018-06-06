@@ -56,6 +56,7 @@
   <div class="form-group mt-4">
     <label for="range">Billing cycle</label>
     <select name="rangeEnum" (click)="rangeEnumChanged()" [(ngModel)]="newTransaction.rangeEnum" class="form-control" id="range">
+      <option value="null">None</option>
       <option value="DAILY">Daily</option>
       <option value="WEEKLY">Weekly</option>
       <option value="MONTHLY">Monthly</option>
@@ -64,7 +65,7 @@
   </div>
   
   <div class="mt-4">
-    <app-datepicker #MyDatepicker (save)="datePicked($event)" [title]="'Periodic reset'"></app-datepicker>
+    <app-datepicker #MyDatepicker (save)="datePicked($event)" [title]="'Settlement date'"></app-datepicker>
   </div>
   
 </ng-template>
