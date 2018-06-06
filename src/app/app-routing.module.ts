@@ -21,6 +21,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
 import { MembersComponent } from './components/dashboard/members/members.component';
+import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
 
 
 const routes: Routes = [
@@ -36,15 +37,15 @@ const routes: Routes = [
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'members', component: MembersComponent },
-  {
-    path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
-      { path: 'dashboard', component: DashboardMainComponent },
-      { path: 'myAccount', component: MyAccountComponent },
-      { path: 'sign-out', component: SignOutComponent },
-      { path: 'book/:id', component: BookViewComponent, children: [
-        { path: 'home', component: HomeComponent },
-        { path: 'transactions', component: TransactionOverviewComponent },
-        { path: 'info', component: BookInfoComponent}
+  { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
+    { path: 'dashboard', component: DashboardMainComponent },
+    { path: 'myAccount', component: MyAccountComponent },
+    { path: 'sign-out', component: SignOutComponent },
+    { path: 'book/:id', component: BookViewComponent, children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'transactions', component: TransactionOverviewComponent },
+      { path: 'createTransaction', component: CreateTransactionComponent },
+      { path: 'info', component: BookInfoComponent},
         ]
       }
     ]

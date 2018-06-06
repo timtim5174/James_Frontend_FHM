@@ -11,23 +11,12 @@ export class SharedTransactionService {
 
   constructor() { }
 
-  setTransactions(transaction: Transaction[]) {
-    this.transactions.next(transaction);
+  setTransactions(transactions: Transaction[]) {
+    this.transactions.next(transactions);
   }
 
   getTransactions(): Observable<Transaction[]> {
     return this.transactions.asObservable();
   }
-
-  private handleError(error: HttpErrorResponse): Observable<any> {
-    let msg: string;
-    if (error.error) {
-      msg = error.error;
-    } else if (error.message) {
-      msg = error.message;
-    } else {
-      msg = `${error.status} - ${error.statusText || ''}`;
-    }
-    return throwError(msg);
-  }
+  
 }

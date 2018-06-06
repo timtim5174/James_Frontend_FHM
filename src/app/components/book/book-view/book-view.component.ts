@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
 import { ActivatedRoute } from '@angular/router';
+import { TransactionService } from '../../transaction/transaction.service';
+import { SharedTransactionService } from '../../transaction/shared-transaction.service';
+import { CategoryService } from '../../category/category.service';
+import { SharedCategoryService } from '../../category/shared-category.service';
 
 @Component({
   selector: 'app-book-view',
@@ -18,12 +22,24 @@ export class BookViewComponent implements OnInit {
   };
   navbarIsCollapsed = true;
   id: string;
-  constructor(private sharedBookService: SharedBookService, private route: ActivatedRoute) {
-  }
+  constructor(
+    private sharedBookService: SharedBookService,
+    private transactionService: TransactionService,
+    private sharedTransactionService: SharedTransactionService,
+    private categoryService: CategoryService,
+    private sharedCategoryService: SharedCategoryService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
+      this.transactionService.getTransactions(this.id).subscribe(
+        transactions => {
+          this.sharedTransactionService.setTransactions(transactions);
+      });
+      this.categoryService.getBookCategories(this.id).subscribe(categorys => {
+        this.sharedCategoryService.setCategorys(categorys);
+      });
       this.sharedBookService.setSelectedIdBook(this.id);
       this.sharedBookService.getBookArrayData().subscribe(books => {
         if (books != null) {
@@ -34,7 +50,7 @@ export class BookViewComponent implements OnInit {
           }
         }
         if (this.book != null) {
-        this.sharedBookService.setBookData(this.book);
+          this.sharedBookService.setBookData(this.book);
         }
       });
     });

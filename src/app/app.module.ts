@@ -49,6 +49,8 @@ import { BookInfoComponent } from './components/book/book-info/book-info.compone
 import { LineGraphComponent } from './shared/graphs/line-graph/line-graph.component';
 import { MapTransactionDatesPipe } from './components/transaction/map-transaction-dates.pipe';
 import { SharedTransactionService } from './components/transaction/shared-transaction.service';
+import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
+import { SharedCategoryService } from './components/category/shared-category.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,8 @@ import { SharedTransactionService } from './components/transaction/shared-transa
     BookInfoComponent,
     LineGraphComponent,
     MembersComponent,
-    MapTransactionDatesPipe
+    MapTransactionDatesPipe,
+    CreateTransactionComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -99,7 +102,7 @@ import { SharedTransactionService } from './components/transaction/shared-transa
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService, SharedTransactionService],
+  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService, SharedTransactionService, SharedCategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
