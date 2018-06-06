@@ -51,6 +51,9 @@ import { LineGraphComponent } from './shared/graphs/line-graph/line-graph.compon
 import { MapTransactionDatesPipe } from './components/transaction/map-transaction-dates.pipe';
 import { SharedTransactionService } from './components/transaction/shared-transaction.service';
 import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component';
+import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
+import { SharedCategoryService } from './components/category/shared-category.service';
+
 
 
 @NgModule({
@@ -94,8 +97,8 @@ import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component
     LineGraphComponent,
     MembersComponent,
     MapTransactionDatesPipe,
-    PieGraphComponent
-
+    PieGraphComponent,
+    CreateTransactionComponent,
   ],
   imports: [
     NgbModule.forRoot(),
@@ -105,7 +108,7 @@ import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService, SharedTransactionService],
+  providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService, SharedTransactionService, SharedCategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

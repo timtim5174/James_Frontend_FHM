@@ -7,9 +7,11 @@
       <th class="text-center">Book</th>
       <th class="text-center">Date</th>
       <th class="text-center">
-        <a class="btn btn-light btnTrash" (click)="createTransaction()">
-          <i class="fa fa-plus"></i>
-        </a>
+        <app-modal [component]="createTransactionComponent" (modalResult)="addTransaction($event)">
+          <a title="Add a new transaction" class="btn btn-light btnTrash">
+            <i class="fa fa-plus"></i>
+          </a>
+        </app-modal>
       </th>
     </tr>
   </thead>
@@ -24,7 +26,7 @@
       <td class="text-center">
         <div>Category</div>
       </td>
-      <td class="text-center" style="color: red">
+      <td class="text-center">
         <div>book</div>
       </td>
       <td class="text-center">
@@ -35,8 +37,8 @@
           <i class="fa fa-edit"></i>
         </a>
         <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
-            <i class="fa fa-trash"></i>
-          </a>
+          <i class="fa fa-trash"></i>
+        </a>
       </td>
     </tr>
   </tbody>

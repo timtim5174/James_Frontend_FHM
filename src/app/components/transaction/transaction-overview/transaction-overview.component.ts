@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Book } from '../../book/book';
 import { SharedTransactionService } from '../shared-transaction.service';
 import { Subscription } from 'rxjs';
+import { CreateTransactionComponent } from '../create-transaction/create-transaction.component';
 
 @Component({
   selector: 'app-transaction-overview',
@@ -15,40 +16,19 @@ import { Subscription } from 'rxjs';
 export class TransactionOverviewComponent implements OnInit {
   transactions: Transaction[] = [];
   book: Book;
+  createTransactionComponent = CreateTransactionComponent;
+
   constructor(private sharedBookService: SharedBookService, private sharedTransactionService: SharedTransactionService,
     private transactionService: TransactionService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.sharedBookService.getBookData().subscribe(book => {
-      this.book = book;
-    });
+      this.sharedTransactionService.getTransactions().subscribe(data => {
+        this.transactions = data;
+      });
+    }
 
-    this.transactionService.getTransactions(this.book.id).subscribe(
-      transactions => {
-        this.sharedTransactionService.setTransactions(transactions);
-        this.sharedTransactionService.getTransactions().subscribe(data => {
-          this.transactions = data;
-        });
-    });
-  }
-
-  createTransaction() {
-    const transaction: Transaction = {
-      id: null,
-      title: 'Test Transaction',
-      comment: 'Test Comment',
-      bookId: this.book.id,
-      categoryId: '1',
-      amount: 250.50,
-      creationDate: null,
-      timeFrame: new Date(2019, 0, 1, 0, 0, 0, 0),
-      rangeEnum: 'DAILY'
-    };
-    this.transactionService.createTransaction(transaction).subscribe(
-      data => {
-        this.sharedTransactionService.setTransactions([...this.transactions, data]);
-      }
-    );
+  addTransaction(transaction: Transaction) {
+    this.sharedTransactionService.setTransactions([...this.transactions, transaction]);
   }
 
   deleteTransaction(transaction: Transaction) {
