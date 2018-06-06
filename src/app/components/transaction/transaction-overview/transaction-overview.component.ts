@@ -17,8 +17,8 @@ import { ValueTransformer } from '@angular/compiler/src/util';
   styleUrls: ['./transaction-overview.component.scss']
 })
 export class TransactionOverviewComponent implements OnInit {
-  @Input() transactions: Transaction[] = [];
-  @Input() categorys: Category[];
+  transactions: Transaction[] = [];
+  categorys: Category[];
   book: Book;
   createTransactionComponent = CreateTransactionComponent;
 
