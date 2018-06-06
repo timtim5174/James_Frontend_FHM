@@ -25,13 +25,15 @@
       <td class="text-center">
         <div>{{ getCategoryWithId(transaction.categoryId) }}</div>
       </td>
-      <td class="text-center">
+      <td class="text-center" *ngIf="transaction">
         <div>{{ generateDate(transaction.creationDate) }}</div>
       </td>
       <td class="text-center">
         <a class="btn btn-light btnEdit">
-          <i class="fa fa-edit"></i>
-        </a>
+          <app-modal [component]="updateTransactionComponent" [payload]="transaction" (modalResult)="updateTransaction($event)">
+            <i class="fa fa-edit"></i>
+          </app-modal>
+          </a>
         <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
           <i class="fa fa-trash"></i>
         </a>

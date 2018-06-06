@@ -26,7 +26,7 @@ export class CreateTransactionComponent implements OnInit {
     categoryId: '',
     amount: 0,
     rangeEnum: null,
-    timeFrame: new Date(2018, 10, 10),
+    timeFrame: null,
     creationDate: null
   };
   book: Book;
@@ -71,12 +71,12 @@ export class CreateTransactionComponent implements OnInit {
   }
 
   rangeEnumChanged() {
-    this.newTransaction.timeFrame = new Date(2018, 0, 1, 0, 0, 0, 0);
+    this.newTransaction.timeFrame = null;
   }
 
   loadExampleDate() {
     this.datepickerDate = {
-      year: 2018,
+      year: 2019,
       month: 1,
       day: 1
     };

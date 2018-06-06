@@ -25,6 +25,7 @@ import { MembersComponent } from './components/dashboard/members/members.compone
 import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component';
 import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
+import { UpdateTransactionComponent } from './components/transaction/update-transaction/update-transaction.component';
 
 
 
@@ -52,6 +53,7 @@ const routes: Routes = [
           { path: 'home', component: HomeComponent },
           { path: 'transactions', component: TransactionOverviewComponent },
           { path: 'createTransaction', component: CreateTransactionComponent },
+          { path: 'updateTransaction', component: UpdateTransactionComponent },
           { path: 'info', component: BookInfoComponent },
           { path: 'statistics', component: BookStatisticsComponent}
         ]
