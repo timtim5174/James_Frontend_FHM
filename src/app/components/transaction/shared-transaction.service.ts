@@ -18,5 +18,5 @@ export class SharedTransactionService {
   getTransactions(): Observable<Transaction[]> {
     return this.transactions.asObservable();
   }
-  
+
 }
