@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { SharedBookService } from './shared-book.service';
 
-describe('SharedBookService', () => {
+xdescribe('SharedBookService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [SharedBookService]
