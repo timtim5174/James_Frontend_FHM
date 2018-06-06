@@ -40,7 +40,6 @@ const routes: Routes = [
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'members', component: MembersComponent },
-<<<<<<< HEAD
   { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
     { path: 'dashboard', component: DashboardMainComponent },
     { path: 'myAccount', component: MyAccountComponent },
@@ -48,20 +47,7 @@ const routes: Routes = [
     { path: 'book/:id', component: BookViewComponent, children: [
       { path: 'home', component: HomeComponent },
       { path: 'transactions', component: TransactionOverviewComponent },
-      { path: 'createTransaction', component: CreateTransactionComponent },
       { path: 'info', component: BookInfoComponent},
-=======
-  {
-    path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
-      { path: 'dashboard', component: DashboardMainComponent },
-      { path: 'myAccount', component: MyAccountComponent },
-      { path: 'sign-out', component: SignOutComponent },
-      {
-        path: 'book/:id', component: BookViewComponent, children: [
-          { path: 'home', component: HomeComponent },
-          { path: 'transactions', component: TransactionOverviewComponent },
-          { path: 'info', component: BookInfoComponent }
->>>>>>> 86b414b404af8c8c0151b8fbda25acafe1b15ae6
         ]
       }
     ]
