@@ -47,6 +47,7 @@ const routes: Routes = [
     { path: 'book/:id', component: BookViewComponent, children: [
       { path: 'home', component: HomeComponent },
       { path: 'transactions', component: TransactionOverviewComponent },
+      { path: 'createTransaction', component: CreateTransactionComponent },
       { path: 'info', component: BookInfoComponent},
         ]
       }
