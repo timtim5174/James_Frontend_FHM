@@ -22,6 +22,8 @@ import { TransactionOverviewComponent } from './components/transaction/transacti
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
 import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
 import { MembersComponent } from './components/dashboard/members/members.component';
+import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component';
+import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 
 
 
@@ -48,7 +50,8 @@ const routes: Routes = [
         path: 'book/:id', component: BookViewComponent, children: [
           { path: 'home', component: HomeComponent },
           { path: 'transactions', component: TransactionOverviewComponent },
-          { path: 'info', component: BookInfoComponent }
+          { path: 'info', component: BookInfoComponent },
+          { path: 'statistics', component: BookStatisticsComponent}
         ]
       }
     ]

@@ -50,6 +50,7 @@ import { AddUserToBookComponent } from './components/book/add-user-to-book/add-u
 import { LineGraphComponent } from './shared/graphs/line-graph/line-graph.component';
 import { MapTransactionDatesPipe } from './components/transaction/map-transaction-dates.pipe';
 import { SharedTransactionService } from './components/transaction/shared-transaction.service';
+import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { SharedTransactionService } from './components/transaction/shared-transa
     AddUserToBookComponent,
     LineGraphComponent,
     MembersComponent,
-    MapTransactionDatesPipe
+    MapTransactionDatesPipe,
+    PieGraphComponent
 
   ],
   imports: [
