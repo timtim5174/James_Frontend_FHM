@@ -22,7 +22,10 @@ import { TransactionOverviewComponent } from './components/transaction/transacti
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
 import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
 import { MembersComponent } from './components/dashboard/members/members.component';
+import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component';
+import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
+
 
 
 
@@ -40,15 +43,17 @@ const routes: Routes = [
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'members', component: MembersComponent },
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
-    { path: 'dashboard', component: DashboardMainComponent },
-    { path: 'myAccount', component: MyAccountComponent },
-    { path: 'sign-out', component: SignOutComponent },
-    { path: 'book/:id', component: BookViewComponent, children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'transactions', component: TransactionOverviewComponent },
-      { path: 'createTransaction', component: CreateTransactionComponent },
-      { path: 'info', component: BookInfoComponent},
+  {
+    path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
+      { path: 'dashboard', component: DashboardMainComponent },
+      { path: 'myAccount', component: MyAccountComponent },
+      { path: 'sign-out', component: SignOutComponent },
+      { path: 'book/:id', component: BookViewComponent, children: [
+          { path: 'home', component: HomeComponent },
+          { path: 'transactions', component: TransactionOverviewComponent },
+          { path: 'createTransaction', component: CreateTransactionComponent },
+          { path: 'info', component: BookInfoComponent },
+          { path: 'statistics', component: BookStatisticsComponent}
         ]
       }
     ]

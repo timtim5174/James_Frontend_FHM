@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
+import { LineGraph } from './line-graph';
 
 @Component({
   selector: 'app-line-graph',
@@ -10,13 +11,7 @@ export class LineGraphComponent implements OnChanges {
   @Input() type: string;
   @Input() axisLables: string[];
   @Input() data: number[];
-  @Input() dataset: [{
-    label: string,
-    data: number[];
-    fill: boolean,
-    backgroundColor: string,
-    borderColor: string
-  }];
+  @Input() dataset: LineGraph[];
   @Input() xName: string;
   @Input() yName: string;
   @Input() chartName: string;

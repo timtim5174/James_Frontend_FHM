@@ -3,6 +3,7 @@ import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
 import { Chart } from 'chart.js';
 import { TransactionService } from '../../transaction/transaction.service';
+import { SharedTransactionService } from '../../transaction/shared-transaction.service';
 
 @Component({
   selector: 'app-book-info',
@@ -37,20 +38,21 @@ export class BookInfoComponent implements OnInit {
   chart = [];
 
 
-  constructor(private sharedBookService: SharedBookService, private transactionService: TransactionService) {}
+  constructor(private sharedBookService: SharedBookService, private sharedTransactionService: SharedTransactionService) {}
 
   ngOnInit() {
     this.sharedBookService.getBookData().subscribe( book => {
       if (book != null) {
         this.book = book;
       }
-      this.transactionService.getTransactions(this.book.id).subscribe( transactions => {
+      this.sharedTransactionService.getTransactions().subscribe( transactions => {
+        if (transactions != null) {
         this.axisLables = [];
         let z = 0;
         // Loop for sorting the incoming TransactionArray right for Graph
         for (let i = 0; i < transactions.length; i++) {
           const creationDate = new Date(transactions[i].creationDate);
-          const axisLable =  (creationDate).getDate() + '.' + (creationDate.getMonth() + 1) + '.' + creationDate.getFullYear() ;
+          const axisLable =  (creationDate).getDate() + '.' + (creationDate.getMonth() + 1) + '.' + creationDate.getFullYear();
           const index = this.axisLables.indexOf(axisLable);
           if (index > -1) {
             this.data[index] = this.data[index] + transactions[i].amount;
@@ -64,6 +66,7 @@ export class BookInfoComponent implements OnInit {
             z += 1;
           }
         }
+      }
       });
     });
   }
