@@ -10,6 +10,7 @@ import { CreateTransactionComponent } from '../create-transaction/create-transac
 import { SharedCategoryService } from '../../category/shared-category.service';
 import { Category } from '../../category/category';
 import { ValueTransformer } from '@angular/compiler/src/util';
+import { UpdateTransactionComponent } from '../update-transaction/update-transaction.component';
 
 @Component({
   selector: 'app-transaction-overview',
@@ -21,6 +22,7 @@ export class TransactionOverviewComponent implements OnInit {
   categorys: Category[];
   book: Book;
   createTransactionComponent = CreateTransactionComponent;
+  updateTransactionComponent = UpdateTransactionComponent;
 
   constructor(
     private sharedBookService: SharedBookService,
@@ -46,6 +48,10 @@ export class TransactionOverviewComponent implements OnInit {
     this.transactionService.deleteTransaction(transaction.id, transaction.bookId).subscribe();
     this.transactions = this.transactions.filter(t => t.id !== transaction.id);
     this.sharedTransactionService.setTransactions(this.transactions);
+  }
+
+  updateTransaction(transaction: Transaction) {
+    this.transactionService.updateTransaction(transaction);
   }
 
   getCategoryWithId(id: string): string {

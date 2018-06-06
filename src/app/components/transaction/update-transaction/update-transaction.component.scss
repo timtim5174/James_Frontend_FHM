@@ -1,0 +1,30 @@
+.ng-valid:not(form)  { border-left: 5px solid #28a745; /* green */ }
+.ng-invalid:not(form) { border-left: 5px solid #dc3545; /* red */   }
+
+ .options {
+    opacity: 0.5; 
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.options:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#innerOptions {
+    position: relative;
+    top: 1%;
+    left: 82%;
+}
+
+.settings {
+    margin-left: 5px;
+} 
+
+.explanation {
+    position: absolute;
+    top: 67.5%;
+    left: 28%;
+}
