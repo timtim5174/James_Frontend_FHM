@@ -50,16 +50,17 @@ export class BookInfoComponent implements OnInit {
         this.axisLables = [];
         let z = 0;
         // Loop for sorting the incoming TransactionArray right for Graph
+        // forEach
         for (let i = 0; i < transactions.length; i++) {
           const creationDate = new Date(transactions[i].creationDate);
           const axisLable =  (creationDate).getDate() + '.' + (creationDate.getMonth() + 1) + '.' + creationDate.getFullYear();
           const index = this.axisLables.indexOf(axisLable);
           if (index > -1) {
-            this.data[index] = this.data[index] + transactions[i].amount;
+              this.data[index] = this.data[index] + transactions[i].amount;
           } else {
-            this.axisLables[z] = axisLable;
+              this.axisLables[z] = axisLable;
             if (z - 1 >= 0) {
-            this.data[z] = this.data[z - 1] + transactions[i].amount;
+              this.data[z] = this.data[z - 1] + transactions[i].amount;
             } else {
               this.data[z] = transactions[i].amount;
             }
