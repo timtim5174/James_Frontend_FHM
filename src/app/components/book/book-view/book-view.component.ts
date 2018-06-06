@@ -36,19 +36,11 @@ export class BookViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       if (this.id != null) {
-<<<<<<< HEAD
-      this.transactionService.getTransactions(this.id).subscribe(
-        transactions => {
-          this.sharedTransactionService.setTransactions(transactions);
-      });
-    }
-=======
         this.transactionService.getTransactions(this.id).subscribe(
           transactions => {
             this.sharedTransactionService.setTransactions(transactions);
           });
       }
->>>>>>> 1dcbf6d03cc694fd69979bd51b3d461f081b99bc
       this.categoryService.getBookCategories(this.id).subscribe(categorys => {
         this.sharedCategoryService.setCategorys(categorys);
       });
