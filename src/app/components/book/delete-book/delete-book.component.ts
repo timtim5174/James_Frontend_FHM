@@ -22,13 +22,12 @@ export class DeleteBookComponent implements OnInit {
   @ViewChild('DeleteBookCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
 
-  constructor(public activeModal: NgbActiveModal, private bookService: BookService, private sharedBookService: SharedBookService) {
+  constructor(public activeModal: NgbActiveModal, private bookService: BookService, private sharedBookService: SharedBookService) { }
+
+  ngOnInit() {
     this.sharedBookService.getUpdateDeleteBookSubject().subscribe(
       book => this.book = book
     );
-  }
-
-  ngOnInit() {
     this.book = { ...this.modalInput };
     this.modalInput.title = '';
   }
@@ -38,8 +37,10 @@ export class DeleteBookComponent implements OnInit {
     this.bookService.deleteBook(this.book.id).subscribe(
       success => this.activeModal.close(this.book),
       error => {
+        console.log(error);
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
+        this.deleteClicked = false;
       }
     );
   }

@@ -10,6 +10,7 @@ export class SharedBookService {
   bookArrayDataSubject = new BehaviorSubject<Book[]>(null);
   bookDataSubject = new BehaviorSubject<Book>(null);
   updateDeleteBookSubject = new BehaviorSubject<Book>(null);
+  addUserToBookSubject = new BehaviorSubject<Book>(null);
 
   constructor() { }
 
@@ -43,6 +44,14 @@ export class SharedBookService {
 
   getUpdateDeleteBookSubject(): Observable<Book> {
     return this.updateDeleteBookSubject.asObservable();
+  }
+
+  setAddUserToBookSubject(b: Book) {
+    this.addUserToBookSubject.next(b);
+  }
+
+  getAddUserToBookSubbject(): Observable<Book> {
+    return this.addUserToBookSubject.asObservable();
   }
 
 }

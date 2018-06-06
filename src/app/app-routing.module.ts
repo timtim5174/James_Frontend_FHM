@@ -20,8 +20,10 @@ import { DeleteBookComponent } from './components/book/delete-book/delete-book.c
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
+import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
 import { MembersComponent } from './components/dashboard/members/members.component';
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
+
 
 
 const routes: Routes = [
@@ -33,10 +35,12 @@ const routes: Routes = [
   { path: 'createBook', component: CreateBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'deleteBook', component: DeleteBookComponent },
+  { path: 'addUserToBook', component: AddUserToBookComponent },
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'members', component: MembersComponent },
+<<<<<<< HEAD
   { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
     { path: 'dashboard', component: DashboardMainComponent },
     { path: 'myAccount', component: MyAccountComponent },
@@ -46,6 +50,18 @@ const routes: Routes = [
       { path: 'transactions', component: TransactionOverviewComponent },
       { path: 'createTransaction', component: CreateTransactionComponent },
       { path: 'info', component: BookInfoComponent},
+=======
+  {
+    path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
+      { path: 'dashboard', component: DashboardMainComponent },
+      { path: 'myAccount', component: MyAccountComponent },
+      { path: 'sign-out', component: SignOutComponent },
+      {
+        path: 'book/:id', component: BookViewComponent, children: [
+          { path: 'home', component: HomeComponent },
+          { path: 'transactions', component: TransactionOverviewComponent },
+          { path: 'info', component: BookInfoComponent }
+>>>>>>> 86b414b404af8c8c0151b8fbda25acafe1b15ae6
         ]
       }
     ]

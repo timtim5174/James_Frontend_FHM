@@ -46,11 +46,13 @@ import { SharedBookService } from './components/book/shared-book.service';
 import { SharedUserService } from './components/user/shared-user.service';
 import { MembersComponent } from './components/dashboard/members/members.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
+import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
 import { LineGraphComponent } from './shared/graphs/line-graph/line-graph.component';
 import { MapTransactionDatesPipe } from './components/transaction/map-transaction-dates.pipe';
 import { SharedTransactionService } from './components/transaction/shared-transaction.service';
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
 import { SharedCategoryService } from './components/category/shared-category.service';
+
 
 @NgModule({
   declarations: [
@@ -89,10 +91,16 @@ import { SharedCategoryService } from './components/category/shared-category.ser
     BookStatisticsComponent,
     DashboardMainWidgetComponent,
     BookInfoComponent,
+    AddUserToBookComponent,
     LineGraphComponent,
     MembersComponent,
+<<<<<<< HEAD
     MapTransactionDatesPipe,
     CreateTransactionComponent
+=======
+    MapTransactionDatesPipe
+
+>>>>>>> 86b414b404af8c8c0151b8fbda25acafe1b15ae6
   ],
   imports: [
     NgbModule.forRoot(),

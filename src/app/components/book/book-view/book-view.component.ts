@@ -6,6 +6,7 @@ import { TransactionService } from '../../transaction/transaction.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';
 import { CategoryService } from '../../category/category.service';
 import { SharedCategoryService } from '../../category/shared-category.service';
+import { AddUserToBookComponent } from '../add-user-to-book/add-user-to-book.component';
 
 @Component({
   selector: 'app-book-view',
@@ -20,6 +21,7 @@ export class BookViewComponent implements OnInit {
     timeFrame: null,
     rangeEnum: null
   };
+  addUserToBookComponent = AddUserToBookComponent;
   navbarIsCollapsed = true;
   id: string;
   constructor(
@@ -57,3 +59,4 @@ export class BookViewComponent implements OnInit {
   }
 
 }
+

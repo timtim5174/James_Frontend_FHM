@@ -23,10 +23,12 @@
                         </a>
                     </li>
                     <li class="nav-item navItem">
-                        <a class="nav-link" routerLink="transactions" routerLinkActive="active">
-                            <i class="fa fa-user-plus icons"></i>
-                            <span class="spanSpace">Users</span>
-                        </a>
+                        <app-modal [component]="addUserToBookComponent">
+                            <a class="nav-link" routerLink="transactions" routerLinkActive="active">
+                                <i class="fa fa-user-plus icons"></i>
+                                <span class="spanSpace">Users</span>
+                            </a>
+                        </app-modal>
                     </li>
                     <li class="nav-item navItem">
                         <a class="nav-link" routerLinkActive="active">
@@ -38,7 +40,7 @@
             </div>
         </nav>
     </div>
-
+    <h1>{{book.title}}</h1>
 
 
 
@@ -46,4 +48,4 @@
         <router-outlet></router-outlet>
     </div>
 
-</div> 
+</div>
