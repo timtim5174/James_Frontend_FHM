@@ -19,9 +19,9 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.baseURL + '/getBooks').pipe(
       map(books => books.sort(((a: Book, b: Book) => {
-        if (a.title > b.title) {
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
           return 1;
-        } else if (a.title < b.title) {
+        } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
           return -1;
         } else {
           return 0;
