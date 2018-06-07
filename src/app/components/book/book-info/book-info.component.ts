@@ -4,6 +4,7 @@ import { Book } from '../book';
 import { Chart } from 'chart.js';
 import { TransactionService } from '../../transaction/transaction.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';
+import { PieGraph } from '../../../shared/graphs/pie-graph/pie-graph';
 
 @Component({
   selector: 'app-book-info',
@@ -27,6 +28,7 @@ export class BookInfoComponent implements OnInit {
   backgroundColor = 'rgba(0, 0, 255, 0.3)';
   borderColor = 'rgba(0, 0, 255, 0.9)';
   fill = true;
+  height: any;
 
   dataset = [{
     label: this.pointLable,
@@ -36,11 +38,22 @@ export class BookInfoComponent implements OnInit {
     borderColor: this.borderColor
   }];
   chart = [];
-
+  dataPieChart: PieGraph;
 
   constructor(private sharedBookService: SharedBookService, private sharedTransactionService: SharedTransactionService) {}
 
   ngOnInit() {
+    const test = document.getElementById('lower-container').scrollHeight;
+    console.log(test);
+    this.dataPieChart = {
+        labels: ['Incomes', 'Outgoings'],
+        datasets: [
+          {
+            backgroundColor: ['#2e86f7', '#dcdedf'],
+            data: [2500, 3000]
+          }
+        ]
+      };
     this.sharedBookService.getBookData().subscribe( book => {
       if (book != null) {
         this.book = book;
