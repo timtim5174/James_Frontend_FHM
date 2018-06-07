@@ -57,7 +57,7 @@ export class BookService {
     );
   }
 
-  getCurrentBookPeriode(book: Book): BookPeriod {
+  getCurrentBookPeriod(book: Book): BookPeriod {
     switch (book.rangeEnum) {
       case 'DAILY':
         return {
