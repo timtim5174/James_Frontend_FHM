@@ -25,7 +25,7 @@
       <td class="text-center">
         <div>{{ getCategoryWithId(transaction.categoryId) }}</div>
       </td>
-      <td class="text-center">
+      <td class="text-center" *ngIf="transaction">
         <div>{{ generateDate(transaction.creationDate) }}</div>
       </td>
       <td class="text-center">

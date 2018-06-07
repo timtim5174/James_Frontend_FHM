@@ -40,13 +40,16 @@ export class LineGraphComponent implements OnChanges {
       options: {
           elements: {
             line: {
-            tension: 0.1, // disables bezier curves
+            tension: 0.05, // disables bezier curves
             }
           },
+          legend: {
+            display: false
+        },
           maintainAspectRatio: false,
           responsive: true,
           title: {
-          display: true,
+          display: false,
           text: this.chartName
         },
         tooltips: {
@@ -58,16 +61,16 @@ export class LineGraphComponent implements OnChanges {
         },
         scales: {
           xAxes: [{
-            display: true,
+            display: false,
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: this.xName
             }
           }],
           yAxes: [{
-            display: true,
+            display: false,
             scaleLabel: {
-              display: true,
+              display: false,
               labelString: this.yName
             }
           }]

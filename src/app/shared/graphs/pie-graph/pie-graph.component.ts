@@ -30,6 +30,7 @@ export class PieGraphComponent implements OnInit, OnChanges {
       type: 'pie',
       data: this.data,
       options: {
+        maintainAspectRatio: false,
         title: {
           display: true,
           text: ''

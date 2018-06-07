@@ -44,14 +44,16 @@ export class TransactionOverviewComponent implements OnInit {
     this.sharedTransactionService.setTransactions([...this.transactions, transaction]);
   }
 
+  updateTransaction(transaction: Transaction) {
+    console.log('updateTransactiion Overview: ', transaction);
+    this.transactions = this.transactions.filter(t => t.id !== transaction.id);
+    this.sharedTransactionService.setTransactions([...this.transactions, transaction]);
+  }
+
   deleteTransaction(transaction: Transaction) {
     this.transactionService.deleteTransaction(transaction.id, transaction.bookId).subscribe();
     this.transactions = this.transactions.filter(t => t.id !== transaction.id);
     this.sharedTransactionService.setTransactions(this.transactions);
-  }
-
-  updateTransaction(transaction: Transaction) {
-    this.transactionService.updateTransaction(transaction);
   }
 
   getCategoryWithId(id: string): string {
