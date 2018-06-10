@@ -1,7 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TimeService } from './time.service';
-import { Book, BookPeriod } from '../components/book/book';
+import { TimeService } from './book-time.service';
+import { Book, BookPeriod } from './book';
+
 
 describe('TimeService', () => {
   const getTestData = function (param: Book) {
@@ -203,9 +204,3 @@ describe('TimeService', () => {
     }));
   });
 });
-
-
-
-
-
-
