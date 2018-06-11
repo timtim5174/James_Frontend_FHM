@@ -1,11 +1,13 @@
-<div class = "myContainer">
-<div class='upper-container'>
-<app-pie-graph [data]="dataPieChart"></app-pie-graph>
-</div>
-<div id="lower-container" class="under-stats">
-    <div class="chart-container">
-    <app-line-graph [chartName] = '"Transactions"' [xName] = '""' [yName] = '""' [type]='type' [axisLables]='axisLables' [dataset]='dataset'></app-line-graph>
+<div class="myContainer">
+    <div class="upper-container">
+        <app-pie-graph [data]="dataPieChart"></app-pie-graph>
     </div>
-    <app-transaction-overview id='under-stats-div'></app-transaction-overview>
-</div>
+    <div class="under-stats" onscroll="scroll">
+        <div class="chart" [ngStyle]="setStyles()">
+            <app-line-graph [chartName] = '"Transactions"' [xName] = '""' [yName] = '""' [type]='type' [axisLables]='axisLables' [dataset]='dataset'></app-line-graph>
+    </div>
+    <div id="transactions" class="">
+        <app-transaction-overview></app-transaction-overview>
+    </div>
+    </div>
 </div>

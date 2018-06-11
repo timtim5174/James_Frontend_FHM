@@ -1,13 +1,6 @@
 <div class="wrapper">
 
     <div class="top">
-        <div class="book">
-            <span class="value">1000+</span>
-            <span class="bookName">{{this.book.title}}
-                <span class="bookImg">
-                </span>
-            </span>
-        </div>
         <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light main-nav navbar-top myContainer">
             <button class="navbar-toggler" (click)="navbarIsCollapsed = !navbarIsCollapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,8 +38,6 @@
             </div>
         </nav>
     </div>
-    <div class="bookOutlet">
-        <router-outlet></router-outlet>
-    </div>
+     <router-outlet></router-outlet>
 
 </div>

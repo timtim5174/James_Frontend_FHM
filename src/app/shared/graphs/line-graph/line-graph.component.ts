@@ -40,7 +40,10 @@ export class LineGraphComponent implements OnChanges {
       options: {
           elements: {
             line: {
-            tension: 0.05, // disables bezier curves
+            tension: 0.3, // disables bezier curves
+            },
+            point: {
+              radius : 0
             }
           },
           legend: {
