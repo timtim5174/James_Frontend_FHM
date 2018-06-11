@@ -72,18 +72,30 @@ export class BookInfoComponent implements OnInit {
 
 
   scroll = () => {
+    this.graphlogic();
+  }
+
+  graphlogic() {
     const topDistance = document.getElementById('transactions').getBoundingClientRect().top;
     const footerBot = document.getElementById('footer').getBoundingClientRect().bottom;
-    const footerBotheight = footerBot - window.innerHeight - 72;
+    let dif = 72;
+    let footerBotheight = footerBot - window.innerHeight - dif;
+
+    console.log(window.innerWidth);
+    if (window.innerWidth < 1032) {
+      footerBotheight = footerBot - window.innerHeight - 156;
+      dif = 156;
+    }
     if (topDistance >= 8.5) {
       this.transactionheight =  window.innerHeight - topDistance - 64;
-      if ((window.innerHeight + 72) >= footerBot ) {
+      if ((window.innerHeight + dif) >= footerBot ) {
         this.transactionheight = window.innerHeight - topDistance - 76.5 + footerBotheight;
-        console.log(this.transactionheight);
+        console.log(footerBotheight);
       }
     } else {
-      if ((window.innerHeight + 72) >= footerBot ) {
+      if ((window.innerHeight + dif) >= footerBot ) {
         this.transactionheight = window.innerHeight - 76.5 + footerBotheight;
+        console.log(footerBotheight);
       } else {
         this.transactionheight = window.innerHeight - 76.5;
       }
