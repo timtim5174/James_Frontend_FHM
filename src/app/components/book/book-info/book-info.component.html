@@ -4,10 +4,10 @@
     </div>
     <div class="under-stats" onscroll="scroll">
         <div class="chart" [ngStyle]="setStyles()">
-            <app-line-graph [chartName] = '"Transactions"' [xName] = '""' [yName] = '""' [type]='type' [axisLables]='axisLables' [dataset]='dataset'></app-line-graph>
-    </div>
-    <div id="transactions" class="">
-        <app-transaction-overview></app-transaction-overview>
-    </div>
+            <app-line-graph [chartName]='"Transactions"' [xName]='""' [yName]='""' [type]='type' [axisLables]='axisLables' [dataset]='dataset'></app-line-graph>
+        </div>
+        <div id="transactions" class="">
+            <app-transaction-overview></app-transaction-overview>
+        </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import { Chart } from 'chart.js';
 import { TransactionService } from '../../transaction/transaction.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';
 import { PieGraph } from '../../../shared/graphs/pie-graph/pie-graph';
+import { LineGraph } from '../../../shared/graphs/line-graph/line-graph';
 
 @Component({
   selector: 'app-book-info',
@@ -39,6 +40,7 @@ export class BookInfoComponent implements OnInit {
   }];
   chart = [];
   dataPieChart: PieGraph;
+  dataLineGraph: LineGraph;
   transactionheight = 0;
 
   constructor(private sharedBookService: SharedBookService, private sharedTransactionService: SharedTransactionService,
@@ -66,38 +68,43 @@ export class BookInfoComponent implements OnInit {
     });
   }
 
-
-  // Das Fenster des Graphen muss so hoch sein wie die Transaktionen
-  // Größe des Transaktions fensters
-
-
+  /**
+   * called when transaction container is listening a scroll-event - used for graphlogic
+   */
   scroll = () => {
     this.graphlogic();
   }
 
+  /**
+   * Logic for Graph Positioning behind Transaction Table
+   * There are numbers: difFooter: Height of Footer; difTable: Height of Table-head; difNavbar: Height of Navbar
+   * topDistance: Space between Table and Top of Page; footerBotHeight: negative Space of Footer when in View
+   * e.g. when Footer is half in Viewport, footerBotHeight will be -72/2 = -36
+   */
   graphlogic() {
+    // Defining of Variables
     const topDistance = document.getElementById('transactions').getBoundingClientRect().top;
     const footerBot = document.getElementById('footer').getBoundingClientRect().bottom;
-    let dif = 72;
-    let footerBotheight = footerBot - window.innerHeight - dif;
+    const difFooter = document.getElementById('footer').clientHeight;
+    const difTable = document.getElementById('tablehead').clientHeight;
+    const difNavbar = document.getElementById('nav').clientHeight;
+    const footerBotheight = footerBot - window.innerHeight - difFooter;
 
-    console.log(window.innerWidth);
-    if (window.innerWidth < 1032) {
-      footerBotheight = footerBot - window.innerHeight - 156;
-      dif = 156;
-    }
-    if (topDistance >= 8.5) {
-      this.transactionheight =  window.innerHeight - topDistance - 64;
-      if ((window.innerHeight + dif) >= footerBot ) {
-        this.transactionheight = window.innerHeight - topDistance - 76.5 + footerBotheight;
-        console.log(footerBotheight);
+    // When first Element of Transaction-List does NOT meet Navbar (Everyting betwenn - "When its not sticky")
+    if (topDistance >= difNavbar - difTable) {
+      this.transactionheight =  window.innerHeight - topDistance - difTable;
+      // When Footer meets viewport aswell
+      if ((window.innerHeight + difFooter) >= footerBot ) {
+        this.transactionheight = window.innerHeight - topDistance - difTable + footerBotheight;
       }
+      // "When Graph gets sticky" - graph reaches Navbar
     } else {
-      if ((window.innerHeight + dif) >= footerBot ) {
-        this.transactionheight = window.innerHeight - 76.5 + footerBotheight;
-        console.log(footerBotheight);
+      // When footer, transactions and navbar are part of viewport - "sticky graph" + transactions + footer
+      if ((window.innerHeight + difFooter) >= footerBot ) {
+        this.transactionheight = window.innerHeight - difNavbar + footerBotheight;
+        // When just footer and transactions are part of viewport - "sticky graph" + transactions
       } else {
-        this.transactionheight = window.innerHeight - 76.5;
+        this.transactionheight = window.innerHeight - difNavbar;
       }
     }
   }
@@ -109,7 +116,7 @@ export class BookInfoComponent implements OnInit {
     };
   }
 
-  linegraph(transactions: any[]) {
+  linegraph (transactions: any[]) {
     if (transactions != null) {
       this.axisLables = [];
       let z = 0;
