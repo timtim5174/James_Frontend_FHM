@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookService } from '../book.service';
 import { Book } from '../book';
-import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 import { SharedBookService } from '../shared-book.service';
 
@@ -37,7 +36,6 @@ export class DeleteBookComponent implements OnInit {
     this.bookService.deleteBook(this.book.id).subscribe(
       success => this.activeModal.close(this.book),
       error => {
-        console.log(error);
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
         this.deleteClicked = false;

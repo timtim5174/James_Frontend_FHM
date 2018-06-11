@@ -29,14 +29,26 @@
         <div>{{ generateDate(transaction.creationDate) }}</div>
       </td>
       <td class="text-center">
-        <a class="btn btn-light btnEdit">
+
+        <div class="myButton">
           <app-modal [component]="updateTransactionComponent" [payload]="transaction" (modalResult)="updateTransaction($event)">
-            <i class="fa fa-edit"></i>
+            <a class="btn btn-light btnEdit">
+              <i class="fa fa-edit"></i>
+            </a>
           </app-modal>
-        </a>
-        <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
+        </div>
+
+        <!-- <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
           <i class="fa fa-trash"></i>
-        </a>
+        </a> -->
+        <div class="myButton">
+          <app-modal [component]="deleteTransactionComponent" [payload]="transaction" (modalResult)="deleteTransaction($event)">
+            <a class="btn btn-light btnTrash">
+              <i class="fa fa-trash"></i>
+            </a>
+          </app-modal>
+        </div>
+
       </td>
     </tr>
   </tbody>

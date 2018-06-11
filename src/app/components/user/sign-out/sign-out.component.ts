@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../user/user.service';
-import { SharedSignOutService } from './shared-sign-out.service';
+import { SharedUserService } from '../shared-user.service';
 
 
 
@@ -14,17 +14,14 @@ import { SharedSignOutService } from './shared-sign-out.service';
 export class SignOutComponent implements OnInit {
   signOutMessage = 'You have been successfully logged out!';
 
-  constructor(private userService: UserService, private router: Router, private sharedService: SharedSignOutService) {
+  constructor(private userService: UserService, private router: Router, private sharedService: SharedUserService) {
     this.userService.signOut();
     this.router.navigate(['/home']);
-    setTimeout(this.redirectToHome.bind(this), 50);
+    this.sharedService.setSignOutSubject(this.signOutMessage);
   }
 
   ngOnInit() {
   }
 
-  redirectToHome() {
-    this.sharedService.errorMessage.emit(this.signOutMessage);
-  }
 }
 

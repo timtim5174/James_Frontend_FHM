@@ -1,130 +1,142 @@
 <div class="col-md-8 offset-md-2">
-  <span class="anchor" id="formRegister"></span>
-  <br class="mb-5">
-  <app-alert-closeable #MyAccountClosableAlert [style]="alertStyle" [message]="alertMessage"></app-alert-closeable>
-  <div class="card card-outline-secondary">
-    <div class="card-header">
-      <h3 class="mb-0">User Profile</h3>
-    </div>
-    <div class="card-body">
-          <div class="form-group">
-            <div class="row justify-content-start">
-              <div class="col-md-4">
-                <div *ngIf="!uploadClicked; else loading">
-                  <input type="file" (change)="onImageSelected($event)" id="file" name="files" style="display: none;" #fileInput accept="image/jpeg" size="16000000">
-                  <img [src]="img" (click)="fileInput.click()">
-                </div>
-              </div>
-            </div> 
-          </div>   
-        <br class="mb-2">
-        <form #myAccountForm="ngForm" (ngSubmit)="onSave()">
-          <div class="container">
-            <div class="form-group">
-              <div class="row justify-content-start">
-                  <div class="col-md-4">
-                      <label for="firstname" class="control-label">Firstname</label>
-                  </div>
-                  <div class="col-md-6">
-                      <input type="text" autofocus="autofocus" class="form-control" id="firstname" name="firstname"  [(ngModel)]="user.firstname" required #firstname="ngModel" placeholder="Firstname">
-                      <div *ngIf="(firstname.dirty || firstname.touched) && !firstname.valid; else space"></div>
-                      <app-error-message [control]="firstname" [message]="firstnameRequired" [error]="'required'"></app-error-message>
-                    </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="row justify-content-start">
-                  <div class="col-md-4">
-                      <label for="lastname" class="control-label">Lastname</label>
-                  </div>
-                  <div class="col-md-6">
-                      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname" required #lastname="ngModel" placeholder="Lastname">
-                      <div *ngIf="(lastname.dirty || lastname.touched) && !lastname.valid; else space"></div>
-                      <app-error-message [control]="lastname" [message]="lastnameRequired" [error]="'required'"></app-error-message>
-                    </div>
-              </div>
-            </div>
+    <span class="anchor" id="formRegister"></span>
+    <br class="mb-5">
+    <app-alert-closeable #MyAccountClosableAlert [style]="alertStyle" [message]="alertMessage"></app-alert-closeable>
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">User Profile</h3>
+        </div>
+        <div class="card-body">
             <div class="form-group">
                 <div class="row justify-content-start">
                     <div class="col-md-4">
-                        <label for="birth" class="control-label">Birth</label>
-                    </div>
-                    <div class="col-md-6">
-                        <app-datepicker #MyDatepicker (save)="onSaveDate($event)" id="birth" ></app-datepicker>
-                    </div>
-                </div>
-              </div>
-            <div class="form-group">
-                  <div class="row justify-content-start">
-                      <div class="col-md-4">
-                          <label for="email" class="control-label">Email</label>
-                      </div>
-                      <div class="col-md-6">
-                          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel" placeholder="Email">
-                          <div *ngIf="(email.dirty || email.touched) && !email.valid; else space"></div>
-                          <app-error-message [control]="email" [message]="emailRequired" [error]="'required'"></app-error-message>
-                          <app-error-message [control]="email" [message]="noValidEmail" [error]="'appEmail'"></app-error-message>
-                      </div>
-                  </div>
-            </div>
-            <div class="form-group">
-              <div class="row justify-content-start">
-                  <div class="col-md-4">
-                    <label for="password" class="control-label">Password</label>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" readonly required #password="ngModel" placeholder="Password">
-                          <div class="input-group-append">
-                              <button class="btn btn-outline-secondary" type="button" (click)="passwordChange()">
-                                  <i class="fa fa-edit"></i>
-                              </button>
-                          </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div ngModelGroup="passwords" #passwords="ngModelGroup" appEqualPasswords>
-                <div class="form-group" *ngIf="isPasswordChanged">
-                    <div class="row justify-content-start">
-                        <div class="col-md-4">
-                            <label for="newPassword" class="control-label">New Password</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="newPassword" appPassword required #passwordA="ngModel" placeholder="Password">
-                            <div *ngIf="(passwordA.dirty || passwordA.touched) && !passwordA.valid; else space"></div>
-                            <app-error-message [control]="passwordA" [message]="passwordRequired" [error]="'required'"></app-error-message>
-                            <app-error-message [control]="passwordA" [message]="passwordA?.errors?.appPassword?.value" [error]="'appPassword'"></app-error-message>
+                        <div *ngIf="!uploadClicked; else loading">
+                            <input type="file" (change)="onImageSelected($event)" id="file" name="files" style="display: none;" #fileInput accept="image/jpeg"
+                                size="16000000">
+                            <img [src]="img" (click)="fileInput.click()">
                         </div>
                     </div>
                 </div>
-                <div class="form-group" *ngIf="isPasswordChanged">
-                    <div class="row justify-content-start">
-                        <div class="col-md-4">
-                            <label for="verifyPassword" class="control-label">Verify Password</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" id="passwordCheck" name="passwordCheck" [(ngModel)]="verifyPassword"  appPassword required #passwordB="ngModel" placeholder="Password (again)">
-                            <div *ngIf="(passwordB.dirty || passwordB.touched) && (!passwordB.valid || passwords?.errors?.appEqualPasswords); else space"></div>
-                            <app-error-message [control]="passwordB" [message]="passwordRequired" [error]="'required'"></app-error-message>
-                            <app-error-message [control]="passwordB" [message]="passwordB?.errors?.appPassword?.value" [error]="'appPassword'"></app-error-message>
-                            <div *ngIf="passwordB.valid">
-                                <app-error-message [control]="passwords" [message]="passwordCheckInvalid" [error]="'appEqualPasswords'"></app-error-message>
+            </div>
+            <br class="mb-2">
+            <form #myAccountForm="ngForm" (ngSubmit)="onSave()">
+                <div class="container">
+                    <div class="form-group">
+                        <div class="row justify-content-start">
+                            <div class="col-md-4">
+                                <label for="firstname" class="control-label">Firstname</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" autofocus="autofocus" class="form-control" id="firstname" name="firstname" [(ngModel)]="user.firstname"
+                                    required #firstname="ngModel" placeholder="Firstname">
+                                <div *ngIf="(firstname.dirty || firstname.touched) && !firstname.valid; else space"></div>
+                                <app-error-message [control]="firstname" [message]="firstnameRequired" [error]="'required'"></app-error-message>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row justify-content-start">
+                            <div class="col-md-4">
+                                <label for="lastname" class="control-label">Lastname</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname" required #lastname="ngModel"
+                                    placeholder="Lastname">
+                                <div *ngIf="(lastname.dirty || lastname.touched) && !lastname.valid; else space"></div>
+                                <app-error-message [control]="lastname" [message]="lastnameRequired" [error]="'required'"></app-error-message>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row justify-content-start">
+                            <div class="col-md-4">
+                                <label for="birth" class="control-label">Birth</label>
+                            </div>
+                            <div class="col-md-6">
+                                <app-datepicker #MyDatepicker (save)="onSaveDate($event)" id="birth"></app-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row justify-content-start">
+                            <div class="col-md-4">
+                                <label for="email" class="control-label">Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel"
+                                    placeholder="Email">
+                                <div *ngIf="(email.dirty || email.touched) && !email.valid; else space"></div>
+                                <app-error-message [control]="email" [message]="emailRequired" [error]="'required'"></app-error-message>
+                                <app-error-message [control]="email" [message]="noValidEmail" [error]="'appEmail'"></app-error-message>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row justify-content-start">
+                            <div class="col-md-4">
+                                <label for="password" class="control-label">Password</label>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" readonly required
+                                        #password="ngModel" placeholder="Password">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" (click)="passwordChange()">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngModelGroup="passwords" #passwords="ngModelGroup" appEqualPasswords>
+                        <div class="form-group" *ngIf="isPasswordChanged">
+                            <div class="row justify-content-start">
+                                <div class="col-md-4">
+                                    <label for="newPassword" class="control-label">New Password</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="newPassword" appPassword required
+                                        #passwordA="ngModel" placeholder="Password">
+                                    <div *ngIf="(passwordA.dirty || passwordA.touched) && !passwordA.valid; else space"></div>
+                                    <app-error-message [control]="passwordA" [message]="passwordRequired" [error]="'required'"></app-error-message>
+                                    <app-error-message [control]="passwordA" [message]="passwordA?.errors?.appPassword?.value" [error]="'appPassword'"></app-error-message>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="isPasswordChanged">
+                            <div class="row justify-content-start">
+                                <div class="col-md-4">
+                                    <label for="verifyPassword" class="control-label">Verify Password</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" id="passwordCheck" name="passwordCheck" [(ngModel)]="verifyPassword" appPassword
+                                        required #passwordB="ngModel" placeholder="Password (again)">
+                                    <div *ngIf="(passwordB.dirty || passwordB.touched) && (!passwordB.valid || passwords?.errors?.appEqualPasswords); else space"></div>
+                                    <app-error-message [control]="passwordB" [message]="passwordRequired" [error]="'required'"></app-error-message>
+                                    <app-error-message [control]="passwordB" [message]="passwordB?.errors?.appPassword?.value" [error]="'appPassword'"></app-error-message>
+                                    <div *ngIf="passwordB.valid">
+                                        <app-error-message [control]="passwords" [message]="passwordCheckInvalid" [error]="'appEqualPasswords'"></app-error-message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-md-1 offset-md-4">
+                            <button [disabled]="!myAccountForm.valid || !user.birth || saveClicked" type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-start">
-                <div class="col-md-1 offset-md-4">
-                    <button [disabled]="!myAccountForm.valid || !user.birth || saveClicked" type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-          </div>
-        </form>
-  </div>
-  </div>
-  <br class="mb-5">
+            </form>
+        </div>
+    </div>
+    <br class="mb-5">
+</div>
+<div class="myFlex">
+    <app-modal [component]="deleteUserComponent" [payload]="user" (modalResult)="deleteUser()">
+        <span id="deleteAccount">Delete account</span>
+    </app-modal>
 </div>
 
 <!--  A little space, used when no app-error-message is shown - otherwise
@@ -136,6 +148,6 @@
 <!--   A loading icon which is shown until the authentication is complete  -->
 <ng-template #loading>
     <span>
-      <img src="/assets/loading.svg">
+        <img src="/assets/loading.svg">
     </span>
 </ng-template>

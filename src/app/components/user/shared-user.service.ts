@@ -7,6 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class SharedUserService {
   changeAuthenticationStatus = new BehaviorSubject<boolean>(false);
   imgSubject = new BehaviorSubject<object>(null);
+  signOutSubject = new BehaviorSubject<string>(null);
 
   constructor() { }
 
@@ -24,5 +25,13 @@ export class SharedUserService {
 
   getUserImage(): Observable<object> {
     return this.imgSubject.asObservable();
+  }
+
+  setSignOutSubject(message: string) {
+    this.signOutSubject.next(message);
+  }
+
+  getSignOutSubject(): Observable<string> {
+    return this.signOutSubject.asObservable();
   }
 }

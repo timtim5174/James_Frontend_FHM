@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">Delete account</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form id="myForm" (ngSubmit)="onSubmit()" #deleteUserForm="ngForm">
+      <div class="form-group">
+        <label for="password" class="control-label">Confirm your password</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" appPassword required
+          #password="ngModel">
+        <div *ngIf="(password.dirty || password.touched) && !password.valid; else space"></div>
+        <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
+        <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
+      </div>
+    </form>
+    <app-alert-closeable #DeleteUserCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
+  </div>
+</div>
+<div class="modal-footer">
+  <button *ngIf="!deleteClicked; else loading" form="myForm" [disabled]="!deleteUserForm.valid" type="submit" class="btn btn-danger">Delete</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>
+
+
+
+
+<!--  A little space, used when no app-error-message is shown - otherwise
+        the sign-in container would shrink and grow when messages appear -->
+<ng-template #space>
+  <span class="m-1"></span>
+</ng-template>
+
+
+<!--   A loading icon which is shown until the authentication is complete  -->
+<ng-template #loading>
+  <span>
+    <img src="/assets/loading.svg">
+  </span>
+</ng-template>

@@ -54,6 +54,8 @@ import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
 import { SharedCategoryService } from './components/category/shared-category.service';
 import { UpdateTransactionComponent } from './components/transaction/update-transaction/update-transaction.component';
+import { DeleteTransactionComponent } from './components/transaction/delete-transaction/delete-transaction.component';
+import { DeleteUserComponent } from './components/user/delete-user/delete-user.component';
 
 
 
@@ -100,7 +102,9 @@ import { UpdateTransactionComponent } from './components/transaction/update-tran
     MapTransactionDatesPipe,
     PieGraphComponent,
     CreateTransactionComponent,
-    UpdateTransactionComponent
+    UpdateTransactionComponent,
+    DeleteTransactionComponent,
+    DeleteUserComponent
   ],
   imports: [
     NgbModule.forRoot(),

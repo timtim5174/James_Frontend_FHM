@@ -52,6 +52,11 @@ export class UserService {
     document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
+  deleteUser(pw: string): Observable<any> {
+    return this.http.delete<User>(this.baseURL + `/deleteUser/${pw}`).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   getUserData(): Observable<User> {
     return this.http.get<User>(this.baseURL + '/userData', this.options).pipe(

@@ -1,4 +1,4 @@
-img{
+img {
     width: 150px; 
     height: 150px;
     border: 1px solid rgb(190, 190, 190);
@@ -8,4 +8,15 @@ img{
 
 .form-control{
     background-color: white;
+}
+
+.myFlex {
+    display: flex;
+    justify-content: center;
+}
+
+#deleteAccount {
+    color: black;
+    opacity: 0.3;
+    cursor: pointer;
 }

@@ -6,6 +6,8 @@ import { AlertCloseableComponent } from '../../../shared/notifications/alert-clo
 import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SharedUserService } from '../shared-user.service';
+import { DeleteUserComponent } from '../delete-user/delete-user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-account',
@@ -24,6 +26,8 @@ export class MyAccountComponent implements OnInit {
   uploadClicked = false;
   saveClicked = false;
   selectedFile: File = null;
+
+  deleteUserComponent = DeleteUserComponent;
 
   @ViewChild('MyAccountClosableAlert')
   private closeableAlert: AlertCloseableComponent;
@@ -47,7 +51,8 @@ export class MyAccountComponent implements OnInit {
   passwordCheckInvalid = 'Passwords must match';
   errorMessage = '';
 
-  constructor(private userService: UserService, private sharedUserService: SharedUserService, private sanitizer: DomSanitizer) { }
+  constructor(private userService: UserService, private sharedUserService: SharedUserService, private sanitizer: DomSanitizer,
+    private router: Router) { }
 
   ngOnInit() {
     this.sharedUserService.getUserImage().subscribe(img => {
@@ -130,5 +135,9 @@ export class MyAccountComponent implements OnInit {
     setTimeout(() => {
       this.closeableAlert.closeAlert();
     }, 5000);
+  }
+
+  deleteUser() {
+    this.router.navigate(['/home']);
   }
 }

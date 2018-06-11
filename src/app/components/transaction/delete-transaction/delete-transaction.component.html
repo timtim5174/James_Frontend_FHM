@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Delete Transaction</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form id="myForm" (ngSubmit)="onSubmit()" #deleteTransaction="ngForm">
+      <p>{{modalInput.title}}</p>
+    </form>
+  </div>
+  <app-alert-closeable #DeleteTransactionCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
+</div>
+<div class="modal-footer">
+  <button *ngIf="!deleteClicked; else loading" form="myForm" [disabled]="!deleteTransaction.valid" type="submit" class="btn btn-danger">Delete</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>
+
+
+<!--   A loading icon which is shown until the deletion is complete  -->
+<ng-template #loading>
+  <span>
+    <img src="/assets/loading.svg">
+  </span>
+</ng-template>

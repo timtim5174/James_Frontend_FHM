@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedSignOutService } from '../user/sign-out/shared-sign-out.service';
+import { SharedUserService } from '../user/shared-user.service';
 
 
 @Component({
@@ -9,8 +9,8 @@ import { SharedSignOutService } from '../user/sign-out/shared-sign-out.service';
 })
 export class HomeComponent implements OnInit {
   errorMessage = '';
-  constructor(private sharedService: SharedSignOutService) {
-    this.sharedService.errorMessage.subscribe(
+  constructor(private sharedService: SharedUserService) {
+    this.sharedService.getSignOutSubject().subscribe(
       message => this.errorMessage = message
     );
   }

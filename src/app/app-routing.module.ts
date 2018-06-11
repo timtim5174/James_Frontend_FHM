@@ -26,6 +26,8 @@ import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component
 import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
 import { UpdateTransactionComponent } from './components/transaction/update-transaction/update-transaction.component';
+import { DeleteTransactionComponent } from './components/transaction/delete-transaction/delete-transaction.component';
+import { DeleteUserComponent } from './components/user/delete-user/delete-user.component';
 
 
 
@@ -44,18 +46,21 @@ const routes: Routes = [
   { path: 'legalnotice', component: LegalNoticeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'members', component: MembersComponent },
+  { path: 'deleteTransaction', component: DeleteTransactionComponent },
+  { path: 'deleteUser', component: DeleteUserComponent },
   {
     path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
       { path: 'dashboard', component: DashboardMainComponent },
       { path: 'myAccount', component: MyAccountComponent },
       { path: 'sign-out', component: SignOutComponent },
-      { path: 'book/:id', component: BookViewComponent, children: [
+      {
+        path: 'book/:id', component: BookViewComponent, children: [
           { path: 'home', component: HomeComponent },
           { path: 'transactions', component: TransactionOverviewComponent },
           { path: 'createTransaction', component: CreateTransactionComponent },
           { path: 'updateTransaction', component: UpdateTransactionComponent },
           { path: 'info', component: BookInfoComponent },
-          { path: 'statistics', component: BookStatisticsComponent}
+          { path: 'statistics', component: BookStatisticsComponent }
         ]
       }
     ]
