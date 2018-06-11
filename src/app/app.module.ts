@@ -100,15 +100,15 @@ import { UpdateTransactionComponent } from './components/transaction/update-tran
     MapTransactionDatesPipe,
     PieGraphComponent,
     CreateTransactionComponent,
-    UpdateTransactionComponent,
+    UpdateTransactionComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
   ],
   providers: [UserService, NgbActiveModal, SharedBookService, SharedUserService, SharedTransactionService, SharedCategoryService],
   bootstrap: [AppComponent]

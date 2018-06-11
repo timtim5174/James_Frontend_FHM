@@ -4,7 +4,7 @@ import { Observable, of, throwError as _throw } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
-import { Book } from './book';
+import { Book, BookPeriod } from './book';
 import { User } from '../user/user';
 
 @Injectable({
@@ -19,9 +19,9 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.baseURL + '/getBooks').pipe(
       map(books => books.sort(((a: Book, b: Book) => {
-        if (a.title > b.title) {
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
           return 1;
-        } else if (a.title < b.title) {
+        } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
           return -1;
         } else {
           return 0;
@@ -30,7 +30,6 @@ export class BookService {
       catchError(this.handleError)
     );
   }
-
 
   createBook(book: Partial<Book>): Observable<Book> {
     return this.http.post<Book>(this.baseURL + '/createBook', book).pipe(
