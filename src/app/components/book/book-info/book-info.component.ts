@@ -87,7 +87,7 @@ export class BookInfoComponent implements OnInit {
       dif = 156;
     }
     if (topDistance >= 8.5) {
-      this.transactionheight =  window.innerHeight - topDistance - 72;
+      this.transactionheight =  window.innerHeight - topDistance - 64;
       if ((window.innerHeight + dif) >= footerBot ) {
         this.transactionheight = window.innerHeight - topDistance - 76.5 + footerBotheight;
         console.log(footerBotheight);
