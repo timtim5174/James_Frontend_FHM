@@ -49,7 +49,7 @@ export class CreateTransactionComponent implements OnInit {
     private sharedCategoryService: SharedCategoryService) { }
 
   ngOnInit() {
-    this.sharedBookService.getBookData().subscribe(book => {
+    this.sharedBookService.getSelectedBook().subscribe(book => {
       this.book = book;
       this.newTransaction.bookId = this.book.id;
       this.sharedCategoryService.getCategorys().subscribe(categorys => {
