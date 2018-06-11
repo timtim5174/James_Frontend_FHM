@@ -52,6 +52,15 @@ export class BookSidebarComponent implements OnInit {
 
   addBook(book: Book) {
     this.books.push(book);
+    this.books.sort((a: Book, b: Book) => {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
     this.selectedBook = book;
     this.clickBook(book);
   }

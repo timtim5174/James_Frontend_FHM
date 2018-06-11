@@ -16,3 +16,8 @@ export interface BookInfo {
     rateOfIncomes?: number;
     rateOfOutgoings?: number;
 }
+
+export interface BookPeriod {
+    startDate: Date;
+    endDate: Date;
+}
