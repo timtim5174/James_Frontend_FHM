@@ -1,20 +1,21 @@
-.chart-container {
-        border: 5px solid blue;
+.chart {
+        //border: 5px solid blue;
         position: sticky;
         top: 76.5px;
         width: 100%;
-        height: 40vh;
-        margin-bottom: calc(-40vh - 64px);
-        opacity: 0.2;
+        // height: 40vh;
+        // margin-bottom: calc(-40vh - 64px);
+        //bottom: 0;
+        opacity: 0.07;
         z-index: -1;
-  }
-
+}
+.transactions{
+    height: 100%;
+}
 .under-stats {
-    position: relative;
     height: 80%;
     margin-top:120px;
 }
-
 .upper-container {
     height: 20%;
 }
