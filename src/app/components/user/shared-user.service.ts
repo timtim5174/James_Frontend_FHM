@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { User, UserInfo } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class SharedUserService {
   changeAuthenticationStatus = new BehaviorSubject<boolean>(false);
   imgSubject = new BehaviorSubject<object>(null);
   signOutSubject = new BehaviorSubject<string>(null);
+  userForBookSubject = new BehaviorSubject<UserInfo[]>(null);
 
   constructor() { }
 
@@ -33,5 +35,13 @@ export class SharedUserService {
 
   getSignOutSubject(): Observable<string> {
     return this.signOutSubject.asObservable();
+  }
+
+  setUserForBookSubject(user: UserInfo[]) {
+    this.userForBookSubject.next(user);
+  }
+
+  getUserForBookSubject(): Observable<UserInfo[]> {
+    return this.userForBookSubject.asObservable();
   }
 }

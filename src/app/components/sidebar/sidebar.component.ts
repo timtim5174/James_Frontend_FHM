@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
   @Input() shouldToggle = false;
   @Output() shouldPush = new EventEmitter<boolean>();
   selected: boolean;
-
+  sidebarHeight = 0;
   constructor() {
   }
 
@@ -50,6 +50,7 @@ export class SidebarComponent implements OnInit {
   pushContent() {
     this.shouldPush.emit(!this.shouldPush);
   }
+
 
 
 }

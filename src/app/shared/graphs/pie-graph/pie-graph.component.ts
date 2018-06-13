@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -11,25 +11,34 @@ export class PieGraphComponent implements OnInit, OnChanges {
     labels: string[],
     datasets: [{
       backgroundColor: string[],
-      data: number []
+      data: number[]
     }]
   };
 
   pieChart: any = [];
-  constructor() { }
+  checkObject: any = this.pieChart;
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
   }
 
   ngOnChanges() {
-    this.initPieChart();
+    if (this.pieChart !== this.checkObject) {
+      this.pieChart.destroy();
+    }
+    if (this.elementRef.nativeElement.querySelector(`#pieChart`) != null && this.data !== undefined) {
+      this.initPieChart();
+    }
   }
 
   private initPieChart() {
     this.pieChart = new Chart('pieChart', {
-      type: 'pie',
+      type: 'doughnut',
       data: this.data,
       options: {
+        animation: {
+          duration: 2000, // general animation time
+        },
         maintainAspectRatio: false,
         title: {
           display: true,

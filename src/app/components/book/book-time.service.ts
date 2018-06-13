@@ -10,6 +10,7 @@ export class TimeService {
 
 
   getCurrentBookPeriod(book: Book): BookPeriod {
+    book.timeFrame = new Date(book.timeFrame);
     if (book.rangeEnum === 'DAILY') {
       return {
         startDate: new Date(),

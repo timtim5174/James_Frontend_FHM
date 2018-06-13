@@ -19,7 +19,7 @@ export class LineGraphComponent implements OnChanges {
     if (this.chart !== this.checkObject) {
       this.chart.destroy();
     }
-    if (this.elementRef.nativeElement.querySelector(`#canvas`) != null) {
+    if (this.elementRef.nativeElement.querySelector(`#canvas`) != null && this.input !== undefined) {
       this.chartit();
     }
   }
