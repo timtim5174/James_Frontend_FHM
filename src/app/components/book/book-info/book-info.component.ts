@@ -169,32 +169,59 @@ export class BookInfoComponent implements OnInit {
   }
 
   pie(transactions: Transaction[]) {
+    /**
+     * filter Transaction for right Dates
+     */
     const filteredArray = transactions.filter(transaction => {
       const compareDate = new Date(transaction.timeFrame);
       return (compareDate >= this.dates.startDate && compareDate <= this.dates.endDate);
     });
 
-    const positive = filteredArray.filter(transaction => {
+    /**
+     * Filter and Reduce just positive ones
+     */
+    const positiveArray = filteredArray.filter(transaction => {
       return (transaction.amount > 0);
-    }).reduce((transactionA, transactionB) => {
-      return { ...transactionA, amount: transactionA.amount + transactionB.amount };
     });
-    this.incomes = positive.amount;
+    let positive;
+    if (positiveArray.length > 1) {
+      positive = positiveArray.reduce((transactionA, transactionB) => {
+        return { ...transactionA, amount: transactionA.amount + transactionB.amount };
+      });
+      this.incomes = positive.amount;
+    } else if (positiveArray.length === 1) {
+      this.incomes = positiveArray[0].amount;
+    } else {
+      this.incomes = 0;
+    }
 
-    const negative = filteredArray.filter(transaction => {
+
+    /**
+     * Filter and reduce just negative ones
+     */
+    const negativeArray = filteredArray.filter(transaction => {
       return (transaction.amount < 0);
-    }).reduce((transactionA, transactionB) => {
-      return { ...transactionA, amount: transactionA.amount + transactionB.amount };
     });
-    this.outgoings = negative.amount;
+    let negative;
+    if (negativeArray.length > 1) {
+      negative = negativeArray.reduce((transactionA, transactionB) => {
+        return { ...transactionA, amount: transactionA.amount + transactionB.amount };
+      });
+      this.outgoings = negative.amount;
+    } else if (negativeArray.length === 1) {
+      this.outgoings = negativeArray[0].amount;
+    } else {
+      this.outgoings = 0;
+    }
     this.dataPieChart = {
       labels: ['Incomes', 'Outgoings'],
       datasets: [
         {
           backgroundColor: ['rgb(23,162,184)', 'rgb(220,53,69)'],
-          data: [positive.amount, negative.amount]
+          data: [this.incomes, this.outgoings]
         }
-      ]
+      ],
+      legend: false
     };
   }
 

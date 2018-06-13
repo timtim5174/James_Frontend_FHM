@@ -12,7 +12,8 @@ export class PieGraphComponent implements OnInit, OnChanges {
     datasets: [{
       backgroundColor: string[],
       data: number[]
-    }]
+    }],
+    legend: boolean;
   };
 
   pieChart: any = [];
@@ -37,7 +38,10 @@ export class PieGraphComponent implements OnInit, OnChanges {
       data: this.data,
       options: {
         animation: {
-          duration: 2000, // general animation time
+          duration: 2500, // general animation time
+        },
+        legend: {
+          display: this.data.legend
         },
         maintainAspectRatio: false,
         title: {

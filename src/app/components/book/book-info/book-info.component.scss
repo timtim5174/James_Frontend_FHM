@@ -12,9 +12,6 @@
 .under-stats {
     margin-top:120px;
 }
-.upper-container {
-    height: 40vh;
-}
 .myContainer {
     height:100%;
 }
@@ -25,8 +22,11 @@
 }
 
 .flex2 {
-    margin-top: 35px;
     width: 50%;
     margin-left:10%;
     flex-grow: 1;
+}
+
+.pieAndDash {
+    margin-top: 50px;
 }

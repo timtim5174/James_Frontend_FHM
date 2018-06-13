@@ -1,30 +1,24 @@
-import { Component, OnInit, Input, AfterViewInit, OnChanges, ElementRef } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-import { LineGraph } from './line-graph';
+import { BarGraph } from './bar-graph';
 
 @Component({
-  selector: 'app-line-graph',
-  templateUrl: './line-graph.component.html',
-  styleUrls: ['./line-graph.component.scss']
+  selector: 'app-bar-graph',
+  templateUrl: './bar-graph.component.html',
+  styleUrls: ['./bar-graph.component.scss']
 })
-export class LineGraphComponent implements OnChanges {
-  @Input() input: LineGraph;
-
+export class BarGraphComponent implements OnChanges {
+  @Input() input: BarGraph;
+  constructor() { }
+  /**
+   * Inputs: data, options
+   */
   chart: any = [];
-  checkObject: any = this.chart;
-  constructor(private elementRef: ElementRef) {
-  }
-
   ngOnChanges() {
-    if (this.chart !== this.checkObject) {
-      this.chart.destroy();
-    }
-    if (this.elementRef.nativeElement.querySelector(`#canvas`) != null && this.input !== undefined) {
-      this.chartit();
-    }
+
   }
 
-  private chartit() {
+  chartit() {
     this.chart = new Chart('canvas', {
       type: this.input.type,
       data: {
@@ -32,23 +26,23 @@ export class LineGraphComponent implements OnChanges {
         datasets: this.input.dataset
       },
       options: {
-          elements: {
-            line: {
-            tension: this.input.elements.tension, // disables bezier curves
-            },
-            point: {
-              radius : this.input.elements.radius
-            }
+        elements: {
+          line: {
+            tension: this.input.elements.tension,
           },
-          legend: {
-            display: false
+          point: {
+            radius: this.input.elements.radius
+          }
+        },
+        legend: {
+          display: false
         },
         animation: {
           duration: 2500
         },
-          maintainAspectRatio: false,
-          responsive: true,
-          title: {
+        maintainAspectRatio: false,
+        responsive: true,
+        title: {
           display: false,
           text: this.input.chartname
         },

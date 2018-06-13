@@ -55,6 +55,7 @@ import { SharedCategoryService } from './components/category/shared-category.ser
 import { UpdateTransactionComponent } from './components/transaction/update-transaction/update-transaction.component';
 import { DeleteTransactionComponent } from './components/transaction/delete-transaction/delete-transaction.component';
 import { DeleteUserComponent } from './components/user/delete-user/delete-user.component';
+import { BarGraphComponent } from './shared/graphs/bar-graph/bar-graph.component';
 
 
 
@@ -102,7 +103,8 @@ import { DeleteUserComponent } from './components/user/delete-user/delete-user.c
     CreateTransactionComponent,
     UpdateTransactionComponent,
     DeleteTransactionComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    BarGraphComponent
   ],
   imports: [
     NgbModule.forRoot(),
