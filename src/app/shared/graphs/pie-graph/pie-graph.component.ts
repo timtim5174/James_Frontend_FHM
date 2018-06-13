@@ -37,9 +37,9 @@ export class PieGraphComponent implements OnInit, OnChanges {
       type: 'doughnut',
       data: this.data,
       options: {
-        animation: {
+        /* animation: {
           duration: 2500, // general animation time
-        },
+        }, */
         legend: {
           display: this.data.legend
         },
