@@ -54,6 +54,11 @@ export class UserService {
 
   deleteUser(pw: string): Observable<any> {
     return this.http.delete<User>(this.baseURL + `/deleteUser/${pw}`).pipe(
+      map(data => {
+        this.isAuthenticated = false;
+        this.sharedUserService.setAuthentificationStatus(false);
+        document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      }),
       catchError(this.handleError)
     );
   }

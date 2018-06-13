@@ -15,18 +15,18 @@
       <div *ngIf="(transactionTitle.dirty || transactionTitle.touched) && !transactionTitle.valid;"></div>
       <app-error-message [control]='transactionTitle' [error]="'required'" [message]="'Enter a title'"></app-error-message>
 
-      
+
       <div class="form-group mt-4"></div>
       <label for="range">Amount</label>
       <input type="number" class="form-control" maxlength="10" name="amount" [(ngModel)]="newTransaction.amount" required placeholder=""
-      #transactionAmount="ngModel">
+        #transactionAmount="ngModel">
       <div *ngIf="!transactionAmount.valid? space : null"></div>
       <app-error-message [control]='transactionAmount' [error]="'required'" [message]="'Fill in an amount'"></app-error-message>
 
       <div class="form-group mt-4">
         <label for="category">Category</label>
-        <select name="category" [(ngModel)]="newTransaction.categoryId" class="form-control" id="category">
-            <option *ngFor="let category of categorys" [value]='category.categoryId'>{{ category.name }}</option>
+        <select name="category" [(ngModel)]="preSelectedCategory.categoryId" class="form-control" id="category">
+          <option *ngFor="let category of categorys" [value]='category.categoryId'>{{ category.name }}</option>
         </select>
       </div>
 
@@ -37,8 +37,8 @@
         </div>
       </div>
       <div *ngIf="!isOptionsOpened; else timeFrameOptions"></div>
-      
-      
+
+
     </form>
   </div>
 </div>
@@ -52,7 +52,7 @@
   <div class="form-group mt-4"></div>
   <label for="range">Comment</label>
   <input type="text" class="form-control" name="comment" [(ngModel)]="newTransaction.comment" placeholder="Comment" #transactionComment="ngModel">
-  
+
   <div class="form-group mt-4">
     <label for="range">Billing cycle</label>
     <select name="rangeEnum" (click)="rangeEnumChanged()" [(ngModel)]="newTransaction.rangeEnum" class="form-control" id="range">
@@ -63,11 +63,11 @@
       <option value="YEARLY">Yearly</option>
     </select>
   </div>
-  
+
   <div class="mt-4">
     <app-datepicker #MyDatepicker (save)="datePicked($event)" [title]="'Settlement date'"></app-datepicker>
   </div>
-  
+
 </ng-template>
 
 <ng-template #space>

@@ -19,7 +19,6 @@ import { DateDirective } from './components/user/authentication/date.directive';
 import { DatepickerComponent } from './shared/datepicker/datepicker.component';
 import { DataPrivacyComponent } from './components/data-privacy/data-privacy.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { MyAccountComponent } from './components/user/my-account/my-account.component';
@@ -56,6 +55,7 @@ import { SharedCategoryService } from './components/category/shared-category.ser
 import { UpdateTransactionComponent } from './components/transaction/update-transaction/update-transaction.component';
 import { DeleteTransactionComponent } from './components/transaction/delete-transaction/delete-transaction.component';
 import { DeleteUserComponent } from './components/user/delete-user/delete-user.component';
+import { BarGraphComponent } from './shared/graphs/bar-graph/bar-graph.component';
 
 
 
@@ -76,7 +76,6 @@ import { DeleteUserComponent } from './components/user/delete-user/delete-user.c
     DatepickerComponent,
     DataPrivacyComponent,
     LegalNoticeComponent,
-    ContactComponent,
     DropdownComponent,
     MyAccountComponent,
     ModalComponent,
@@ -104,7 +103,8 @@ import { DeleteUserComponent } from './components/user/delete-user/delete-user.c
     CreateTransactionComponent,
     UpdateTransactionComponent,
     DeleteTransactionComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    BarGraphComponent
   ],
   imports: [
     NgbModule.forRoot(),

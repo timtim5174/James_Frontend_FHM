@@ -1,12 +1,17 @@
-<div class="myContainer">
-    <div class="upper-container">
-        <app-pie-graph [data]="dataPieChart"></app-pie-graph>
+<div id="wrapper" class="myContainer">
+    <div class="d-flex flex-row pieAndDash">
+        <div class="flex2">
+            <app-dashboard-main-widget [users]="this.users" [members]="this.users.length" [bookName]="this.book.title" [incomes]="this.incomes" [outgoings]="this.outgoings"></app-dashboard-main-widget>
+        </div>
+        <div class="upper-container flex1">
+            <app-pie-graph [data]="dataPieChart"></app-pie-graph>
+        </div>
     </div>
-    <div class="under-stats" onscroll="scroll">
-        <div class="chart" [ngStyle]="setStyles()">
+    <div class="under-stats">
+        <div class="chart" [ngStyle]="setStyles()" onscroll="scroll">
             <app-line-graph [input]="lineGraph"></app-line-graph>
         </div>
-        <div id="transactions" class="">
+        <div id="transactions">
             <app-transaction-overview></app-transaction-overview>
         </div>
     </div>

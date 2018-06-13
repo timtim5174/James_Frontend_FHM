@@ -7,6 +7,7 @@ import { AlertCloseableComponent } from '../../../shared/notifications/alert-clo
 import { Router } from '@angular/router';
 import { DeleteBookComponent } from '../delete-book/delete-book.component';
 import { SharedBookService } from '../shared-book.service';
+import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
 
 
 
@@ -28,7 +29,8 @@ export class BookSidebarComponent implements OnInit {
 
   @ViewChild('BookSidebarCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
-  constructor(private bookService: BookService, private router: Router, private sharedBookService: SharedBookService) { }
+  constructor(private bookService: BookService, private router: Router, private sharedBookService: SharedBookService,
+    private sharedSidebarService: SharedSidebarService) { }
 
   ngOnInit() {
     this.bookService.getBooks().subscribe(
@@ -89,7 +91,7 @@ export class BookSidebarComponent implements OnInit {
   }
 
   isBookSelected(book: Book) {
-    return this.selectedBook.id === book.id ? true : false;
+    return this.selectedBook.id === book.id && this.sharedSidebarService.selectedIcon === 'book' ? true : false;
   }
 
   clickBook(book: Book) {
@@ -97,6 +99,7 @@ export class BookSidebarComponent implements OnInit {
     this.sharedBookService.setUpdateDeleteBookSubject(book);
     this.sharedBookService.setAddUserToBookSubject(book);
     this.sharedBookService.setSelectedBook(book);
+    this.sharedSidebarService.setSelectedIcon('book');
     this.router.navigate(['/main/book', book.id, 'info']);
   }
 

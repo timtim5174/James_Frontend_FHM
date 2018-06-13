@@ -15,11 +15,9 @@ export class SharedTransactionService {
     transactions = transactions.sort(((a: Transaction, b: Transaction) =>
       (new Date(a.creationDate).getTime()) - (new Date(b.creationDate).getTime())));
     this.transactions.next(transactions);
-    console.log('setTransactions');
   }
 
   getTransactions(): Observable<Transaction[]> {
-    console.log('getTransactions');
     return this.transactions.asObservable();
   }
 

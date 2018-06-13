@@ -12,14 +12,5 @@ export class BookStatisticsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.dataPieChart = {
-      labels: ['Incomes', 'Outgoings'],
-      datasets: [
-        {
-          backgroundColor: ['#2e86f7', '#dcdedf'],
-          data: [2500, 3000]
-        }
-      ]
-    };
   }
 }

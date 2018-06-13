@@ -24,18 +24,23 @@ export class CreateTransactionComponent implements OnInit {
     comment: '',
     bookId: '',
     categoryId: '',
-    amount: 0,
+    amount: null,
     rangeEnum: null,
     timeFrame: null,
     creationDate: null
   };
   book: Book;
-  selectedCategory: Category;
+  preSelectedCategory: Partial<Category> = {
+    categoryId: ''
+  };
   categorys: Category[] = [];
   errorMessage = '';
   isOptionsOpened = false;
+
+
   @ViewChild('CreateBookCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
+
   @ViewChild('MyDatepicker')
   private datepicker: DatepickerComponent;
   datepickerDate: NgbDateStruct;
@@ -54,7 +59,7 @@ export class CreateTransactionComponent implements OnInit {
       this.newTransaction.bookId = this.book.id;
       this.sharedCategoryService.getCategorys().subscribe(categorys => {
         this.categorys.push(...categorys);
-        this.selectedCategory = this.categorys[0];
+        this.preSelectedCategory = this.categorys.find(category => category.name === 'Salary');
       });
     });
   }

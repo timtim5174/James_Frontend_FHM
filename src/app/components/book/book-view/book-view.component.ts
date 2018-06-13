@@ -7,6 +7,8 @@ import { SharedTransactionService } from '../../transaction/shared-transaction.s
 import { CategoryService } from '../../category/category.service';
 import { SharedCategoryService } from '../../category/shared-category.service';
 import { AddUserToBookComponent } from '../add-user-to-book/add-user-to-book.component';
+import { UserService } from '../../user/user.service';
+import { SharedUserService } from '../../user/shared-user.service';
 
 @Component({
   selector: 'app-book-view',
@@ -30,7 +32,9 @@ export class BookViewComponent implements OnInit {
     private sharedTransactionService: SharedTransactionService,
     private categoryService: CategoryService,
     private sharedCategoryService: SharedCategoryService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private userService: UserService,
+  private sharedUserService: SharedUserService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -39,6 +43,10 @@ export class BookViewComponent implements OnInit {
         this.transactionService.getTransactions(this.id).subscribe(
           transactions => {
             this.sharedTransactionService.setTransactions(transactions);
+          });
+
+          this.userService.getUsersOfBook(this.id).subscribe(books => {
+            this.sharedUserService.setUserForBookSubject(books);
           });
       }
       this.categoryService.getBookCategories(this.id).subscribe(categorys => {

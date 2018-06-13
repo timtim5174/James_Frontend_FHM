@@ -6,4 +6,5 @@ export interface PieGraph {
             data: number []
         }
     ];
+    legend: boolean;
 }
