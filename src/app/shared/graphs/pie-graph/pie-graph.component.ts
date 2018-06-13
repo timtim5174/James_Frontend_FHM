@@ -34,7 +34,7 @@ export class PieGraphComponent implements OnInit, OnChanges {
 
   private initPieChart() {
     this.pieChart = new Chart('pieChart', {
-      type: 'doughnut',
+      type: 'pie',
       data: this.data,
       options: {
         /* animation: {
