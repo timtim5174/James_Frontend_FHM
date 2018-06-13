@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteTransactionComponent } from './delete-transaction.component';
 
-describe('DeleteTransactionComponent', () => {
+xdescribe('DeleteTransactionComponent', () => {
   let component: DeleteTransactionComponent;
   let fixture: ComponentFixture<DeleteTransactionComponent>;
 
