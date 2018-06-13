@@ -1,10 +1,7 @@
 import { browser, by, element, Key, WebElement } from 'protractor';
-import { async } from 'q';
 
-describe('User test', () => {
+describe('User login test', () => {
     browser.waitForAngularEnabled(false);
-    let email: WebElement;
-    let password: WebElement;
 
     beforeEach(async() => {
         await browser.get('http:/localhost:4200');
@@ -14,8 +11,8 @@ describe('User test', () => {
     // Login
     it('should not possible to login user -> password wrong', async() => {
         await element(by.name('login')).click();
-        email = element(by.name('email'));
-        password = element(by.name('password'));
+        const email: WebElement = element(by.name('email'));
+        const password: WebElement = element(by.name('password'));
         email.sendKeys('tim@test.de', Key.RETURN);
         password.sendKeys('test123456', Key.RETURN);
         await browser.sleep(3000);
@@ -25,6 +22,8 @@ describe('User test', () => {
 
     it('should possible to login user', async() => {
         await element(by.name('login')).click();
+        const email: WebElement = element(by.name('email'));
+        const password: WebElement = element(by.name('password'));
         email.sendKeys('tim@test.de', Key.RETURN);
         password.sendKeys('test1234', Key.RETURN);
         await browser.sleep(3000);
@@ -37,5 +36,4 @@ describe('User test', () => {
         const alert = await element(by.className('alert')).isPresent();
         expect(alert).toBe(true);
     });
-
 });
