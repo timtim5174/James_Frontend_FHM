@@ -217,7 +217,7 @@ export class BookInfoComponent implements OnInit {
       labels: ['Incomes', 'Outgoings'],
       datasets: [
         {
-          backgroundColor: ['rgb(23,162,184)', 'rgb(220,53,69)'],
+          backgroundColor: ['rgba(23,162,184)', 'rgba(220,53,69)'],
           data: [this.incomes, this.outgoings]
         }
       ],
