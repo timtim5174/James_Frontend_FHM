@@ -1,11 +1,14 @@
-import { browser, by, element, Key, until, WebElement } from 'protractor';
-import { async } from '@angular/core/testing';
+import { browser, by, element, Key, WebElement } from 'protractor';
 
 describe('Navbar Test', () => {
     browser.waitForAngularEnabled(false);
     beforeEach(async () => {
         await browser.get('http://localhost:4200');
         browser.manage().window().maximize();
+    });
+
+    afterAll(async() => {
+        await element(by.name('signout')).click();
     });
 
     it('should show navbar sign up and login', async () => {
