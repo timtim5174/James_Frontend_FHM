@@ -41,8 +41,11 @@ export class SidebarComponent implements OnInit {
   @Input() shouldToggle = false;
   @Output() shouldPush = new EventEmitter<boolean>();
 
-  constructor(private sharedSidebarService: SharedSidebarService) {
-  }
+
+  constructor(private sharedSidebarService: SharedSidebarService) { }
+
+  selected: boolean;
+  sidebarHeight = 0;
 
   ngOnInit() {
   }
@@ -58,6 +61,7 @@ export class SidebarComponent implements OnInit {
   isDashboardSelected() {
     return this.sharedSidebarService.selectedIcon === 'dashboard' ? true : false;
   }
+
 
 }
 

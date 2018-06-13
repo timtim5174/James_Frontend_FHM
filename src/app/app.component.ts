@@ -38,8 +38,10 @@ export class AppComponent implements OnInit {
   handleToggle() {
     if (this.toggle) {
       document.getElementById('page-content').style.marginLeft = '0';
+      document.getElementById('page-content-footer').style.marginLeft = '0';
     } else {
       document.getElementById('page-content').style.marginLeft = '250px';
+      document.getElementById('page-content-footer').style.marginLeft = '250px';
     }
     this.toggle = !this.toggle;
   }

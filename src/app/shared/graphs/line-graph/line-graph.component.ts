@@ -8,13 +8,7 @@ import { LineGraph } from './line-graph';
   styleUrls: ['./line-graph.component.scss']
 })
 export class LineGraphComponent implements OnChanges {
-  @Input() type: string;
-  @Input() axisLables: string[];
-  @Input() data: number[];
-  @Input() dataset: LineGraph[];
-  @Input() xName: string;
-  @Input() yName: string;
-  @Input() chartName: string;
+  @Input() input: LineGraph;
 
   chart: any = [];
   checkObject: any = this.chart;
@@ -25,25 +19,28 @@ export class LineGraphComponent implements OnChanges {
     if (this.chart !== this.checkObject) {
       this.chart.destroy();
     }
-    if (this.elementRef.nativeElement.querySelector(`#canvas`) != null) {
+    if (this.elementRef.nativeElement.querySelector(`#canvas`) != null && this.input !== undefined) {
       this.chartit();
     }
   }
 
   private chartit() {
     this.chart = new Chart('canvas', {
-      type: this.type,
+      type: this.input.type,
       data: {
-        labels: this.axisLables,
-        datasets: this.dataset
+        labels: this.input.axisLables,
+        datasets: this.input.dataset
       },
       options: {
+        animation: {
+          duration: 2500, // general animation time
+          },
           elements: {
             line: {
-            tension: 0.3, // disables bezier curves
+            tension: this.input.elements.tension, // disables bezier curves
             },
             point: {
-              radius : 0
+              radius : this.input.elements.radius
             }
           },
           legend: {
@@ -53,7 +50,7 @@ export class LineGraphComponent implements OnChanges {
           responsive: true,
           title: {
           display: false,
-          text: this.chartName
+          text: this.input.chartname
         },
         tooltips: {
           mode: 'index',
@@ -64,17 +61,17 @@ export class LineGraphComponent implements OnChanges {
         },
         scales: {
           xAxes: [{
-            display: false,
+            display: this.input.x.show,
             scaleLabel: {
-              display: false,
-              labelString: this.xName
+              display: this.input.x.show,
+              labelString: this.input.x.name
             }
           }],
           yAxes: [{
-            display: false,
+            display: this.input.y.show,
             scaleLabel: {
-              display: false,
-              labelString: this.yName
+              display: this.input.y.show,
+              labelString: this.input.y.name
             }
           }]
         }

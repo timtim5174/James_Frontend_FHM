@@ -3,18 +3,15 @@
   transition: margin-left 0.45s;
 }
 
+.page-content-footer {
+  transition: margin-left 0.45s;
+}
+
 .myInnerContainer{
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding-top: 76.5px;
-}
-
-
-
-.myContainer{
-  height:100vh;
-  position: relative;
 }
 
 .page-header{

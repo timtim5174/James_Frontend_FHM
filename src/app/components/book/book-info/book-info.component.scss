@@ -2,7 +2,7 @@
         position: sticky;
         top: 76.5px;
         width: 100%;
-        opacity: 0.1;
+        opacity: 0.09;
         z-index: -1;
         padding: 1px;
 }
@@ -14,8 +14,19 @@
 }
 .upper-container {
     height: 40vh;
-    padding: 1px;
 }
 .myContainer {
     height:100%;
+}
+
+.flex1 {
+    width: 40%;
+    flex-grow: 1;
+}
+
+.flex2 {
+    margin-top: 35px;
+    width: 50%;
+    margin-left:10%;
+    flex-grow: 1;
 }

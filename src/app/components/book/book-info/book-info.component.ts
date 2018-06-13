@@ -1,11 +1,15 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
-import { Book } from '../book';
+import { Book, BookPeriod } from '../book';
 import { Chart } from 'chart.js';
 import { TransactionService } from '../../transaction/transaction.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';
 import { PieGraph } from '../../../shared/graphs/pie-graph/pie-graph';
 import { LineGraph } from '../../../shared/graphs/line-graph/line-graph';
+import { Transaction } from '../../transaction/transaction';
+import { TimeService } from '../book-time.service';
+import { UserInfo } from '../../user/user';
+import { SharedUserService } from '../../user/shared-user.service';
 
 @Component({
   selector: 'app-book-info',
@@ -13,7 +17,6 @@ import { LineGraph } from '../../../shared/graphs/line-graph/line-graph';
   styleUrls: ['./book-info.component.scss']
 })
 export class BookInfoComponent implements OnInit {
-
   book: Book = {
     id: '',
     title: '',
@@ -21,49 +24,41 @@ export class BookInfoComponent implements OnInit {
     timeFrame: null,
     rangeEnum: null
   };
+  dates: BookPeriod;
   // Preparing Dataset for Graph
-  type = 'line';
-  axisLables = [];
-  pointLable = 'Amount';
-  data = [];
-  backgroundColor = 'rgba(0, 0, 255, 0.3)';
-  borderColor = 'rgba(0, 0, 255, 0.9)';
-  fill = true;
-  height: any;
-
-  dataset = [{
-    label: this.pointLable,
-    data: this.data,
-    fill: this.fill,
-    backgroundColor : this.backgroundColor,
-    borderColor: this.borderColor
-  }];
-  chart = [];
+  lineGraph: LineGraph;
   dataPieChart: PieGraph;
-  dataLineGraph: LineGraph;
   transactionheight = 0;
+  transactions: Transaction[];
+
+  incomes: number;
+  outgoings: number;
+
+  users: UserInfo[] = [];
 
   constructor(private sharedBookService: SharedBookService, private sharedTransactionService: SharedTransactionService,
-  private elementRef: ElementRef) {}
+    private elementRef: ElementRef, private bookTimeService: TimeService, private sharedUserService: SharedUserService) { }
 
   ngOnInit() {
-    // this.transactionheight = window.innerHeight - document.getElementById('transactions').getBoundingClientRect().top - 64;
-    this.dataPieChart = {
-        labels: ['Incomes', 'Outgoings'],
-        datasets: [
-          {
-            backgroundColor: ['#2e86f7', '#dcdedf'],
-            data: [2500, 3000]
-          }
-        ]
-      };
-    this.sharedBookService.getBookData().subscribe( book => {
-      if (book != null) {
+    window.addEventListener('scroll', this.scroll, true);
+    this.sharedBookService.getBookData().subscribe(book => {
+      if (book.timeFrame !== null) {
         this.book = book;
+        this.dates = this.bookTimeService.getCurrentBookPeriod(book);
       }
-      this.sharedTransactionService.getTransactions().subscribe( transactions => {
-        window.addEventListener('scroll', this.scroll, true);
-        this.linegraph(transactions);
+      this.sharedTransactionService.getTransactions().subscribe(transactions => {
+        // Logic to just reload the graphs when Observable changes
+        if (transactions !== this.transactions && transactions != null) {
+          this.linegraph(transactions);
+          this.pie(transactions);
+        }
+        this.transactions = transactions;
+      });
+
+      this.sharedUserService.getUserForBookSubject().subscribe(users => {
+        if (users !== null && users !== undefined) {
+          this.users = users;
+        }
       });
     });
   }
@@ -83,28 +78,30 @@ export class BookInfoComponent implements OnInit {
    */
   graphlogic() {
     // Defining of Variables
-    const topDistance = document.getElementById('transactions').getBoundingClientRect().top;
-    const footerBot = document.getElementById('footer').getBoundingClientRect().bottom;
-    const difFooter = document.getElementById('footer').clientHeight;
-    const difTable = document.getElementById('tablehead').clientHeight;
-    const difNavbar = document.getElementById('nav').clientHeight;
-    const footerBotheight = footerBot - window.innerHeight - difFooter;
+    if (document.getElementById('wrapper') !== null) {
+      const topDistance = document.getElementById('transactions').getBoundingClientRect().top;
+      const footerBot = document.getElementById('footer').getBoundingClientRect().bottom;
+      const difFooter = document.getElementById('footer').clientHeight;
+      const difTable = document.getElementById('tablehead').clientHeight;
+      const difNavbar = document.getElementById('nav').clientHeight;
+      const footerBotheight = footerBot - window.innerHeight - difFooter;
 
-    // When first Element of Transaction-List does NOT meet Navbar (Everyting betwenn - "When its not sticky")
-    if (topDistance >= difNavbar - difTable) {
-      this.transactionheight =  window.innerHeight - topDistance - difTable;
-      // When Footer meets viewport aswell
-      if ((window.innerHeight + difFooter) >= footerBot ) {
-        this.transactionheight = window.innerHeight - topDistance - difTable + footerBotheight;
-      }
-      // "When Graph gets sticky" - graph reaches Navbar
-    } else {
-      // When footer, transactions and navbar are part of viewport - "sticky graph" + transactions + footer
-      if ((window.innerHeight + difFooter) >= footerBot ) {
-        this.transactionheight = window.innerHeight - difNavbar + footerBotheight;
-        // When just footer and transactions are part of viewport - "sticky graph" + transactions
+      // When first Element of Transaction-List does NOT meet Navbar (Everyting betwenn - "When its not sticky")
+      if (topDistance >= difNavbar - difTable) {
+        this.transactionheight = window.innerHeight - topDistance - difTable;
+        // When Footer meets viewport aswell
+        if ((window.innerHeight + difFooter) >= footerBot) {
+          this.transactionheight = window.innerHeight - topDistance - difTable + footerBotheight;
+        }
+        // "When Graph gets sticky" - graph reaches Navbar
       } else {
-        this.transactionheight = window.innerHeight - difNavbar;
+        // When footer, transactions and navbar are part of viewport - "sticky graph" + transactions + footer
+        if ((window.innerHeight + difFooter) >= footerBot) {
+          this.transactionheight = window.innerHeight - difNavbar + footerBotheight;
+          // When just footer and transactions are part of viewport - "sticky graph" + transactions
+        } else {
+          this.transactionheight = window.innerHeight - difNavbar;
+        }
       }
     }
   }
@@ -116,28 +113,89 @@ export class BookInfoComponent implements OnInit {
     };
   }
 
-  linegraph (transactions: any[]) {
+  linegraph(transactions: Transaction[]) {
+    /**
+     * Graph-Array Logic for lineGraph
+     */
+    const data = [];
     if (transactions != null) {
-      this.axisLables = [];
+      const axisLables = [];
       let z = 0;
-      // Loop for sorting the incoming TransactionArray right for Graph
-      // forEach
       for (let i = 0; i < transactions.length; i++) {
         const creationDate = new Date(transactions[i].creationDate);
-        const axisLable =  (creationDate).getDate() + '.' + (creationDate.getMonth() + 1) + '.' + creationDate.getFullYear();
-        const index = this.axisLables.indexOf(axisLable);
+        const axisLable = (creationDate).getDate() + '.' + (creationDate.getMonth() + 1) + '.' + creationDate.getFullYear();
+        const index = axisLables.indexOf(axisLable);
         if (index > -1) {
-            this.data[index] = this.data[index] + transactions[i].amount;
+          data[index] = data[index] + transactions[i].amount;
         } else {
-            this.axisLables[z] = axisLable;
+          axisLables[z] = axisLable;
           if (z - 1 >= 0) {
-            this.data[z] = this.data[z - 1] + transactions[i].amount;
+            data[z] = data[z - 1] + transactions[i].amount;
           } else {
-            this.data[z] = transactions[i].amount;
+            data[z] = transactions[i].amount;
           }
           z += 1;
         }
       }
+
+      /**
+       * Setting lineGraph
+       */
+      this.lineGraph = {
+        type: 'line',
+        axisLables: axisLables,
+        dataset: [{
+          label: 'Amount',
+          data: data,
+          fill: true,
+          backgroundColor: 'rgba(23,162,184,0.3)',
+          borderColor: 'rgba(23,162,184,1)'
+        }],
+        x: {
+          name: 'x',
+          show: false
+        },
+        y: {
+          name: 'y',
+          show: false
+        },
+        chartname: '',
+        elements: {
+          tension: 0.3,
+          radius: 0
+        }
+      };
     }
   }
+
+  pie(transactions: Transaction[]) {
+    const filteredArray = transactions.filter(transaction => {
+      const compareDate = new Date(transaction.timeFrame);
+      return (compareDate >= this.dates.startDate && compareDate <= this.dates.endDate);
+    });
+
+    const positive = filteredArray.filter(transaction => {
+      return (transaction.amount > 0);
+    }).reduce((transactionA, transactionB) => {
+      return { ...transactionA, amount: transactionA.amount + transactionB.amount };
+    });
+    this.incomes = positive.amount;
+
+    const negative = filteredArray.filter(transaction => {
+      return (transaction.amount < 0);
+    }).reduce((transactionA, transactionB) => {
+      return { ...transactionA, amount: transactionA.amount + transactionB.amount };
+    });
+    this.outgoings = negative.amount;
+    this.dataPieChart = {
+      labels: ['Incomes', 'Outgoings'],
+      datasets: [
+        {
+          backgroundColor: ['rgb(23,162,184)', 'rgb(220,53,69)'],
+          data: [positive.amount, negative.amount]
+        }
+      ]
+    };
+  }
+
 }

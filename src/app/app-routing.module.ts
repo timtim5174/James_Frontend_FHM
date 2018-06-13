@@ -7,7 +7,6 @@ import { SignInComponent } from './components/user/sign-in/sign-in.component';
 import { SignOutComponent } from './components/user/sign-out/sign-out.component';
 import { DataPrivacyComponent } from './components/data-privacy/data-privacy.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { MyAccountComponent } from './components/user/my-account/my-account.component';
 import { AuthGuard } from './auth.guard';
 import { MainComponent } from './components/main/main.component';
@@ -44,7 +43,6 @@ const routes: Routes = [
   { path: 'addUserToBook', component: AddUserToBookComponent },
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'members', component: MembersComponent },
   { path: 'deleteTransaction', component: DeleteTransactionComponent },
   { path: 'deleteUser', component: DeleteUserComponent },
