@@ -34,12 +34,12 @@ export class PieGraphComponent implements OnInit, OnChanges {
 
   private initPieChart() {
     this.pieChart = new Chart('pieChart', {
-      type: 'pie',
+      type: 'doughnut',
       data: this.data,
       options: {
-        /* animation: {
+        animation: {
           duration: 2500, // general animation time
-        }, */
+        },
         legend: {
           display: this.data.legend
         },
