@@ -1,10 +1,11 @@
 <div class="wrapper">
     <nav id="sidebar" [@toggleState]="shouldToggle">
-        <ul class="list-unstyled" id="list">
-            <li routerLink="/main/dashboard" routerLinkActive="active">
-                <a>Dashboard</a>
-            </li>
-        </ul>
+        <div (click)="clickDashboard()" tabindex="-1" class="dashboard">
+            <a [class.selected]="isDashboardSelected()" class="nav-link" routerLink="/main/dashboard" routerLinkActive="active">
+                <i class="fas fa-chart-line"></i>
+                <span class="spanSpace">Dashboard</span>
+            </a>
+        </div>
         <hr>
         <app-book-sidebar></app-book-sidebar>
     </nav>

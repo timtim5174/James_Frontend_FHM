@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
+import { SharedSidebarService } from './shared-sidebar.service';
 
 
 
@@ -39,9 +40,8 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
 export class SidebarComponent implements OnInit {
   @Input() shouldToggle = false;
   @Output() shouldPush = new EventEmitter<boolean>();
-  selected: boolean;
 
-  constructor() {
+  constructor(private sharedSidebarService: SharedSidebarService) {
   }
 
   ngOnInit() {
@@ -51,5 +51,13 @@ export class SidebarComponent implements OnInit {
     this.shouldPush.emit(!this.shouldPush);
   }
 
+  clickDashboard() {
+    this.sharedSidebarService.setSelectedIcon('dashboard');
+  }
+
+  isDashboardSelected() {
+    return this.sharedSidebarService.selectedIcon === 'dashboard' ? true : false;
+  }
 
 }
+

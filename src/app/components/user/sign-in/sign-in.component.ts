@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../user/user.service';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,7 +27,8 @@ export class SignInComponent implements OnInit {
   emailRequired = 'Enter your email';
   passwordRequired = 'Enter your password';
 
-  constructor(private router: Router, private userService: UserService, public activeModal: NgbActiveModal) { }
+  constructor(private router: Router, private userService: UserService, public activeModal: NgbActiveModal,
+    private sharedSidebarService: SharedSidebarService) { }
 
   ngOnInit() {
   }
@@ -39,7 +41,8 @@ export class SignInComponent implements OnInit {
         if (this.authGuardRedirect) {
           this.router.navigate([this.authGuardRedirect]);
         } else {
-          this.router.navigate(['/home']);
+          this.sharedSidebarService.setSelectedIcon('dashboard');
+          this.router.navigate(['/main/dashboard']);
         }
       },
       error => {

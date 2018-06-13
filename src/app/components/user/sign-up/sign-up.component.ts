@@ -45,7 +45,7 @@ export class SignUpComponent implements OnInit {
     const userTO: User = { ...this.user };
     delete userTO.passwordCheck;
     this.userService.signUp(userTO).subscribe(
-      success => this.router.navigate(['/main']),
+      success =>  this.router.navigate(['/main/dashboard']),
       error => {
         this.registerClicked = false;
         this.closeableAlert.reOpenAlert();
