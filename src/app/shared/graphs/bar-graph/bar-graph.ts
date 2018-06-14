@@ -1,26 +1,22 @@
 export interface BarGraph {
 
     type: string;
-    axisLables: string[];
-    dataset: [{
-        label: string,
-        data: number[],
-        fill: boolean,
-        backgroundColor: string,
-        borderColor: string
-    }];
-    x: {
-        name: string;
-        show: boolean;
+    data: {
+        labels: string[];
+        datasets: [
+            {
+                label: string;
+                backgroundColor: string[];
+                data: number[];
+            }
+        ]
     };
-    y: {
-        name: string;
-        show: boolean;
+    options: {
+        legend: {
+            display: boolean;
+        },
+        title: {
+            display: boolean;
+        }
     };
-    chartname: string;
-    elements: {
-        tension: number;
-        radius: number;
-    };
-
 }

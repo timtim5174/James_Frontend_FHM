@@ -11,7 +11,7 @@ import { SharedTransactionService } from './shared-transaction.service';
   providedIn: 'root'
 })
 export class TransactionService {
-  private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = 'http://localhost:8080' + '/JamesBackend-web/api/v1/boarding';
   private options = { withCredentials: true };
   response: object;
 
@@ -19,13 +19,13 @@ export class TransactionService {
   constructor(private http: HttpClient, private sharedTransactionService: SharedTransactionService) { }
 
   createTransaction(transaction: Partial<Transaction>): Observable<Transaction> {
-    return this.http.post<Transaction>(this.baseURL + '/createTransaction', transaction).pipe(
+    return this.http.post<Transaction>(this.baseURL + '/createTransaction', transaction, this.options).pipe(
       catchError(this.handleError)
     );
   }
 
   getTransactions(id: string): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`).pipe(
+    return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`, this.options).pipe(
       map(transactions => transactions.sort(((a: Transaction, b: Transaction) => a.creationDate <= b.creationDate ? 0 : 1))),
       map(data => this.response = data),
       catchError(this.handleError)
@@ -33,13 +33,13 @@ export class TransactionService {
   }
 
   updateTransaction(transaction: Partial<Transaction>) {
-    return this.http.patch<Partial<Transaction>>(this.baseURL + '/updateTransaction', transaction).pipe(
+    return this.http.patch<Partial<Transaction>>(this.baseURL + '/updateTransaction', transaction, this.options).pipe(
       catchError(this.handleError)
     );
   }
 
   deleteTransaction(id: string, bid: string): Observable<any> {
-    return this.http.delete<Transaction>(this.baseURL + `/deleteTransaction/${id}&${bid}`).pipe(
+    return this.http.delete<Transaction>(this.baseURL + `/deleteTransaction/${id}&${bid}`, this.options).pipe(
       catchError(this.handleError)
     );
   }
