@@ -54,12 +54,13 @@ export class CreateTransactionComponent implements OnInit {
     private sharedCategoryService: SharedCategoryService) { }
 
   ngOnInit() {
-    this.sharedBookService.getSelectedBook().subscribe(book => {
+    this.sharedBookService.getBookData().subscribe(book => {
       this.book = book;
       this.newTransaction.bookId = this.book.id;
       this.sharedCategoryService.getCategorys().subscribe(categorys => {
         this.categorys.push(...categorys);
         this.preSelectedCategory = this.categorys.find(category => category.name === 'Salary');
+        this.newTransaction.categoryId = this.preSelectedCategory.categoryId;
       });
     });
   }
@@ -76,7 +77,8 @@ export class CreateTransactionComponent implements OnInit {
   }
 
   rangeEnumChanged() {
-    this.newTransaction.timeFrame = null;
+    /* this.newTransaction.timeFrame = null; */
+    console.log(this.newTransaction);
   }
 
   loadExampleDate() {

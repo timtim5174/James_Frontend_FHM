@@ -1,6 +1,6 @@
 <div class="wrapper">
     <nav id="sidebar" [@toggleState]="shouldToggle">
-        <div (click)="clickDashboard()" tabindex="-1" class="dashboard">
+        <div tabindex="-1" class="dashboard">
             <a [class.selected]="isDashboardSelected()" class="nav-link" routerLink="/main/dashboard" routerLinkActive="active">
                 <i class="fas fa-chart-line"></i>
                 <span class="spanSpace">Dashboard</span>

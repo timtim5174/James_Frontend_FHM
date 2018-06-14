@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BarGraph } from './bar-graph';
 
@@ -9,67 +9,41 @@ import { BarGraph } from './bar-graph';
 })
 export class BarGraphComponent implements OnChanges {
   @Input() input: BarGraph;
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
   /**
    * Inputs: data, options
    */
   chart: any = [];
+  checkObject: any = this.chart;
   ngOnChanges() {
-
+    if (this.chart !== this.checkObject) {
+      this.chart.destroy();
+    }
+    if (this.elementRef.nativeElement.querySelector(`#bargraph`) != null && this.input !== undefined) {
+      this.chartit();
+    }
   }
 
   chartit() {
-    this.chart = new Chart('canvas', {
+    this.chart = new Chart('bargraph', {
       type: this.input.type,
       data: {
-        labels: this.input.axisLables,
-        datasets: this.input.dataset
+        labels: this.input.data.labels,
+        datasets: this.input.data.datasets
       },
       options: {
-        elements: {
-          line: {
-            tension: this.input.elements.tension,
-          },
-          point: {
-            radius: this.input.elements.radius
-          }
-        },
-        legend: {
-          display: false
-        },
-        animation: {
-          duration: 2500
-        },
         maintainAspectRatio: false,
         responsive: true,
+        legend: { display: this.input.options.legend.display },
         title: {
-          display: false,
-          text: this.input.chartname
-        },
-        tooltips: {
-          mode: 'index',
-          intersect: false,
-        },
-        hover: {
-          mode: 'nearest'
+          display: this.input.options.title.display
         },
         scales: {
-          xAxes: [{
-            display: this.input.x.show,
-            scaleLabel: {
-              display: this.input.x.show,
-              labelString: this.input.x.name
-            }
-          }],
-          yAxes: [{
-            display: this.input.y.show,
-            scaleLabel: {
-              display: this.input.y.show,
-              labelString: this.input.y.name
-            }
-          }]
-        }
-
+        xAxes: [{
+          barPercentage: 0.1,
+          barThickness: 0.1
+        }]
+    }
       }
     });
   }

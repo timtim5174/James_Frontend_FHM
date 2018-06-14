@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
 import { Book } from '../book';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from '../../transaction/transaction.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';
 import { CategoryService } from '../../category/category.service';
@@ -9,6 +9,8 @@ import { SharedCategoryService } from '../../category/shared-category.service';
 import { AddUserToBookComponent } from '../add-user-to-book/add-user-to-book.component';
 import { UserService } from '../../user/user.service';
 import { SharedUserService } from '../../user/shared-user.service';
+import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
+
 
 @Component({
   selector: 'app-book-view',
@@ -26,6 +28,7 @@ export class BookViewComponent implements OnInit {
   addUserToBookComponent = AddUserToBookComponent;
   navbarIsCollapsed = true;
   id: string;
+  isCollapsed = true;
   constructor(
     private sharedBookService: SharedBookService,
     private transactionService: TransactionService,
@@ -33,10 +36,13 @@ export class BookViewComponent implements OnInit {
     private categoryService: CategoryService,
     private sharedCategoryService: SharedCategoryService,
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
-  private sharedUserService: SharedUserService) { }
+    private sharedUserService: SharedUserService,
+    private sharedSidebarService: SharedSidebarService) { }
 
   ngOnInit() {
+    this.sharedSidebarService.selectedIcon = 'book';
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       if (this.id != null) {
@@ -45,14 +51,13 @@ export class BookViewComponent implements OnInit {
             this.sharedTransactionService.setTransactions(transactions);
           });
 
-          this.userService.getUsersOfBook(this.id).subscribe(books => {
-            this.sharedUserService.setUserForBookSubject(books);
-          });
+        this.userService.getUsersOfBook(this.id).subscribe(books => {
+          this.sharedUserService.setUserForBookSubject(books);
+        });
       }
       this.categoryService.getBookCategories(this.id).subscribe(categorys => {
         this.sharedCategoryService.setCategorys(categorys);
       });
-      this.sharedBookService.setSelectedIdBook(this.id);
       this.sharedBookService.getBookArrayData().subscribe(books => {
         if (books != null) {
           for (const book of books) {
@@ -63,6 +68,7 @@ export class BookViewComponent implements OnInit {
         }
         if (this.book != null) {
           this.sharedBookService.setBookData(this.book);
+          this.sharedBookService.setSelectedIdBook(this.id);
         }
       });
     });

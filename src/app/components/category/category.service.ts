@@ -11,21 +11,21 @@ import { Transaction } from '../transaction/transaction';
 })
 export class CategoryService {
 
-  private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = 'http://localhost:8080' + '/JamesBackend-web/api/v1/boarding';
   private options = { withCredentials: true };
   private response = {};
 
   constructor(private http: HttpClient) { }
 
   public getBookCategories(id: string): Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseURL + `/getBookCategories/${id}`).pipe(
+    return this.http.get<Category[]>(this.baseURL + `/getBookCategories/${id}`, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError)
     );
   }
 
   public getTransactionCategory(id: string): Observable<Transaction> {
-    return this.http.get<Transaction>(this.baseURL + `/getTransactionCategory/${id}`).pipe(
+    return this.http.get<Transaction>(this.baseURL + `/getTransactionCategory/${id}`, this.options).pipe(
       map(data => this.response = data),
       catchError(this.handleError)
     );

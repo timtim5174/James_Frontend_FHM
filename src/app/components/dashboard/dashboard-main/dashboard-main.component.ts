@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from '../../../components/user/user.service';
-import { User, UserInfo } from '../../../components/user/user';
+import { UserInfo } from '../../../components/user/user';
 import { BookService } from '../../book/book.service';
-import { SharedBookService } from '../../book/shared-book.service';
+
 import { BookInfo, Book } from '../../book/book';
 import { TransactionService } from '../../transaction/transaction.service';
 import { Transaction } from '../../transaction/transaction';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
+
+
 
 @Component({
   selector: 'app-dashboard-main',
@@ -16,25 +19,28 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 export class DashboardMainComponent implements OnInit {
   booksInfo: BookInfo[] = [];
   months: string[] = [];
-  years: string [] = ['2018'];
+  years: string[] = ['2018'];
   monthTitle = '';
   totalIncomes = 0;
   totalOutgoings = 0;
   userHasBooks = true;
   noBooksMessage = 'No books available';
   filterYear = new Date().getFullYear(); // start values
-  filterMonth = new Date().getMonth() + 1 ; // start values
+  filterMonth = new Date().getMonth() + 1; // start values
 
   constructor(private userService: UserService, private bookService: BookService,
-    private transactionService: TransactionService, private dateService: NgbDatepickerI18n) { }
+    private transactionService: TransactionService, private dateService: NgbDatepickerI18n,
+    private sharedSidebarService: SharedSidebarService) { }
 
   ngOnInit() {
+    setTimeout(() => this.sharedSidebarService.selectedIcon = 'dashboard');
     this.monthTitle = this.dateService.getMonthFullName(this.filterMonth) + ' ' + this.filterYear;
     this.setMonths();
     this.loadBooksData(this.filterMonth, this.filterYear);
   }
 
-  setMonths () {
+
+  setMonths() {
     for (let i = 1; i <= 12; i++) {
       this.months.push(this.dateService.getMonthFullName(i));
     }

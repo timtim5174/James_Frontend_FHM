@@ -1,3 +1,3 @@
 export default{
-    restApiUrl: window.location.origin + '/JamesBackend-web/api/v1/boarding'
+    restApiUrl: 'http://localhost:8080/JamesBackend-web/api/v1/boarding'
 };

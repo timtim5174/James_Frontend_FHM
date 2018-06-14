@@ -4,7 +4,7 @@ import { BookService } from '../book.service';
 import { CreateBookComponent } from '../create-book/create-book.component';
 import { UpdateBookComponent } from '../update-book/update-book.component';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DeleteBookComponent } from '../delete-book/delete-book.component';
 import { SharedBookService } from '../shared-book.service';
 import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
@@ -96,10 +96,10 @@ export class BookSidebarComponent implements OnInit {
 
   clickBook(book: Book) {
     this.selectedBook = book;
+    this.sharedSidebarService.selectedIcon = 'book';
     this.sharedBookService.setUpdateDeleteBookSubject(book);
     this.sharedBookService.setAddUserToBookSubject(book);
     this.sharedBookService.setSelectedBook(book);
-    this.sharedSidebarService.setSelectedIcon('book');
     this.router.navigate(['/main/book', book.id, 'info']);
   }
 

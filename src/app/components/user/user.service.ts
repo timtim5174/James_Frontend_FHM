@@ -16,7 +16,6 @@ export class UserService {
   private baseURL = jamesConfig.default.restApiUrl;
   isAuthenticated: boolean;
 
-
   private options = { withCredentials: true };
   userData: User;
   response: object;
@@ -54,7 +53,7 @@ export class UserService {
   }
 
   deleteUser(pw: string): Observable<any> {
-    return this.http.delete<User>(this.baseURL + `/deleteUser/${pw}`).pipe(
+    return this.http.delete<User>(this.baseURL + `/deleteUser/${pw}`, this.options).pipe(
       map(data => {
         this.isAuthenticated = false;
         this.sharedUserService.setAuthentificationStatus(false);
@@ -86,13 +85,13 @@ export class UserService {
   }
 
   receiveUserImage() {
-    return this.http.get(this.baseURL + '/getUserImage', { responseType: 'blob' }).pipe(
+    return this.http.get(this.baseURL + '/getUserImage', { responseType: 'blob', withCredentials: true}).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
 
   getUserInfoImage(userId: string) {
-    return this.http.get(this.baseURL + `/getUserInfoImage/${userId}`, { responseType: 'blob' }).pipe(
+    return this.http.get(this.baseURL + `/getUserInfoImage/${userId}`, { responseType: 'blob' , withCredentials: true}).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
