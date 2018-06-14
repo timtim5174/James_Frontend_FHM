@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
       error => {
         this.registerClicked = false;
         this.closeableAlert.reOpenAlert();
-        this.errorMessage = error;
+        this.errorMessage = 'Email or password false';
       }
     );
   }

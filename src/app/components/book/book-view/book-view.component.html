@@ -1,5 +1,4 @@
 <div class="wrapper">
-
     <div class="top">
         <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light main-nav navbar-top myContainer">
             <button class="navbar-toggler" (click)="navbarIsCollapsed = !navbarIsCollapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -14,7 +13,7 @@
                             <span class="spanSpace">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item navItem">
+                    <li class="nav-item navItem icon">
                         <app-modal [component]="addUserToBookComponent">
                             <a class="nav-link" routerLinkActive="active">
                                 <i class="fa fa-user-plus icons"></i>
@@ -28,16 +27,9 @@
                             <span class="spanSpace">Statistics</span>
                         </a>
                     </li>
-                    <li class="nav-item navItem">
-                        <a class="nav-link" routerLinkActive="active">
-                            <i class="fa fa-signal icons"></i>
-                            <span class="spanSpace">Add Category</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </nav>
     </div>
      <router-outlet></router-outlet>
-
 </div>

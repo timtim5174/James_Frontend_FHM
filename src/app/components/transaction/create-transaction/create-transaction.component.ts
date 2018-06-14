@@ -38,7 +38,8 @@ export class CreateTransactionComponent implements OnInit {
   isOptionsOpened = false;
 
 
-  @ViewChild('CreateBookCloseableAlert')
+  createClicked = false;
+  @ViewChild('CreateTransactionCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
 
   @ViewChild('MyDatepicker')
@@ -66,12 +67,15 @@ export class CreateTransactionComponent implements OnInit {
   }
 
   onSubmit() {
+    this.createClicked = true;
     this.transactionService.createTransaction(this.newTransaction).subscribe(
       data => {
         this.activeModal.close(data);
       },
       error => {
-        this.errorMessage = error;
+        this.createClicked = false;
+        this.closeableAlert.reOpenAlert();
+        this.errorMessage = 'The settlement date can not be in the past';
       }
     );
   }

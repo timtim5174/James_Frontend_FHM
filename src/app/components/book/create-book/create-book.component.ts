@@ -37,6 +37,7 @@ export class CreateBookComponent implements OnInit {
     this.bookService.createBook(this.newBook).subscribe(
       book => this.activeModal.close(book),
       error => {
+        this.createClicked = false;
         this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
       }
