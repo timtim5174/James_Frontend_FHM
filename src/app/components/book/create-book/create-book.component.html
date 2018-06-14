@@ -34,8 +34,8 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createBook.valid" type="submit" class="btn btn-success">Create</button>
-  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createBook.valid" type="submit" class="btn btn-success" name="create">Create</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()" name="cancel">Cancel</button>
 </div>
 
 

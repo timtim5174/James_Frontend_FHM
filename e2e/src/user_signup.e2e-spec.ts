@@ -39,7 +39,7 @@ describe('User sign up test', () => {
 
     it('should possible to sign up', async () => {
         passwordCheck.clear();
-        passwordCheck.sendKeys('test1234');
+        await passwordCheck.sendKeys('test1234');
         const signUpIsValid = await element(by.className('btn-primary')).isEnabled();
         expect(signUpIsValid).toBe(true);
     });

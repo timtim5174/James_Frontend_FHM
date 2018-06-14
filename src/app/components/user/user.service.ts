@@ -8,11 +8,12 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { User, UserInfo } from './user';
 import { SharedUserService } from './shared-user.service';
+import * as jamesConfig from './../../../james.conf';
 
 
 @Injectable()
 export class UserService {
-  private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = jamesConfig.default.restApiUrl;
   isAuthenticated: boolean;
 
 
