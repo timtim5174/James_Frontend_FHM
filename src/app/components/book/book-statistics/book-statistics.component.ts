@@ -26,8 +26,6 @@ export class BookStatisticsComponent implements OnInit {
       this.sharedTransactionService.getTransactions().subscribe(transactions => {
         if (transactions !== null && transactions !== this.transactions) {
           this.transactions = transactions;
-          console.log(this.book);
-          console.log(this.transactions);
           this.barGraph();
         }
       });
