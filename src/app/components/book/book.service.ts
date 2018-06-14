@@ -6,18 +6,19 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Book, BookPeriod } from './book';
 import { User } from '../user/user';
+import { RequestOptions } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  private baseURL = window.location.origin + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = 'http://localhost:8080' + '/JamesBackend-web/api/v1/boarding';
   private options = { withCredentials: true };
 
   constructor(private http: HttpClient) { }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.baseURL + '/getBooks').pipe(
+    return this.http.get<Book[]>(this.baseURL + '/getBooks', this.options).pipe(
       map(books => books.sort(((a: Book, b: Book) => {
         if (a.title.toLowerCase() > b.title.toLowerCase()) {
           return 1;
@@ -32,26 +33,26 @@ export class BookService {
   }
 
   createBook(book: Partial<Book>): Observable<Book> {
-    return this.http.post<Book>(this.baseURL + '/createBook', book).pipe(
+    return this.http.post<Book>(this.baseURL + '/createBook', book, this.options).pipe(
       catchError(this.handleError)
     );
   }
 
   deleteBook(id: string): Observable<any> {
-    return this.http.delete<Book>(this.baseURL + `/deleteCallerFromBook/${id}`).pipe(
+    return this.http.delete<Book>(this.baseURL + `/deleteCallerFromBook/${id}`, this.options).pipe(
       catchError(this.handleError)
     );
   }
 
   updateBook(book: Partial<Book>) {
-    return this.http.patch<Partial<Book>>(this.baseURL + '/updateBook', book).pipe(
+    return this.http.patch<Partial<Book>>(this.baseURL + '/updateBook', book, this.options).pipe(
       catchError(this.handleError)
     );
   }
 
   addUserToBook(book: Book, user: Partial<User>) {
     const a = { bookId: book.id, email: user.email };
-    return this.http.post(this.baseURL + '/addUserToBook', a).pipe(
+    return this.http.post(this.baseURL + '/addUserToBook', a, this.options).pipe(
       catchError(this.handleError)
     );
   }

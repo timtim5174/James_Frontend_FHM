@@ -54,8 +54,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "JamesBackend:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "JamesBackend:build"
           },
           "configurations": {
             "production": {
