@@ -41,7 +41,6 @@ export class SignInComponent implements OnInit {
         if (this.authGuardRedirect) {
           this.router.navigate([this.authGuardRedirect]);
         } else {
-          this.sharedSidebarService.setSelectedIcon('dashboard');
           this.router.navigate(['/main/dashboard']);
         }
       },

@@ -11,6 +11,7 @@ import { UserService } from '../../user/user.service';
 import { SharedUserService } from '../../user/shared-user.service';
 import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
 
+
 @Component({
   selector: 'app-book-view',
   templateUrl: './book-view.component.html',
@@ -27,6 +28,7 @@ export class BookViewComponent implements OnInit {
   addUserToBookComponent = AddUserToBookComponent;
   navbarIsCollapsed = true;
   id: string;
+  isCollapsed = true;
   constructor(
     private sharedBookService: SharedBookService,
     private transactionService: TransactionService,
@@ -40,6 +42,7 @@ export class BookViewComponent implements OnInit {
     private sharedSidebarService: SharedSidebarService) { }
 
   ngOnInit() {
+    this.sharedSidebarService.selectedIcon = 'book';
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       if (this.id != null) {
@@ -66,7 +69,6 @@ export class BookViewComponent implements OnInit {
         if (this.book != null) {
           this.sharedBookService.setBookData(this.book);
           this.sharedBookService.setSelectedIdBook(this.id);
-          this.sharedSidebarService.setSelectedIcon('book');
         }
       });
     });

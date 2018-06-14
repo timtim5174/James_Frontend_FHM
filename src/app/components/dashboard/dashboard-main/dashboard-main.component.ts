@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from '../../../components/user/user.service';
-import { User, UserInfo } from '../../../components/user/user';
+import { UserInfo } from '../../../components/user/user';
 import { BookService } from '../../book/book.service';
-import { SharedBookService } from '../../book/shared-book.service';
+
 import { BookInfo, Book } from '../../book/book';
 import { TransactionService } from '../../transaction/transaction.service';
 import { Transaction } from '../../transaction/transaction';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
 import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
+
+
 
 @Component({
   selector: 'app-dashboard-main',
@@ -32,6 +33,7 @@ export class DashboardMainComponent implements OnInit {
     private sharedSidebarService: SharedSidebarService) { }
 
   ngOnInit() {
+    setTimeout(() => this.sharedSidebarService.selectedIcon = 'dashboard');
     this.monthTitle = this.dateService.getMonthFullName(this.filterMonth) + ' ' + this.filterYear;
     this.setMonths();
     this.loadBooksData(this.filterMonth, this.filterYear);

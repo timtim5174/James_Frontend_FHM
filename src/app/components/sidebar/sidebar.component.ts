@@ -54,9 +54,6 @@ export class SidebarComponent implements OnInit {
     this.shouldPush.emit(!this.shouldPush);
   }
 
-  clickDashboard() {
-    this.sharedSidebarService.setSelectedIcon('dashboard');
-  }
 
   isDashboardSelected() {
     return this.sharedSidebarService.selectedIcon === 'dashboard' ? true : false;

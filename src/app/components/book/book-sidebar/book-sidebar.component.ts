@@ -96,10 +96,10 @@ export class BookSidebarComponent implements OnInit {
 
   clickBook(book: Book) {
     this.selectedBook = book;
+    this.sharedSidebarService.selectedIcon = 'book';
     this.sharedBookService.setUpdateDeleteBookSubject(book);
     this.sharedBookService.setAddUserToBookSubject(book);
     this.sharedBookService.setSelectedBook(book);
-    this.sharedSidebarService.setSelectedIcon('book');
     this.router.navigate(['/main/book', book.id, 'info']);
   }
 
