@@ -37,6 +37,7 @@
         </div>
       </div>
       <div *ngIf="!isOptionsOpened; else timeFrameOptions"></div>
+      <app-alert-closeable #CreateTransactionCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
 
 
     </form>

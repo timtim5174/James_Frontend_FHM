@@ -8,4 +8,5 @@ export interface Transaction {
     creationDate?: Date;
     timeFrame: Date;
     rangeEnum: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY';
+    userId?: string;
 }

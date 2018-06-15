@@ -2,3 +2,17 @@
     display: inline-block;
     margin: 3px;
 }
+
+.circle {
+    width: 15px;
+    height: 15px;
+    line-height: 200px;
+    border-radius: 50%; /* the magic */
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    margin: 0 auto 40px;
+    position: relative;
+    top:  8px;
+    left: 50px;
+    opacity: 0.8;
+}
