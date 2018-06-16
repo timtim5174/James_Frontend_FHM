@@ -1,4 +1,4 @@
-import { browser, by, element, Key, WebElement } from 'protractor';
+import { browser, by, element, Key } from 'protractor';
 
 describe('User login test', () => {
     browser.waitForAngularEnabled(false);

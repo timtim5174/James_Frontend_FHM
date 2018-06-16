@@ -25,20 +25,19 @@ describe('User sign up test', () => {
     });
 
     it('should not possible to sign up --> passwords different', async() => {
-        firstname.sendKeys('Harry', Key.RETURN);
-        lastname.sendKeys('Hacker', Key.RETURN);
+        await firstname.sendKeys('Harry', Key.RETURN);
+        await lastname.sendKeys('Hacker', Key.RETURN);
         await birthPicker.click();
         await browser.actions().sendKeys(Key.ENTER).perform();
-        email.sendKeys('harry@hacker.de', Key.RETURN);
-        password.sendKeys('test1234', Key.RETURN);
-        passwordCheck.sendKeys('test1235', Key.RETURN);
-        browser.sleep(2000);
+        await email.sendKeys('harry@hacker.de', Key.RETURN);
+        await password.sendKeys('test1234', Key.RETURN);
+        await passwordCheck.sendKeys('test1235', Key.RETURN);
         const error = await element(by.className('text-danger')).isPresent();
-        expect(true).toBe(true);
+        expect(error).toBe(true);
     });
 
     it('should possible to sign up', async () => {
-        passwordCheck.clear();
+        await passwordCheck.clear();
         await passwordCheck.sendKeys('test1234');
         const signUpIsValid = await element(by.className('btn-primary')).isEnabled();
         expect(signUpIsValid).toBe(true);

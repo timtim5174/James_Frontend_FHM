@@ -9,7 +9,7 @@ describe('Book tests', () => {
         await element(by.name('login')).click();
         await element(by.name('email')).sendKeys('tim@test.de', Key.RETURN);
         await element(by.name('password')).sendKeys('test1234', Key.RETURN);
-        await browser.sleep(3000);
+        await browser.sleep(2000);
     });
 
     afterAll(async() => {
