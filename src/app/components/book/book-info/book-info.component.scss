@@ -2,7 +2,7 @@
         position: sticky;
         top: 76.5px;
         width: 100%;
-        opacity: 0.09;
+        opacity: 0.1;
         z-index: -1;
         padding: 1px;
 }
@@ -24,6 +24,7 @@
 }
 
 .flex2 {
+    margin-top: 75px;
     width: 50%;
     margin-left:10%;
     flex-grow: 1;

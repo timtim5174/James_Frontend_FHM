@@ -13,7 +13,7 @@ export class SharedTransactionService {
 
   setTransactions(transactions: Transaction[]) {
     transactions = transactions.sort(((a: Transaction, b: Transaction) =>
-      (new Date(a.creationDate).getTime()) - (new Date(b.creationDate).getTime())));
+      (new Date(a.timeFrame).getTime()) - (new Date(b.timeFrame).getTime())));
     this.transactions.next(transactions);
   }
 

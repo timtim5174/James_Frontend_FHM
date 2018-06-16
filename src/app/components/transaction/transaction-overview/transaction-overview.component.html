@@ -31,10 +31,10 @@
         <div>{{ getCategoryWithId(transaction.categoryId) }}</div>
       </td>
       <td class="text-center" *ngIf="transaction">
-        <div>{{ generateDate(transaction.creationDate) }}</div>
+        <div>{{ generateDate(transaction.timeFrame) }}</div>
       </td>
       <td class="text-center">
-        <div>{{ transaction.userId}}</div>
+        <div>{{ getTransactionCreator(transaction)}}</div>
       </td>
 
       <td class="text-center">
@@ -47,9 +47,7 @@
           </app-modal>
         </div>
 
-        <!-- <a class="btn btn-light btnTrash" (click)="deleteTransaction(transaction)">
-          <i class="fa fa-trash"></i>
-        </a> -->
+
         <div class="myButton">
           <app-modal [component]="deleteTransactionComponent" [payload]="transaction" (modalResult)="deleteTransaction($event)">
             <a class="btn btn-light btnTrash">

@@ -63,6 +63,7 @@ export class BookSidebarComponent implements OnInit {
         return 0;
       }
     });
+    this.sharedBookService.setBookArrayData(this.books);
     this.selectedBook = book;
     this.clickBook(book);
   }

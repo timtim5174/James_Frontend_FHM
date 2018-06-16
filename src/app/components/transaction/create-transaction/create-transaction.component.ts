@@ -75,6 +75,7 @@ export class CreateTransactionComponent implements OnInit {
       error => {
         this.createClicked = false;
         this.closeableAlert.reOpenAlert();
+        console.log(error);
         this.errorMessage = 'The settlement date can not be in the past';
       }
     );
