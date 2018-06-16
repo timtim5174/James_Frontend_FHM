@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <div class="container">
-    <form id="myForm" (ngSubmit)="onSubmit()" #signOutForm="ngForm">
+    <form id="myForm" (ngSubmit)="onSubmit()" #signInForm="ngForm">
       <div class="form-group">
         <label for="email" class="control-label">E-Mail</label>
         <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" appEmail required #email="ngModel">
@@ -27,7 +27,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button *ngIf="!registerClicked; else loading" form="myForm" [disabled]="!signOutForm.valid" type="submit" class="btn btn-success">Login</button>
+  <button *ngIf="!loginClicked; else loading" form="myForm" [disabled]="!signInForm.valid" type="submit" class="btn btn-success">Login</button>
   <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
 </div>
 

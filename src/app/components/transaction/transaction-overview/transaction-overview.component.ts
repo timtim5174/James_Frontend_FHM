@@ -11,6 +11,8 @@ import { UpdateTransactionComponent } from '../update-transaction/update-transac
 import { DeleteTransactionComponent } from '../delete-transaction/delete-transaction.component';
 import { UserInfo } from '../../user/user';
 import { SharedUserService } from '../../user/shared-user.service';
+import { SharedBookService } from '../../book/shared-book.service';
+import { TransactionTimeService } from '../transaction-time.service';
 
 
 @Component({
@@ -31,7 +33,9 @@ export class TransactionOverviewComponent implements OnInit {
   constructor(
     private sharedUserService: SharedUserService,
     private sharedTransactionService: SharedTransactionService,
-    private sharedCategoryService: SharedCategoryService) { }
+    private sharedCategoryService: SharedCategoryService,
+    private sharedBookService: SharedBookService,
+    private transactionTimeService: TransactionTimeService) { }
 
   ngOnInit() {
     this.sharedCategoryService.getCategorys().subscribe(categorys => {
@@ -43,6 +47,9 @@ export class TransactionOverviewComponent implements OnInit {
     this.sharedUserService.getUserForBookSubject().subscribe(userInfos => {
       this.userInfos = userInfos;
     });
+    this.sharedBookService.getBookData().subscribe(book =>
+      this.book = book
+    );
 
   }
 
@@ -96,6 +103,10 @@ export class TransactionOverviewComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  isTransactionInCurrentBookPeriod(transaction: Transaction): boolean {
+    return this.transactionTimeService.isTransactionInCurrentBookPeriod(transaction, this.book);
   }
 
 }

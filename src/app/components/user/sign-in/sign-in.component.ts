@@ -3,7 +3,7 @@ import { User } from '../../user/user';
 import { Router } from '@angular/router';
 import { UserService } from '../../user/user.service';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class SignInComponent implements OnInit {
     password: '',
   };
   errorMessage = '';
-  registerClicked = false;
+  login = false;
   @Input() authGuardRedirect: string;
 
   @ViewChild('SignInCloseableAlert')
@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registerClicked = true;
+    this.login = true;
     this.userService.signIn(this.user).subscribe(
       success => {
         this.activeModal.close();
@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
         }
       },
       error => {
-        this.registerClicked = false;
+        this.login = false;
         this.closeableAlert.reOpenAlert();
         this.errorMessage = 'Email or password false';
       }
