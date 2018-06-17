@@ -1,4 +1,4 @@
-import { browser, by, element, Key } from 'protractor';
+import { browser, by, element, Key, until } from 'protractor';
 
 describe('User my account test', () => {
     browser.waitForAngularEnabled(false);
@@ -16,10 +16,19 @@ describe('User my account test', () => {
         await element(by.name('signout')).click();
     });
 
-    it('should be possible to see the correct user infos', async() => {
+    it('should be possible to see the correct user e-mail', async() => {
         await element(by.name('myAccount')).click();
-        const email = element(by.id('email')).getAttribute('value');
+        const email = await element(by.id('email')).getAttribute('value');
         await browser.sleep(2000);
         expect(email).toBe('tim@test.de');
+    });
+
+    it('should be possible to update Lastname', async() => {
+        const lastname_value = 'E2E Update Lastname Test';
+        const lastname = element(by.id('lastname'));
+        await lastname.clear();
+        await lastname.sendKeys(lastname_value);
+        await element(by.className('btn-primary')).click();
+        // await browser.wait(until.elementIsVisible(element(by.tagName('app-alert-closeable'))), 5000);
     });
 });
