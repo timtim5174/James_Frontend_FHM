@@ -15,6 +15,7 @@ import { SharedBookService } from '../../book/shared-book.service';
 import { TransactionTimeService } from '../transaction-time.service';
 
 
+
 @Component({
   selector: 'app-transaction-overview',
   templateUrl: './transaction-overview.component.html',
@@ -52,6 +53,8 @@ export class TransactionOverviewComponent implements OnInit {
     );
 
   }
+
+
 
   addTransaction(transaction: Transaction) {
     this.sharedTransactionService.setTransactions([...this.transactions, transaction]);
@@ -108,5 +111,7 @@ export class TransactionOverviewComponent implements OnInit {
   isTransactionInCurrentBookPeriod(transaction: Transaction): boolean {
     return this.transactionTimeService.isTransactionInCurrentBookPeriod(transaction, this.book);
   }
+
+
 
 }

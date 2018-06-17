@@ -15,6 +15,10 @@
         <app-error-message [control]='bookTitle' [error]="'required'" [message]="'Enter a name'"></app-error-message>
         <app-error-message [control]='bookTitle' [error]="'appSameName'" [message]="'The name you entered is wrong'"></app-error-message>
       </div>
+
+      <!-- Necessary to fix an ng-modal bug which allows you to submit pressing 'enter' eventhough required inputs arent valid
+      This bug only accures when a form has just 1 input-field -->
+      <input type="text" hidden>
     </form>
     <app-alert-closeable #DeleteBookCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
   </div>
