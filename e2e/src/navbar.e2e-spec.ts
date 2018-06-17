@@ -22,12 +22,8 @@ describe('Navbar Test', () => {
     it('should show navbar sign out and my account', async() => {
         let result = false;
         await element(by.name('login')).click();
-
-        // Login in
-        const email: WebElement = element(by.name('email'));
-        const password: WebElement = element(by.name('password'));
-        email.sendKeys('tim@test.de', Key.RETURN);
-        password.sendKeys('test1234', Key.RETURN);
+        await element(by.name('email')).sendKeys('tim@test.de', Key.RETURN);
+        await element(by.name('password')).sendKeys('test1234', Key.RETURN);
         await browser.sleep(3000);
 
         const myAccount = await element(by.name('myAccount')).isPresent();

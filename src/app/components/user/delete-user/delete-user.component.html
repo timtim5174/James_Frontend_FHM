@@ -15,6 +15,11 @@
         <app-error-message [control]='password' [error]="'required'" [message]="passwordRequired"></app-error-message>
         <app-error-message [control]='password' [error]="'appPassword'" [message]="password?.errors?.appPassword?.value"></app-error-message>
       </div>
+
+      <!-- Necessary to fix an ng-modal bug which allows you to submit pressing 'enter' eventhough required inputs arent valid
+      This bug only accures when a form has just 1 input-field -->
+      <input type="text" hidden>
+
     </form>
     <app-alert-closeable #DeleteUserCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
   </div>

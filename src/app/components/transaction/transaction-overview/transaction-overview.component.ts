@@ -1,17 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SharedBookService } from '../../book/shared-book.service';
 import { Transaction } from '../transaction';
-import { TransactionService } from '../transaction.service';
-import { ActivatedRoute } from '@angular/router';
+
 import { Book } from '../../book/book';
 import { SharedTransactionService } from '../shared-transaction.service';
-import { Subscription } from 'rxjs';
 import { CreateTransactionComponent } from '../create-transaction/create-transaction.component';
 import { SharedCategoryService } from '../../category/shared-category.service';
 import { Category } from '../../category/category';
-import { ValueTransformer } from '@angular/compiler/src/util';
+
 import { UpdateTransactionComponent } from '../update-transaction/update-transaction.component';
 import { DeleteTransactionComponent } from '../delete-transaction/delete-transaction.component';
+import { UserInfo } from '../../user/user';
+import { SharedUserService } from '../../user/shared-user.service';
+import { SharedBookService } from '../../book/shared-book.service';
+import { TransactionTimeService } from '../transaction-time.service';
+
+
 
 @Component({
   selector: 'app-transaction-overview',
@@ -22,16 +25,18 @@ export class TransactionOverviewComponent implements OnInit {
   transactions: Transaction[] = [];
   categorys: Category[];
   book: Book;
+  userInfos: UserInfo[];
+
   createTransactionComponent = CreateTransactionComponent;
   updateTransactionComponent = UpdateTransactionComponent;
   deleteTransactionComponent = DeleteTransactionComponent;
 
   constructor(
-    private sharedBookService: SharedBookService,
+    private sharedUserService: SharedUserService,
     private sharedTransactionService: SharedTransactionService,
-    private transactionService: TransactionService,
     private sharedCategoryService: SharedCategoryService,
-    private route: ActivatedRoute) { }
+    private sharedBookService: SharedBookService,
+    private transactionTimeService: TransactionTimeService) { }
 
   ngOnInit() {
     this.sharedCategoryService.getCategorys().subscribe(categorys => {
@@ -40,7 +45,16 @@ export class TransactionOverviewComponent implements OnInit {
     this.sharedTransactionService.getTransactions().subscribe(transactions => {
       this.transactions = transactions;
     });
+    this.sharedUserService.getUserForBookSubject().subscribe(userInfos => {
+      this.userInfos = userInfos;
+    });
+    this.sharedBookService.getBookData().subscribe(book =>
+      this.book = book
+    );
+
   }
+
+
 
   addTransaction(transaction: Transaction) {
     this.sharedTransactionService.setTransactions([...this.transactions, transaction]);
@@ -81,5 +95,23 @@ export class TransactionOverviewComponent implements OnInit {
     const year = new Date(date).getFullYear().toString();
     return day + '.' + month + '.' + year;
   }
+
+  getTransactionCreator(transaction: Transaction) {
+    if (this.userInfos) {
+      for (const user of this.userInfos) {
+        if (user.id === transaction.userId) {
+          return user.firstname;
+        }
+      }
+    } else {
+      return '';
+    }
+  }
+
+  isTransactionInCurrentBookPeriod(transaction: Transaction): boolean {
+    return this.transactionTimeService.isTransactionInCurrentBookPeriod(transaction, this.book);
+  }
+
+
 
 }

@@ -7,11 +7,16 @@
 <div class="modal-body">
   <div class="container">
     <form id="myForm" (ngSubmit)="onSubmit(createBook.value)" #createBook="ngForm">
-      <div class="form-group mt-4"></div>
-      <input type="text" class="form-control" maxlength="12" name="title" [(ngModel)]="newBook.title" required placeholder="Book name"
-        #bookName="ngModel">
-      <div *ngIf="(bookName.dirty || bookName.touched) && !bookName.valid; else space"></div>
-      <app-error-message [control]='bookName' [error]="'required'" [message]="'Enter a name'"></app-error-message>
+      <div class="form-group mt-4">
+        <input type="text" class="form-control" required maxlength="12" name="title" [(ngModel)]="newBook.title" placeholder="Book name"
+          #bookName="ngModel">
+        <div *ngIf="(bookName.dirty || bookName.touched) && !bookName.valid; else space"></div>
+        <app-error-message [control]='bookName' [error]="'required'" [message]="'Enter a name'"></app-error-message>
+      </div>
+
+      <!-- Necessary to fix an ng-modal bug which allows you to submit pressing 'enter' eventhough required inputs arent valid
+      This bug only accures when a form has just 1 input-field -->
+      <input type="text" hidden>
 
       <div class="form-group m-0">
         <label for="range">Billing cycle</label>
@@ -34,8 +39,8 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createBook.valid" type="submit" class="btn btn-success" name="create">Create</button>
-  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()" name="cancel">Cancel</button>
+  <button *ngIf="!createClicked; else loading" form="myForm" [disabled]="!createBook.valid" type="submit" class="btn btn-success">Create</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
 </div>
 
 

@@ -7,12 +7,13 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Book, BookPeriod } from './book';
 import { User } from '../user/user';
 import { RequestOptions } from '@angular/http';
+import jamesConf from '../../../james.conf';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  private baseURL = 'http://localhost:8080' + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = jamesConf.restApiUrl;
   private options = { withCredentials: true };
 
   constructor(private http: HttpClient) { }

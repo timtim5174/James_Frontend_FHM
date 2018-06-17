@@ -5,13 +5,14 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Category } from './category';
 import { Transaction } from '../transaction/transaction';
+import jamesConf from '../../../james.conf';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private baseURL = 'http://localhost:8080' + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = jamesConf.restApiUrl;
   private options = { withCredentials: true };
   private response = {};
 

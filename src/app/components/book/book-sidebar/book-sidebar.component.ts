@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DeleteBookComponent } from '../delete-book/delete-book.component';
 import { SharedBookService } from '../shared-book.service';
 import { SharedSidebarService } from '../../sidebar/shared-sidebar.service';
+import { SignInComponent } from '../../user/sign-in/sign-in.component';
 
 
 
@@ -25,6 +26,7 @@ export class BookSidebarComponent implements OnInit {
   createBookComponent = CreateBookComponent;
   updateBookComponent = UpdateBookComponent;
   deleteBookComponent = DeleteBookComponent;
+  signInComponent = SignInComponent;
   selectedBook: Book;
 
   @ViewChild('BookSidebarCloseableAlert')
@@ -63,6 +65,7 @@ export class BookSidebarComponent implements OnInit {
         return 0;
       }
     });
+    this.sharedBookService.setBookArrayData(this.books);
     this.selectedBook = book;
     this.clickBook(book);
   }

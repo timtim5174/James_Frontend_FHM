@@ -6,12 +6,13 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Transaction } from './transaction';
 import { SharedTransactionService } from './shared-transaction.service';
+import jamesConf from '../../../james.conf';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-  private baseURL = 'http://localhost:8080' + '/JamesBackend-web/api/v1/boarding';
+  private baseURL = jamesConf.restApiUrl;
   private options = { withCredentials: true };
   response: object;
 

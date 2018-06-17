@@ -75,4 +75,3 @@ export class BookViewComponent implements OnInit {
   }
 
 }
-

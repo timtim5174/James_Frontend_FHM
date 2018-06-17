@@ -20,6 +20,7 @@ export class UpdateTransactionComponent implements OnInit {
   categorys: Category[] = [];
   selectedCategory: Category;
 
+  errorMessage = '';
   @ViewChild('UpdateTransactionCloseableAlert')
   private closeableAlert: AlertCloseableComponent;
 
@@ -38,7 +39,7 @@ export class UpdateTransactionComponent implements OnInit {
     private sharedCategoryService: SharedCategoryService) { }
 
   ngOnInit() {
-    this.newTransaction = {...this.modalInput};
+    this.newTransaction = { ...this.modalInput };
     this.sharedCategoryService.getCategorys().subscribe(categorys => {
       this.categorys.push(...categorys);
       this.selectedCategory = this.categorys[0];
@@ -53,6 +54,8 @@ export class UpdateTransactionComponent implements OnInit {
         this.activeModal.close(this.newTransaction);
       },
       error => {
+        this.errorMessage = 'The settlement date can not be in the past';
+        this.updateClicked = false;
         this.closeableAlert.reOpenAlert();
       }
     );

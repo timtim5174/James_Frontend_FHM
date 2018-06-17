@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { UserInfo } from '../../user/user';
+import { UserInfo, User } from '../../user/user';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { UserService } from '../../user/user.service';
 
@@ -16,12 +16,15 @@ export class MembersComponent implements OnInit {
 
   ngOnInit() {
     this.usersInfoData = this.modalInput;
-    this.usersInfoData.forEach(async user => {
-      this.userService.getUserInfoImage(user.id).subscribe(data => {
-        if (data != null) {
-          user.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data));
-        }
-      });
-    });
+    this.setUsersImage(this.usersInfoData);
+  }
+
+  async setUsersImage(users: UserInfo[]) {
+    for (const user of users) {
+      const data = await this.userService.getUserInfoImage(user.id).toPromise();
+      if (data != null) {
+        user.img = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data));
+      }
+    }
   }
 }
