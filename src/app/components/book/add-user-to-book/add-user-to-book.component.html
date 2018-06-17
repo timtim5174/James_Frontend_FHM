@@ -14,6 +14,11 @@
         <app-error-message [control]='email' [error]="'required'" [message]="emailRequired"></app-error-message>
         <app-error-message [control]='email' [error]="'appEmail'" [message]="noValidEmail"></app-error-message>
       </div>
+
+      <!-- Necessary to fix an ng-modal bug which allows you to submit pressing 'enter' eventhough required inputs arent valid
+      This bug only accures when a form has just 1 input-field -->
+      <input type="text" hidden>
+
     </form>
     <app-alert-closeable #AddUserToBookCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
   </div>
