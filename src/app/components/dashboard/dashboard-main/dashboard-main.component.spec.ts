@@ -35,8 +35,10 @@ describe('DashboardMainComponent', () => {
       timeFrame: new Date(), rangeEnum: null, creationDate: new Date()});
       transaction.push({id: '3', title: 'Outgoing 1', comment: 'Outgoing 1', bookId: '1', categoryId: '1', amount: -30,
       timeFrame: new Date(), rangeEnum: null, creationDate: new Date()});
-      transaction.push({id: '3', title: 'Outgoing 2', comment: 'Outgoing 1', bookId: '1', categoryId: '1', amount: -20,
+      transaction.push({id: '4', title: 'Outgoing 2', comment: 'Outgoing 2', bookId: '1', categoryId: '1', amount: -20,
       timeFrame: new Date(), rangeEnum: null, creationDate: new Date()});
+      transaction.push({id: '5', title: 'Outgoing 3', comment: 'Outgoing 3', bookId: '1', categoryId: '1', amount: -20,
+      timeFrame: new Date(), rangeEnum: null, creationDate: new Date(new Date().setFullYear(2000))});
 
       const incomes = await dashboardMainComponent.getBookTotals(transaction, 'incomes', new Date().getMonth() + 1,
       new Date().getFullYear());

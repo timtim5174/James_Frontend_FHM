@@ -1,25 +1,45 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DatepickerComponent } from './datepicker.component';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ExpandOperator } from 'rxjs/internal/operators/expand';
 
-xdescribe('DatepickerComponent', () => {
-  let component: DatepickerComponent;
-  let fixture: ComponentFixture<DatepickerComponent>;
+describe('DatepickerComponent', () => {
+    let datepickerComponent: DatepickerComponent;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DatepickerComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+      datepickerComponent = new DatepickerComponent(new NgbDatepickerConfig());
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DatepickerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    it('should init date picker value', () => {
+        const datepickerDate = new Date();
+        datepickerComponent.initDate({
+          year: datepickerDate.getFullYear(),
+          month: datepickerDate.getMonth(),
+          day: datepickerDate.getDate()
+        });
+        expect(datepickerComponent.model.year).toBe(datepickerDate.getFullYear());
+        expect(datepickerComponent.model.month).toBe(datepickerDate.getMonth());
+        expect(datepickerComponent.model.day).toBe(datepickerDate.getDate());
+        expect(datepickerComponent.datePicked).toBe(true);
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    });
+
+    it('should set datepicked value to true in myFunc', () => {
+      datepickerComponent.datePicked = false;
+      datepickerComponent.myFunc();
+      expect(datepickerComponent.datePicked).toBe(true);
+    });
+
+    it('should done form-control', () => {
+        datepickerComponent.datePicked = true;
+        const result = datepickerComponent.openOrDone();
+        expect(result).toBe('done form-control');
+    });
+
+    it('should open form-control', () => {
+        datepickerComponent.datePicked = false;
+        const result = datepickerComponent.openOrDone();
+        expect(result).toBe('open form-control');
+    });
 });

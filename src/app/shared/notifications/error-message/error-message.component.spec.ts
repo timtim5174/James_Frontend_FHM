@@ -1,25 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorMessageComponent } from './error-message.component';
+import { NgModel } from '@angular/forms';
 
-xdescribe('ErrorMessageComponent', () => {
-  let component: ErrorMessageComponent;
-  let fixture: ComponentFixture<ErrorMessageComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ErrorMessageComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorMessageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+describe('ErrorMessageComponent', () => {
+  let errorMessageComponent: ErrorMessageComponent;
+  let errorMessage: String;
+  let error: String;
+  beforeAll(() => {
+    errorMessageComponent = new ErrorMessageComponent();
+    errorMessage = 'Test Error Message';
+    error = 'Test Error';
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should return the correct setted values', () => {
+    errorMessageComponent.error = 'Test Error';
+    errorMessageComponent.message = 'Test Error Message';
+    expect(errorMessageComponent.error).toBe(error);
+    expect(errorMessageComponent.message).toBe(errorMessage);
   });
 });
