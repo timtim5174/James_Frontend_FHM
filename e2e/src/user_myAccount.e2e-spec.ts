@@ -19,7 +19,6 @@ describe('User my account test', () => {
     it('should be possible to see the correct user e-mail', async() => {
         await element(by.name('myAccount')).click();
         const email = await element(by.id('email')).getAttribute('value');
-        await browser.sleep(2000);
         expect(email).toBe('tim@test.de');
     });
 
@@ -29,6 +28,5 @@ describe('User my account test', () => {
         await lastname.clear();
         await lastname.sendKeys(lastname_value);
         await element(by.className('btn-primary')).click();
-        // await browser.wait(until.elementIsVisible(element(by.tagName('app-alert-closeable'))), 5000);
     });
 });

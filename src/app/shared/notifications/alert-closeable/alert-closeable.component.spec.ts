@@ -1,25 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AlertCloseableComponent } from './alert-closeable.component';
 
-xdescribe('AlertCloseableComponent', () => {
-  let component: AlertCloseableComponent;
-  let fixture: ComponentFixture<AlertCloseableComponent>;
+describe('AlertCloseableComponent', () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AlertCloseableComponent ]
-    })
-    .compileComponents();
-  }));
+  let alertClosaebleComponent: AlertCloseableComponent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlertCloseableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    alertClosaebleComponent = new AlertCloseableComponent();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should set isClosed false when reOpenAlert()', () => {
+    alertClosaebleComponent.reOpenAlert();
+    const result = alertClosaebleComponent.isClosed;
+    expect(result).toBe(false);
+  });
+
+  it('should set isClose true when closeAlert()', () => {
+    alertClosaebleComponent.closeAlert();
+    const result = alertClosaebleComponent.isClosed;
+    expect(result).toBe(true);
   });
 });

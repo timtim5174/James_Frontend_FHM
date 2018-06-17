@@ -102,6 +102,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current day', inject([TimeService], (service: TimeService) => {
@@ -111,6 +112,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current week - starting tuesday', inject([TimeService], (service: TimeService) => {
@@ -121,6 +123,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current week - starting wednesday', inject([TimeService], (service: TimeService) => {
@@ -131,6 +134,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current week - starting thursday', inject([TimeService], (service: TimeService) => {
@@ -141,6 +145,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current month - starting the first day of the month', inject([TimeService], (service: TimeService) => {
@@ -150,6 +155,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current month - starting the 15th of the month', inject([TimeService], (service: TimeService) => {
@@ -160,6 +166,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current month - starting the 28th of the month', inject([TimeService], (service: TimeService) => {
@@ -170,6 +177,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current month - starting the 10th of the month', inject([TimeService], (service: TimeService) => {
@@ -180,6 +188,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current month - starting the 31th of the month', inject([TimeService], (service: TimeService) => {
@@ -190,6 +199,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current year - starting january 1st', inject([TimeService], (service: TimeService) => {
@@ -199,6 +209,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current year - starting january 15st', inject([TimeService], (service: TimeService) => {
@@ -209,6 +220,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current year - starting february 28th', inject([TimeService], (service: TimeService) => {
@@ -219,6 +231,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current year - starting march 1st', inject([TimeService], (service: TimeService) => {
@@ -229,6 +242,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current year - starting august 20th', inject([TimeService], (service: TimeService) => {
@@ -239,6 +253,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
 
     it('should return the current year - starting december 31th', inject([TimeService], (service: TimeService) => {
@@ -249,6 +264,7 @@ describe('TimeService', () => {
       const resultEndDate = service.getCurrentBookPeriod(book).endDate.getTime() === testDate.endDate.getTime() ? true : false;
       const result = resultStartDate === resultEndDate ? true : false;
       expect(result).toBe(true);
+
     }));
   });
 });

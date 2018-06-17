@@ -10,7 +10,6 @@ describe('User login test', () => {
         await element(by.name('email')).sendKeys('tim@test.de', Key.RETURN);
     });
 
-    // Login
     it('should not possible to login user -> password wrong', async() => {
         await element(by.name('password')).sendKeys('test123456', Key.RETURN);
         await browser.sleep(3000);
