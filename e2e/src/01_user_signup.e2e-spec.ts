@@ -24,6 +24,11 @@ describe('User sign up test', () => {
         passwordCheck = element(by.name('passwordCheck'));
     });
 
+    afterAll(async () => {
+        await element(by.name('signout')).click();
+        await browser.sleep(3000);
+    });
+
     it('should not possible to sign up --> passwords different', async() => {
         await firstname.sendKeys('Harry', Key.RETURN);
         await lastname.sendKeys('Hacker', Key.RETURN);
@@ -40,8 +45,8 @@ describe('User sign up test', () => {
         await passwordCheck.clear();
         await passwordCheck.sendKeys('test1234');
         await element(by.className('btn-primary')).click();
-        await browser.sleep(2000);
-        const myAccount = await element(by.name('myAccount')).isPresent();
-        expect(myAccount).toBe(true);
+        await browser.sleep(5000);
+        const signout = await element(by.name('signout')).isPresent();
+        expect(signout).toBe(true);
     });
 });
