@@ -1,6 +1,6 @@
 import { browser, by, element, Key} from 'protractor';
 
-describe('Book tests', () => {
+describe('Book create test', () => {
     browser.waitForAngularEnabled(false);
 
     it('should not be possible to create book --> missing value', async() => {
