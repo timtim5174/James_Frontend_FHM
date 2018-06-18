@@ -11,7 +11,7 @@ describe('Book update test', () => {
         await title.sendKeys('E2E update name');
         await element(by.className('btn-success')).click();
         await browser.sleep(2000);
-        const result = element(by.className('modal-title')).isPresent();
+        const result = await element(by.className('modal-title')).isPresent();
         expect(result).toBe(false);
     });
 });
