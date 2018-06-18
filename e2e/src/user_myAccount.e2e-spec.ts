@@ -19,7 +19,11 @@ describe('User my account test', () => {
     it('should be possible to see the correct user e-mail', async() => {
         await element(by.name('myAccount')).click();
         const email = await element(by.id('email')).getAttribute('value');
+        const firstname = await element(by.id('firstname')).getAttribute('value');
+        const lastname = await element(by.id('lastname')).getAttribute('value');
         expect(email).toBe('tim@test.de');
+        expect(firstname).toBe('Tim');
+        expect(lastname).toBe('Sawatzki');
     });
 
     it('should be possible to update Lastname', async() => {
