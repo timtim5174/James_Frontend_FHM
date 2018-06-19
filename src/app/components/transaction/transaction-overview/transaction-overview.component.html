@@ -17,7 +17,7 @@
       <th class="text-center">Member</th>
       <th class="text-center">
         <app-modal [component]="createTransactionComponent" (modalResult)="addTransaction($event)">
-          <a title="Add a new transaction" class="btn btn-light btnTrash">
+          <a title="Adds a new transaction" class="btn btn-light btnTrash">
             <i class="fa fa-plus"></i>
           </a>
         </app-modal>
@@ -43,14 +43,14 @@
         <div>{{ generateDate(transaction.timeFrame) }}</div>
       </td>
       <td class="text-center">
-        <div>{{ getTransactionCreator(transaction)}}</div>
+        <div>{{ getTransactionCreator(transaction) }}</div>
       </td>
 
       <td class="text-center">
 
         <div class="myButton">
           <app-modal [component]="updateTransactionComponent" [payload]="transaction" (modalResult)="updateTransaction($event)">
-            <a class="btn btn-light btnEdit">
+            <a title="update transaction" class="btn btn-light btnEdit">
               <i class="fa fa-edit"></i>
             </a>
           </app-modal>
@@ -59,7 +59,7 @@
 
         <div class="myButton">
           <app-modal [component]="deleteTransactionComponent" [payload]="transaction" (modalResult)="deleteTransaction($event)">
-            <a class="btn btn-light btnTrash">
+            <a title="delete transaction" class="btn btn-light btnTrash">
               <i class="fa fa-trash"></i>
             </a>
           </app-modal>

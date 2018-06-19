@@ -8,21 +8,21 @@
             <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
                     <li class="nav-item navItem">
-                        <a class="nav-link" routerLink="info" routerLinkActive="active">
+                        <a title="Shows a general overview of this book" class="nav-link" routerLink="info" routerLinkActive="active">
                             <i class="fa fa-home icons"></i>
                             <span class="spanSpace">Home</span>
                         </a>
                     </li>
                     <li class="nav-item navItem icon">
                         <app-modal [component]="addUserToBookComponent">
-                            <a class="nav-link" routerLinkActive="active">
+                            <a title="Adds a new User to this book" class="nav-link" routerLinkActive="active">
                                 <i class="fa fa-user-plus icons"></i>
                                 <span class="spanSpace">Add User</span>
                             </a>
                         </app-modal>
                     </li>
                     <li class="nav-item navItem">
-                        <a class="nav-link" routerLink="statistics" routerLinkActive="active">
+                        <a title="Shows statistics of this book" class="nav-link" routerLink="statistics" routerLinkActive="active">
                             <i class="fa fa-signal icons"></i>
                             <span class="spanSpace">Statistics</span>
                         </a>
