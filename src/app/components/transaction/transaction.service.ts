@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Transaction } from './transaction';
-import { SharedTransactionService } from './shared-transaction.service';
 import jamesConf from '../../../james.conf';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class TransactionService {
   response: object;
 
 
-  constructor(private http: HttpClient, private sharedTransactionService: SharedTransactionService) { }
+  constructor(private http: HttpClient) { }
 
   createTransaction(transaction: Partial<Transaction>): Observable<Transaction> {
     return this.http.post<Transaction>(this.baseURL + '/createTransaction', transaction, this.options).pipe(

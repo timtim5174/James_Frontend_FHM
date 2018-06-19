@@ -96,22 +96,19 @@ export class TransactionOverviewComponent implements OnInit {
     return day + '.' + month + '.' + year;
   }
 
-  getTransactionCreator(transaction: Transaction) {
-    if (this.userInfos) {
-      for (const user of this.userInfos) {
-        if (user.id === transaction.userId) {
-          return user.firstname;
+    getTransactionCreator(transaction: Transaction) {
+      if (this.userInfos) {
+        for (const user of this.userInfos) {
+          if (user.id === transaction.userId) {
+            return user.firstname;
+          }
         }
+      } else {
+        return '';
       }
-    } else {
-      return '';
     }
-  }
 
-  isTransactionInCurrentBookPeriod(transaction: Transaction): boolean {
-    return this.transactionTimeService.isTransactionInCurrentBookPeriod(transaction, this.book);
-  }
-
-
-
+    isTransactionInCurrentBookPeriod(transaction: Transaction): boolean {
+      return this.transactionTimeService.isTransactionInCurrentBookPeriod(transaction, this.book);
+    }
 }

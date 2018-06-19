@@ -1,16 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Transaction } from '../transaction';
 import { SharedBookService } from '../../book/shared-book.service';
 import { Book } from '../../book/book';
 import { AlertCloseableComponent } from '../../../shared/notifications/alert-closeable/alert-closeable.component';
 import { DatepickerComponent } from '../../../shared/datepicker/datepicker.component';
-import { SharedTransactionService } from '../shared-transaction.service';
 import { TransactionService } from '../transaction.service';
-import { CategoryService } from '../../category/category.service';
 import { Category } from '../../category/category';
-import { retry } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { SharedCategoryService } from '../../category/shared-category.service';
 
 @Component({
@@ -50,7 +46,6 @@ export class CreateTransactionComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private sharedBookService: SharedBookService,
-    private sharedTransactionService: SharedTransactionService,
     private transactionService: TransactionService,
     private sharedCategoryService: SharedCategoryService) { }
 
@@ -75,7 +70,6 @@ export class CreateTransactionComponent implements OnInit {
       error => {
         this.createClicked = false;
         this.closeableAlert.reOpenAlert();
-        console.log(error);
         this.errorMessage = 'The settlement date can not be in the past';
       }
     );
@@ -83,7 +77,7 @@ export class CreateTransactionComponent implements OnInit {
 
   rangeEnumChanged() {
     /* this.newTransaction.timeFrame = null; */
-    console.log(this.newTransaction);
+    // console.log(this.newTransaction);
   }
 
   loadExampleDate() {

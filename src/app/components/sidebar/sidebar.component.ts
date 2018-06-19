@@ -44,9 +44,6 @@ export class SidebarComponent implements OnInit {
 
   constructor(private sharedSidebarService: SharedSidebarService) { }
 
-
-  sidebarHeight = 0;
-
   ngOnInit() {
   }
 
