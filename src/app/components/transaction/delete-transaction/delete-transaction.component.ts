@@ -10,7 +10,7 @@ import { AlertCloseableComponent } from '../../../shared/notifications/alert-clo
   styleUrls: ['./delete-transaction.component.scss']
 })
 export class DeleteTransactionComponent implements OnInit {
-  @Input() modalInput: Transaction;
+  @Input() transactionInput: Transaction;
   errorMessage = '';
   deleteClicked = false;
 
@@ -23,11 +23,11 @@ export class DeleteTransactionComponent implements OnInit {
   }
 
   onSubmit() {
-    this.transactionService.deleteTransaction(this.modalInput.id, this.modalInput.bookId).subscribe(
-      success => this.activeModal.close(this.modalInput),
+    this.transactionService.deleteTransaction(this.transactionInput.id, this.transactionInput.bookId).subscribe(
+      success => this.activeModal.close(this.transactionInput),
       error => {
-        this.closeableAlert.reOpenAlert();
         this.errorMessage = error;
+        this.closeableAlert.reOpenAlert();
         this.deleteClicked = false;
       }
     );

@@ -97,5 +97,4 @@ export class UpdateTransactionComponent implements OnInit {
       setTimeout(this.loadManuallyPickedDate.bind(this), 10);
     }
   }
-
 }
