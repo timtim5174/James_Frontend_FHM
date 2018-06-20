@@ -52,6 +52,13 @@ export class UserService {
     document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
+  checkCookie() {
+    this.isAuthenticated = false;
+    return this.http.get<User>(this.baseURL + `/checkCookie`, this.options).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   deleteUser(pw: string): Observable<any> {
     return this.http.delete<User>(this.baseURL + `/deleteUser/${pw}`, this.options).pipe(
       map(data => {
@@ -85,13 +92,13 @@ export class UserService {
   }
 
   receiveUserImage() {
-    return this.http.get(this.baseURL + '/getUserImage', { responseType: 'blob', withCredentials: true}).pipe(
+    return this.http.get(this.baseURL + '/getUserImage', { responseType: 'blob', withCredentials: true }).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
 
   getUserInfoImage(userId: string) {
-    return this.http.get(this.baseURL + `/getUserInfoImage/${userId}`, { responseType: 'blob' , withCredentials: true}).pipe(
+    return this.http.get(this.baseURL + `/getUserInfoImage/${userId}`, { responseType: 'blob', withCredentials: true }).pipe(
       map(data => this.response = data),
       catchError(this.handleError));
   }
