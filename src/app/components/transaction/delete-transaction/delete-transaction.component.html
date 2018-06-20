@@ -7,7 +7,7 @@
 <div class="modal-body">
   <div class="container">
      <form id="myForm" (ngSubmit)="onSubmit()" #deleteTransaction="ngForm">
-      <p>{{ modalInput.title }}</p>
+      <p>{{ transactionInput.title }}</p>
     </form>
   </div>
   <app-alert-closeable #DeleteTransactionCloseableAlert [style]="'danger'" [message]="errorMessage"></app-alert-closeable>
