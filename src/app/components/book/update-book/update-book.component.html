@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body mt-0 pt-0">
   <div class="container">
-    <form id="myForm" (ngSubmit)="onSubmit(createBook.value)" #createBook="ngForm">
+    <form id="myForm" (ngSubmit)="onSubmit()" #createBook="ngForm">
       <div class="form-group">
         <label for="title" class="control-label">Title</label>
         <input id="title" type="text" class="form-control" maxlength="12" name="title" [(ngModel)]="newBook.title" required placeholder="Book name"
