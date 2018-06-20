@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../../components/user/user.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,8 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-
-  constructor() { }
 
   ngOnInit() {
   }
