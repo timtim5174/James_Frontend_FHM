@@ -7,6 +7,30 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 
+class MockUserService extends UserService {
+
+  getUserData() {
+    return new Observable<User>(observer => {
+      observer.next({
+        firstname: 'Harry',
+        lastname: 'Hacker',
+        email: 'harry@hacker.de',
+        password: 'test1234',
+        birth: new Date()
+      });
+    });
+  }
+}
+
+class MockSharedUserService extends SharedUserService {
+
+  getUserImage() {
+    return new Observable<null>(observer => {
+      observer.next(null);
+    });
+  }
+}
+
 describe('MyAccountComponent', () => {
   let myAccountComponent: MyAccountComponent;
   let userService: UserService;
@@ -68,27 +92,3 @@ describe('MyAccountComponent', () => {
 
   });
 });
-
-class MockUserService extends UserService {
-
-  getUserData() {
-    return new Observable<User>(observer => {
-      observer.next({
-        firstname: 'Harry',
-        lastname: 'Hacker',
-        email: 'harry@hacker.de',
-        password: 'test1234',
-        birth: new Date()
-      });
-    });
-  }
-}
-
-class MockSharedUserService extends SharedUserService {
-
-  getUserImage() {
-    return new Observable<null>(observer => {
-      observer.next(null);
-    });
-  }
-}

@@ -7,6 +7,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { UserInfo } from '../../user/user';
 import { Observable } from 'rxjs';
 
+class MockUserService extends UserService {
+
+  getUserInfoImage(userId: string) {
+    return new Observable<null>(); // java server returns null when no image exists
+  }
+}
+
 describe('MembersComponent', () => {
   let membersComponent: MembersComponent;
   let sanitizer: DomSanitizer; // tslint:disable-line
@@ -26,10 +33,3 @@ describe('MembersComponent', () => {
 
   });
 });
-
-class MockUserService extends UserService {
-
-  getUserInfoImage(userId: string) {
-    return new Observable<null>(); // java server returns null when no image exists
-  }
-}

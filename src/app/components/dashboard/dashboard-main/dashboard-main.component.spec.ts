@@ -22,7 +22,7 @@ describe('DashboardMainComponent', () => {
   beforeAll(() => {
     userService = new UserService(new HttpClient({} as HttpHandler), new SharedUserService());
     bookService = new BookService(new HttpClient({} as HttpHandler));
-    transactionService = new TransactionService(new HttpClient({} as HttpHandler), new SharedTransactionService());
+    transactionService = new TransactionService(new HttpClient({} as HttpHandler));
     sharedSidebarService = new SharedSidebarService();
     dashboardMainComponent = new DashboardMainComponent(userService, bookService, transactionService, dateService, sharedSidebarService);
   });

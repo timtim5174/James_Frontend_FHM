@@ -5,6 +5,12 @@ import { Book, BookPeriod } from './book';
 
 
 describe('TimeService', () => {
+  const daysInMonth = function (month: number, year: number) {
+    return 32 - new Date(year, month, 32).getDate();
+  };
+
+  let book: Book;
+
   const getTestData = function (param: Book) {
     switch (book.rangeEnum) {
       case 'DAILY':
@@ -71,12 +77,6 @@ describe('TimeService', () => {
         return null;
     }
   };
-
-  const daysInMonth = function (month: number, year: number) {
-    return 32 - new Date(year, month, 32).getDate();
-  };
-
-  let book: Book;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

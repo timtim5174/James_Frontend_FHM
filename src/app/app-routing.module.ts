@@ -37,31 +37,33 @@ const routes: Routes = [
   { path: 'users/sign-up', component: SignUpComponent },
   { path: 'users/sign-in', component: SignInComponent },
   { path: 'users/sign-out', component: SignOutComponent },
-  { path: 'createBook', component: CreateBookComponent },
-  { path: 'updateBook', component: UpdateBookComponent },
-  { path: 'deleteBook', component: DeleteBookComponent },
-  { path: 'addUserToBook', component: AddUserToBookComponent },
   { path: 'privacy', component: DataPrivacyComponent },
   { path: 'legalnotice', component: LegalNoticeComponent },
-  { path: 'members', component: MembersComponent },
-  { path: 'deleteTransaction', component: DeleteTransactionComponent },
-  { path: 'deleteUser', component: DeleteUserComponent },
   {
     path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
       { path: 'dashboard', component: DashboardMainComponent },
-      { path: 'myAccount', component: MyAccountComponent },
+      { path: 'myAccount', component: MyAccountComponent, children: [
+        { path: 'deleteUser', component: DeleteUserComponent },
+        { path: 'members', component: MembersComponent },
+      ] },
       { path: 'sign-out', component: SignOutComponent },
       { path: 'book/:id', component: BookViewComponent, children: [
           { path: 'home', component: HomeComponent },
           { path: 'transactions', component: TransactionOverviewComponent },
+          { path: 'info', component: BookInfoComponent },
+          { path: 'statistics', component: BookStatisticsComponent },
+          { path: 'createBook', component: CreateBookComponent },
+          { path: 'updateBook', component: UpdateBookComponent },
+          { path: 'deleteBook', component: DeleteBookComponent },
+          { path: 'deleteTransaction', component: DeleteTransactionComponent },
           { path: 'createTransaction', component: CreateTransactionComponent },
           { path: 'updateTransaction', component: UpdateTransactionComponent },
-          { path: 'info', component: BookInfoComponent },
-          { path: 'statistics', component: BookStatisticsComponent }
+          { path: 'addUserToBook', component: AddUserToBookComponent },
         ]
       }
     ]
-  }
+  },
+  { path: '**', component: HomeComponent }
 ];
 
 
