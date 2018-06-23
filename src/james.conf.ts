@@ -1,5 +1,5 @@
 export default{
-    restApiUrl: serverConnection('L')
+    restApiUrl: serverConnection('P')
 };
 
 function serverConnection(type: 'L' | 'P' | 'T') {
