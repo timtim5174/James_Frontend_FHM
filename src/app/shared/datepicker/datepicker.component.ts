@@ -31,7 +31,8 @@ export class DatepickerComponent implements OnInit {
     this.datePicked = true;
   }
 
-  myFunc() {
+  myFunc(event: NgbDateStruct) {
+    this.model = event;
     this.datePicked = true;
     this.save.emit(this.model);
   }
