@@ -34,7 +34,6 @@ export class UpdateTransactionComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private sharedBookService: SharedBookService,
     private transactionService: TransactionService,
     private sharedCategoryService: SharedCategoryService) { }
 
@@ -47,7 +46,6 @@ export class UpdateTransactionComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('onSubmit updateTransaction: ', this.newTransaction);
     this.updateClicked = true;
     this.transactionService.updateTransaction(this.newTransaction).subscribe(
       data => {
