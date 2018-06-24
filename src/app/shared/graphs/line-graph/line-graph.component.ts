@@ -10,14 +10,15 @@ import { LineGraph } from './line-graph';
 export class LineGraphComponent implements OnChanges {
   @Input() input: LineGraph;
 
-  chart: any = [];
-  checkObject: any = this.chart;
+  chart: Chart | undefined[] = [];
+  checkObject: Chart | undefined[] = this.chart;
   constructor(private elementRef: ElementRef) {
   }
 
   ngOnChanges() {
     if (this.chart !== this.checkObject) {
-      this.chart.destroy();
+      const dchart = <Chart> this.chart;
+      dchart.destroy();
     }
     if (this.elementRef.nativeElement.querySelector(`#canvas`) != null && this.input !== undefined) {
       this.chartit();

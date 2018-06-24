@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="under-stats">
-        <div class="chart" [ngStyle]="setStyles()" onscroll="scroll">
+        <div class="chart" [ngStyle]="setStyles()" (scroll)="scroll">
             <app-line-graph [input]="lineGraph"></app-line-graph>
         </div>
         <div id="transactions">

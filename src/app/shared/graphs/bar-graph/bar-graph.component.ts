@@ -13,11 +13,12 @@ export class BarGraphComponent implements OnChanges {
   /**
    * Inputs: data, options
    */
-  chart: any = [];
-  checkObject: any = this.chart;
+  chart: Chart | undefined[] = [];
+  checkObject: Chart | undefined[] = this.chart;
   ngOnChanges() {
     if (this.chart !== this.checkObject) {
-      this.chart.destroy();
+      const dchart = <Chart> this.chart;
+      dchart.destroy();
     }
     if (this.elementRef.nativeElement.querySelector(`#bargraph`) != null && this.input !== undefined) {
       this.chartit();

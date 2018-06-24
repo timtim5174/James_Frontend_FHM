@@ -26,7 +26,7 @@ export class TransactionService {
 
   getTransactions(id: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.baseURL + `/getTransactions/${id}`, this.options).pipe(
-      map(transactions => transactions.sort(((a: Transaction, b: Transaction) => a.creationDate <= b.creationDate ? 0 : 1))),
+      map(transactions => transactions.sort(((a: Transaction, b: Transaction) => b.creationDate <= a.creationDate ? 1 : 0))),
       map(data => this.response = data),
       catchError(this.handleError)
     );
