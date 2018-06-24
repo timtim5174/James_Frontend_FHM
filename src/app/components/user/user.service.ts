@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 
 import { Observable, throwError as _throw } from 'rxjs';
@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { User, UserInfo, CheckCookie } from './user';
 import { SharedUserService } from './shared-user.service';
 import jamesConf from '../../../james.conf';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class UserService {
   private baseURL = jamesConf.restApiUrl;
   isAuthenticated: boolean;
 
-  private options = { withCredentials: true };
+  private options = {withCredentials: true};
   userData: User;
   response: object;
 
