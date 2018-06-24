@@ -9,6 +9,7 @@ describe('DatepickerComponent', () => {
 
     beforeEach(() => {
       datepickerComponent = new DatepickerComponent(new NgbDatepickerConfig());
+
     });
 
     it('should init date picker value', () => {
@@ -25,21 +26,18 @@ describe('DatepickerComponent', () => {
 
     });
 
-    it('should set datepicked value to true in myFunc', () => {
-      datepickerComponent.datePicked = false;
-      datepickerComponent.myFunc();
-      expect(datepickerComponent.datePicked).toBe(true);
-    });
 
     it('should done form-control', () => {
         datepickerComponent.datePicked = true;
         const result = datepickerComponent.openOrDone();
         expect(result).toBe('done form-control');
+
     });
 
     it('should open form-control', () => {
         datepickerComponent.datePicked = false;
         const result = datepickerComponent.openOrDone();
         expect(result).toBe('open form-control');
+
     });
 });
