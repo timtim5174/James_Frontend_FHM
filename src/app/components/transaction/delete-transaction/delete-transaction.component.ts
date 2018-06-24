@@ -10,7 +10,7 @@ import { AlertCloseableComponent } from '../../../shared/notifications/alert-clo
   styleUrls: ['./delete-transaction.component.scss']
 })
 export class DeleteTransactionComponent implements OnInit {
-  @Input() modalInput: Transaction;
+  @Input() modalInput: Partial<Transaction>;
   errorMessage = '';
   deleteClicked = false;
 

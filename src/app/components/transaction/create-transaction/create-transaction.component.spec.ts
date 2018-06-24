@@ -75,7 +75,8 @@ describe('CreateTransactionComponent', () => {
 
   it('should create', () => {
     createTransactionComponent.newTransaction = newTransaction;
-    let spy = spyOn(transactionService, 'createTransaction').and.returnValue(new Observable<Transaction>());
+    const spy = spyOn(transactionService, 'createTransaction')
+      .and.returnValue(new Observable<Transaction>());
     createTransactionComponent.onSubmit();
     expect(transactionService.createTransaction).toHaveBeenCalledTimes(1);
   });
