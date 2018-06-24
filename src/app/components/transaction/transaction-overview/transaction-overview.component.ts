@@ -61,7 +61,6 @@ export class TransactionOverviewComponent implements OnInit {
   }
 
   updateTransaction(transaction: Transaction) {
-    console.log('updateTransactiion Overview: ', transaction);
     this.transactions = this.transactions.filter(t => t.id !== transaction.id);
     this.sharedTransactionService.setTransactions([...this.transactions, transaction]);
   }

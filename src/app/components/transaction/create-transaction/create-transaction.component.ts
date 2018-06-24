@@ -77,7 +77,6 @@ export class CreateTransactionComponent implements OnInit {
 
   rangeEnumChanged() {
     /* this.newTransaction.timeFrame = null; */
-    // console.log(this.newTransaction);
   }
 
   loadExampleDate() {
