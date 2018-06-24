@@ -18,14 +18,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    /* if (document.cookie.includes('jwt-token')) {
+
+    if (document.cookie.includes('jwt-token')) {
       this.userService.isAuthenticated = true;
       this.loadUserData();
-    } */
-    this.userService.checkCookie().subscribe(
-      success => console.log(success),
-      error => console.log(error)
-    );
+    }
+
 
     this.changeAuthenticationStatus = this.sharedUserService.getAuthentificationStatus().subscribe(status => {
       if (status && !this.toggle) {

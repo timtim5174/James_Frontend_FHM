@@ -5,6 +5,7 @@ import { UserService } from './components/user/user.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
+import { SharedUserService } from './components/user/shared-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
     if (this.userService.isAuthenticated) {
       return true;
     } else {

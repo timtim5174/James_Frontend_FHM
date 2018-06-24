@@ -14,3 +14,7 @@ export interface UserInfo {
     lastname: string;
     img?: SafeUrl;
 }
+
+export interface CheckCookie {
+    message: string;
+}

@@ -1,12 +1,12 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ResponseContentType } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable, of, throwError as _throw, BehaviorSubject } from 'rxjs';
+
+import { Observable, throwError as _throw } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http/src/response';
-import { User, UserInfo } from './user';
+import { User, UserInfo, CheckCookie } from './user';
 import { SharedUserService } from './shared-user.service';
 import jamesConf from '../../../james.conf';
 
@@ -52,7 +52,7 @@ export class UserService {
     document.cookie = 'jwt-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
-  checkCookie() {
+  checkCookie(): Observable<CheckCookie> {
     this.isAuthenticated = false;
     return this.http.get<User>(this.baseURL + `/checkCookie`, this.options).pipe(
       catchError(this.handleError)
@@ -121,5 +121,6 @@ export class UserService {
     }
     return _throw(msg);
   }
-
 }
+
+
