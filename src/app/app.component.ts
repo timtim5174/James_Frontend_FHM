@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from './components/user/user.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SharedUserService } from './components/user/shared-user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',

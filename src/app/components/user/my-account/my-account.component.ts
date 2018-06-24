@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from './../../../components/user/user';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../components/user/user.service';

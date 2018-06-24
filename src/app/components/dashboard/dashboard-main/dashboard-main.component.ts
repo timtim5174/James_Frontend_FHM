@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../components/user/user.service';
 import { UserInfo } from '../../../components/user/user';
 import { BookService } from '../../book/book.service';

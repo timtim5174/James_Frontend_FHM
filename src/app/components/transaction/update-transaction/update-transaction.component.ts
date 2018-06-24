@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { SharedBookService } from '../../book/shared-book.service';
 import { TransactionService } from '../transaction.service';
 import { SharedCategoryService } from '../../category/shared-category.service';
 import { Transaction } from '../transaction';

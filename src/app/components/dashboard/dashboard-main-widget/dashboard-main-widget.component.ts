@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
 import { User, UserInfo } from '../../user/user';
 import { MembersComponent } from '../members/members.component';
 import { UserService } from '../../user/user.service';

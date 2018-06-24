@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PieGraph } from '../../../shared/graphs/pie-graph/pie-graph';
 import { BarGraph } from '../../../shared/graphs/bar-graph/bar-graph';
 import { SharedBookService } from '../shared-book.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';

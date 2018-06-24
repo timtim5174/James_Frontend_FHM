@@ -1,8 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { SharedBookService } from '../shared-book.service';
 import { Book, BookPeriod } from '../book';
-import { Chart } from 'chart.js';
-import { TransactionService } from '../../transaction/transaction.service';
 import { SharedTransactionService } from '../../transaction/shared-transaction.service';
 import { PieGraph } from '../../../shared/graphs/pie-graph/pie-graph';
 import { LineGraph } from '../../../shared/graphs/line-graph/line-graph';

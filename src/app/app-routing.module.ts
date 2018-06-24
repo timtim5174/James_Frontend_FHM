@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
@@ -14,14 +14,11 @@ import { CreateBookComponent } from './components/book/create-book/create-book.c
 import { DashboardMainComponent } from './components/dashboard/dashboard-main/dashboard-main.component';
 import { UpdateBookComponent } from './components/book/update-book/update-book.component';
 import { BookViewComponent } from './components/book/book-view/book-view.component';
-import { BookSidebarComponent } from './components/book/book-sidebar/book-sidebar.component';
 import { DeleteBookComponent } from './components/book/delete-book/delete-book.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TransactionOverviewComponent } from './components/transaction/transaction-overview/transaction-overview.component';
 import { BookInfoComponent } from './components/book/book-info/book-info.component';
 import { AddUserToBookComponent } from './components/book/add-user-to-book/add-user-to-book.component';
 import { MembersComponent } from './components/dashboard/members/members.component';
-import { PieGraphComponent } from './shared/graphs/pie-graph/pie-graph.component';
 import { BookStatisticsComponent } from './components/book/book-statistics/book-statistics.component';
 import { CreateTransactionComponent } from './components/transaction/create-transaction/create-transaction.component';
 import { UpdateTransactionComponent } from './components/transaction/update-transaction/update-transaction.component';

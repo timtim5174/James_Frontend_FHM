@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { UserInfo, User } from '../../user/user';
-import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserInfo } from '../../user/user';
+import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from '../../user/user.service';
 
 @Component({

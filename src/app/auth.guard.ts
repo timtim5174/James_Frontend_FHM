@@ -5,7 +5,6 @@ import { UserService } from './components/user/user.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
-import { SharedUserService } from './components/user/shared-user.service';
 
 @Injectable({
   providedIn: 'root'

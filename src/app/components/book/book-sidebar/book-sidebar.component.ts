@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Book } from '../book';
 import { BookService } from '../book.service';
 import { CreateBookComponent } from '../create-book/create-book.component';
