@@ -16,8 +16,8 @@ export class PieGraphComponent implements OnInit, OnChanges {
     legend: boolean;
   };
 
-  pieChart: any = [];
-  checkObject: any = this.pieChart;
+  pieChart: Chart | undefined[] = [];
+  checkObject: Chart | undefined[] = this.pieChart;
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
@@ -25,7 +25,8 @@ export class PieGraphComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.pieChart !== this.checkObject) {
-      this.pieChart.destroy();
+      const dchart = <Chart> this.pieChart;
+      dchart.destroy();
     }
     if (this.elementRef.nativeElement.querySelector(`#pieChart`) != null && this.data !== undefined) {
       this.initPieChart();
